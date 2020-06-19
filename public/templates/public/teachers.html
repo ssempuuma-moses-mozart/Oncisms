@@ -1,0 +1,90 @@
+{% extends 'public/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="conntent">
+<div class="section">
+			<!-- CONTAINER -->
+<div class="container">
+<div class="row">
+	<div class="col-xs-12">
+	<div class="clearfix">
+	<div class="pull-left">
+	</div>
+	<div class="pull-right tableTools-container"></div>
+		</div>
+		<div class="section-title">
+		<h2 class="title">{{ total_teachers }} Registered Teachers</h2>
+		</div>
+
+		<!-- div.table-responsive -->
+
+		<!-- div.dataTables_borderWrap -->
+		<div>
+			<table id="dynamic-table" class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+					
+					<th class="center">
+						No.
+						</th>
+					
+						<th>Name</th>
+						<th class="hidden-480">Gender</th>
+						<th class="hidden-480">Reg. No</th>
+						<th>
+						<i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+						Registered On
+						</th>
+						<th>
+						<i class="ace-icon fa fa-map-marker light-orange bigger-110"></i>
+						Origin
+						</th>
+					</tr>
+				</thead>
+
+				<tbody>
+						
+				
+				{% for teacher in teachers %}    
+				<tr>
+						
+				<td class="center">
+				{{ forloop.counter0|add:teachers.start_index }}
+				</td>
+				<td>
+					<a href="{% url 'teacher-details' teacher.id %}">{{ teacher.name }}</a>
+				</td>
+				<td>{{ teacher.gender }}</td>
+				<td>{{ teacher.reg_no }}</td>
+
+				<td>{{ teacher.date_registered|date:"N d, Y" }}</td>
+				<td>{{ teacher.district }}, {{ teacher.region }} Ug.</td>
+				</tr>
+				{% endfor %} 
+				
+				</tbody>
+			</table>
+	<div class="pagination">
+    <span class="step-links">
+        {% if teachers.has_previous %}
+            <a class="btn btn-danger" href="?page=1">&laquo; first</a>
+            <a class="btn btn-danger" href="?page={{ teachers.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+            Page {{ teachers.number }} of {{ teachers.paginator.num_pages }}.
+        </span>
+        {% if teachers.has_next %}
+            <a class="btn btn-danger" href="?page={{ teachers.next_page_number }}">next</a>
+            <a class="btn btn-danger" href="?page={{ teachers.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+	</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock content %}
+	
