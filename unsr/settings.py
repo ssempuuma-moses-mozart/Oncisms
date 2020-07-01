@@ -122,6 +122,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -131,6 +133,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'login-success'
+LOGOUT_REDIRECT_URL = 'website-home'
 LOGIN_URL = 'login'
 DEO_GROUP_ID = 1
 MINISTRY_GROUP_ID = 2

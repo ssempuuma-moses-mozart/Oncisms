@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 class Access(models.Model):
-	acc_type = models.CharField(max_length=45, verbose_name="Access Type")
+	acc_type = models.CharField(max_length=45, unique=True, verbose_name="Access Type")
 	def __str__(self):
 		return self.acc_type
 		
@@ -16,48 +16,48 @@ class Emails(models.Model):
 		return self.email
 
 class Category(models.Model):
-	cat_type = models.CharField(max_length=45, verbose_name="Category Type")
+	cat_type = models.CharField(max_length=45, unique=True, verbose_name="Category Type")
 	def __str__(self):
 		return self.cat_type
 
 class Cennostatus(models.Model):
-	cns = models.CharField(max_length=45, verbose_name="Center No. Registration status")
+	cns = models.CharField(max_length=45, unique=True, verbose_name="Center No. Registration status")
 	def __str__(self):
 		return self.cns
 
 class Level(models.Model):
-	lev_name = models.CharField(max_length=45, verbose_name="Level")
+	lev_name = models.CharField(max_length=45, unique=True, verbose_name="Level")
 	def __str__(self):
 		return self.lev_name
 
 class Ownership(models.Model):
-	own_type = models.CharField(max_length=45, verbose_name="Ownership Type")
+	own_type = models.CharField(max_length=45, unique=True, verbose_name="Ownership Type")
 	def __str__(self):
 		return self.own_type
 
 class Region(models.Model):
-	reg_name = models.CharField(max_length=45, verbose_name="Region")
+	reg_name = models.CharField(max_length=45, unique=True, verbose_name="Region")
 	def __str__(self):
 		return self.reg_name
 
 class District(models.Model):
-	dis_name = models.CharField(max_length=45, verbose_name="District Name")
+	dis_name = models.CharField(max_length=45, unique=True, verbose_name="District Name")
 	region = models.ForeignKey(Region, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Region")
 	def __str__(self):
 		return self.dis_name
 
 class Regstatus(models.Model):
-	rs_type = models.CharField(max_length=45, verbose_name="Registration status")
+	rs_type = models.CharField(max_length=45, unique=True, verbose_name="Registration status")
 	def __str__(self):
 		return self.rs_type
 
 class Schtype(models.Model):
-	sch_type = models.CharField(max_length=45, verbose_name="School Type")
+	sch_type = models.CharField(max_length=45, unique=True, verbose_name="School Type")
 	def __str__(self):
 		return self.sch_type
 
 class Section(models.Model):
-	sec_type = models.CharField(max_length=45, verbose_name="Section")
+	sec_type = models.CharField(max_length=45, unique=True, verbose_name="Section")
 	def __str__(self):
 		return self.sec_type
 
@@ -74,48 +74,48 @@ class School(models.Model):
 	category = models.ForeignKey(Category, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="School Category")
 	cennostatus = models.ForeignKey(Cennostatus, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Center No. Registration status")
 	regstatus = models.ForeignKey(Regstatus, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Registration status")
-	level = models.ForeignKey(Level, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Hieghest Level")
+	level = models.ForeignKey(Level, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Highest Level")
 	ownership = models.ForeignKey(Ownership, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Ownership")
 	section = models.ForeignKey(Section, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Section")
 	schtype = models.ForeignKey(Schtype, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="School Type")
 	district = models.ForeignKey(District, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="District")
 	date_created = models.DateTimeField(default=timezone.now)
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True,)
-	logo = models.ImageField(default='default.png', upload_to='school_logos', blank=True, null=True,)
+	logo = models.ImageField(default='school_logos/default.png', upload_to='school_logos', blank=True, null=True,)
 	def __str__(self):
 		return self.name
 
 class Designation(models.Model):
-	des_type = models.CharField(max_length=45, verbose_name="Designation" )
+	des_type = models.CharField(max_length=45, unique=True, verbose_name="Designation" )
 	def __str__(self):
 		return self.des_type
 
 class Gender(models.Model):
-	gender = models.CharField(max_length=45, verbose_name="Gender")
+	gender = models.CharField(max_length=45, unique=True, verbose_name="Gender")
 	def __str__(self):
 		return self.gender
 
 class FacilityType(models.Model):
-	facility_type = models.CharField(max_length=45, verbose_name="Facility Type")
+	facility_type = models.CharField(max_length=45, unique=True, verbose_name="Facility Type")
 	def __str__(self):
 		return self.facility_type
 
 class FacilityStatus(models.Model):
-	facility_status = models.CharField(max_length=45, verbose_name="Facility status")
+	facility_status = models.CharField(max_length=45, unique=True, verbose_name="Facility status")
 	def __str__(self):
 		return self.facility_status
 class TeacherStatus(models.Model):
-	teacher_status = models.CharField(max_length=45)
+	teacher_status = models.CharField(max_length=45, unique=True,)
 	def __str__(self):
 		return self.teacher_status
 
 class ResourceType(models.Model):
-	resource_type = models.CharField(max_length=45)
+	resource_type = models.CharField(max_length=45, unique=True,)
 	def __str__(self):
 		return self.resource_type
 
 class ResourceSource(models.Model):
-	resource_source = models.CharField(max_length=45)
+	resource_source = models.CharField(max_length=45, unique=True,)
 	def __str__(self):
 		return self.resource_source
 
@@ -167,7 +167,7 @@ class Teacher(models.Model):
 	district = models.ForeignKey(District, on_delete = models.SET_NULL, blank=True, null=True,)
 	date_created = models.DateTimeField(default=timezone.now)
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True,)
-	photo = models.ImageField(default='default.png', upload_to='teacher_photos')
+	photo = models.ImageField(default='teacher_photos/default.png', upload_to='teacher_photos')
 			
 	def __str__(self):
 		return self.name
@@ -215,7 +215,7 @@ class TransferDeo(models.Model):
 		return f'{self.deo} to {self.district}'
 
 class ProductStatus(models.Model):
-	status = models.CharField(max_length=200)
+	status = models.CharField(max_length=200, unique=True,)
 	def __str__(self):
 		return self.status
 

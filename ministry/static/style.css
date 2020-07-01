@@ -133,7 +133,7 @@ padding: 0
 	margin-left:4px;
 }
 .header-top-menu .navbar-nav>li>a:hover{
-	color: #03a9f4;
+	color: #f4f103;
 }
 .header-top-menu .navbar-nav>li .dropdown-menu a{
 	padding: 10px 20px;
@@ -141,7 +141,7 @@ padding: 0
 	color: #fff;
 }
 .header-top-menu .navbar-nav>li .dropdown-menu a:hover{
-	background:#03a9f4;
+	background:#f4f103;
 }
 .header-top-menu .navbar-nav>li .dropdown-menu{
 	border: 0px solid #ccc; 
@@ -164,7 +164,7 @@ padding: 0
     background-color: transparent;
 }
 .header-right-info .nav.custon-set-tab>li>a:focus, .header-right-info .nav.custon-set-tab>li>a:hover, .header-right-info .nav.custon-set-tab>li>a:active {
-	color:#03a9f4;
+	color:#f4f103;
 }
 .header-right-info .nav.custon-set-tab>li>a {
 	color:#fff;
@@ -223,7 +223,7 @@ padding: 0
 	padding:15px 20px;
 }
 .header-top-menu ul.header-top-nav li .dropdown-header-top li a:hover{
-	background:#03a9f4;
+	background:#f4f103;
 }
 .header-top-menu ul.header-top-nav li a{
 	font-size:14px;
@@ -268,7 +268,7 @@ padding: 0
    margin-right:10px;
 }
 .header-right-info ul.header-right-menu li .dropdown-header-top.author-log li a:hover, .header-right-info ul.header-right-menu li .dropdown-header-top.author-log li a:focus{
-   background:#03a9f4;
+   background:#f4f103;
 }
 .header-right-info ul.header-right-menu li .author-message-top{
    left:-133px;
@@ -409,10 +409,10 @@ ul.message-menu li .message-content p, ul.notification-menu li .notification-con
 	font-size:14px;
 }
 .header-right-info ul.header-right-menu li.open > a{
-	color:#03a9f4;
+	color:#f4f103;
 }
 .header-top-menu .navbar-nav>li.open > a{
-	color:#03a9f4;
+	color:#f4f103;
 }
 .header-right-info ul.header-right-menu li .admintab-wrap.menu-setting-wrap.menu-setting-wrap-bg.dropdown-menu {
     background:#343434;

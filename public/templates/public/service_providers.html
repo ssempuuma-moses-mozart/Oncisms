@@ -7,7 +7,7 @@
                     <div class="sparkline13-list shadow-reset">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1><span class="table-project-n"> Teachers Registered Per District</span></h1>
+                                <h1>{{ service }}<span class="table-project-n"> Suppliers</span></h1>
                                 <div class="sparkline13-outline-icon">
                                     <span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
                                     <span><i class="fa fa-wrench"></i></span>
@@ -28,18 +28,22 @@
                                     <thead>
                                         <tr>
                                             <th data-field="state" data-checkbox="true"></th>
-                                            <th data-field="name" data-editable="false">District</th>
-                                            <th data-field="reg_no" data-editable="false">Number of Teachers</th>
-                                            <th data-field="act" data-editable="false">Action</th>
+                                            <th data-field="name" data-editable="false">Supplier</th>
+                                            <th data-field="des" data-editable="false">Description</th>
+                                            <th data-field="reg_no" data-editable="false">Phone</th>
+                                            <th data-field="dof" data-editable="false">Address</th>
+                                            <th data-field="gender" data-editable="false">Email</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {% for teacher in teachers %}
+                                    {% for supplier in service_providers %}
                                         <tr>
                                             <td></td>
-                                            <td><a href="{% url 'teacher-details' teacher.id %}" >{{teacher.dis_name}}</a></td>
-                                            <td>{{teacher.total_teachers}}</td>
-                                            <td></td>
+                                            <td>{{supplier.name}}</td>
+                                            <td>{{supplier.description}}</td>
+                                            <td>{{supplier.phone}}</td>
+                                            <td>{{supplier.address}}</td>
+                                            <td>{{supplier.email}}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

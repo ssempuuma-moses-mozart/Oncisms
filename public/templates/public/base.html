@@ -204,31 +204,52 @@
         </div>
     </div>
     <div class="header-top-area">
-        <div class="container">
+        <div class="" style="margin-left: 5%; margin-right: 5%;">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
                     <div class="header-top-menu">
-                        <ul class="nav navbar-nav mai-top-nav">
-                            <li class="nav-item"><a href="" class="nav-link">Home</a>
+                        <ul role="menu" class="nav navbar-nav mai-top-nav">
+                            <li class="nav-item"><a href="{% url 'website-home'%}" class="nav-link">Home</a>
                             </li>
-                            <li class="nav-item"><a href="" class="nav-link">Schools</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Schools <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                <div role="menu" class="dropdown-menu">
+                                    <a href="{% url 'website-schools' 1 %}" class="dropdown-item">Public Schools</a>
+                                    <a href="{% url 'website-schools' 2 %}" class="dropdown-item">Private Schools</a>
+                                    <a href="{% url 'school-levels' 5 %}" class="dropdown-item">Universities</a>
+                                    <a href="{% url 'school-levels' 4 %}" class="dropdown-item">Tertiary Institutions</a>
+                                    <a href="{% url 'school-levels' 3 %}" class="dropdown-item">Secondary</a>
+                                    <a href="{% url 'school-levels' 2 %}" class="dropdown-item">Primary Schools</a>
+                                    <a href="{% url 'school-levels' 1 %}" class="dropdown-item">Nursary Schools</a>
+                                    <a href="#" class="dropdown-item" style="background-color: red;">Apply to be listed</a>
+                                </div>
                             </li>
-                            <li class="nav-item"><a href="" class="nav-link">D.E.Os</a>
+                            <li class="nav-item"><a href="{% url 'website-deos' %}" class="nav-link">D.E.Os</a>
                             </li>
-                            <li class="nav-item"><a href="" class="nav-link">Teachers</a>
+                            <li class="nav-item"><a href="{% url 'website-teachers' %}" class="nav-link">Teachers</a>
                             </li>
-                            <li class="nav-item"><a href="" class="nav-link">Resources</a>
+                            <li class="nav-item"><a href="{% url 'website-resources' %}" class="nav-link">Resources</a>
                             </li>
-                            <li class="nav-item"><a href="" class="nav-link">Service Providers</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Service Providers <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                <div role="menu" class="dropdown-menu">
+                                    <a href="{% url 'service-providers' 1 %}" class="dropdown-item">Lab Chemicals</a>
+                                    <a href="{% url 'service-providers' 2 %}" class="dropdown-item">Lab Equipment</a>
+                                    <a href="{% url 'service-providers' 3 %}" class="dropdown-item">Funiture & Fitting</a>
+                                    <a href="{% url 'service-providers' 4 %}" class="dropdown-item">Food</a>
+                                    <a href="{% url 'service-providers' 5 %}" class="dropdown-item">Stationary</a>
+                                    <a href="{% url 'service-providers' 6 %}" class="dropdown-item">Groceries</a>
+                                    <a href="{% url 'apply' %}" class="dropdown-item" style="background-color: red;">Apply to be listed</a>
+                                </div>
                             </li>
-                            <li class="nav-item"><a href="" class="nav-link">Communication</a>
+                            <li class="nav-item"><a href="{% url 'website-communication' %}" class="nav-link">Communication</a>
                             </li>
-                            <li class="nav-item"><a href="" class="nav-link">COVID-19 Response</a>
+                            <li class="nav-item"><a href="{% url 'covid19' %}" class="nav-link">COVID-19 Response</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-9 col-sm-6 col-xs-12">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                     <div class="header-right-info">
                         <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                        
@@ -261,11 +282,34 @@
         </div>
     </div>
     <!-- Header top area end-->
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+        {% if messages%}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}}">
+                    {{ message }}
+                                                
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    </div>
+    </div>
     {% block content %}
 
     {% endblock content %}
     <!-- Chat Box End-->
         <!-- Footer Start-->
+    <div class="py-3 px-3">
+        <hr>
+        <h3 style="text-align: center;"><b>Our Partners</b></h3>
+        <div class="row px-3 py-3" style="text-align: center;">
+        <img src="{% static 'img/GASLogo.png' %}" width="150px;" alt="" class="px-3">
+        <img src="{% static 'img/mong.png' %}" width="300px;" alt="" class="px-3">
+        </div>
+    </div>
+
     <div class="footer-copyright-area">
         <div class="container">
             <div class="row">

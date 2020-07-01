@@ -77,18 +77,18 @@ img {vertical-align: middle;}
 </head>
 <body>
 <div class="slideshow-container">
-
+<a href="{% url 'apply' %}" target="_blank">
     <div class="mySlides fade">
-        <img src="https://greenworldwarriors.com/wp-content/uploads/2018/12/chinese_as_secondary_language_uganda_schools.jpg"
+        <img src="{% static 'img/1.png' %}"
             style="width:100%">
     </div>
-
+</a>
     <div class="mySlides fade">
-        <img src="http://www.education.go.ug/wp-content/uploads/2019/08/China.png" style="width:100%">
+        <img src="{% static 'img/2.png' %}" style="width:100%">
     </div>
 
     <div class="mySlides fade">
-        <img src="http://www.education.go.ug/wp-content/uploads/2019/08/Textbooks.jpg"
+        <img src="{% static 'img/1.png' %}"
             style="width:100%">
     </div>
 
@@ -119,7 +119,7 @@ function showSlides() {
   }
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 8000); // Change image every 2 seconds
+  setTimeout(showSlides, 10000); // Change image every 2 seconds
 }
 </script>
 

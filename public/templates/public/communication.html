@@ -1,0 +1,31 @@
+{% extends 'public/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 mg-t-40">
+            <div class="px-3">
+                <h3 style="text-align: center;"><b>Latest Communication from Ministry of Education</b></h3>
+                <hr>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="container-fluid row center py-3">
+                <img src="{% static 'img/flag.gif' %}" alt="">
+            </div>
+            <div class="py-3">
+                <h4><b>Ministry of Education & Sports</b></h4>
+                <hr>
+                <div style="height:700px; overflow: auto;">
+                    <a class="twitter-timeline" href="https://twitter.com/Educ_SportsUg?ref_src=twsrc%5Etfw">Tweets
+                        by
+                        Minstry Of Education & Sports Ug</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
