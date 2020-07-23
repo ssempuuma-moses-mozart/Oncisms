@@ -10,6 +10,7 @@ from django.views.generic import (
 	ListView,
 	DetailView,
 	UpdateView,
+	FormView,
 	CreateView
 	)
 
@@ -1020,3 +1021,12 @@ def communication(request):
 
 def settings(request):
 	return render(request, 'ministry/settings.html', {'title': 'Settings'})
+
+class DistrictUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadDistrict
+	success_url = '/upload_district/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)

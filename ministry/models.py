@@ -63,11 +63,11 @@ class Section(models.Model):
 
 class School(models.Model):
 	name = models.CharField(max_length=100, verbose_name="School Name")
-	motto = models.CharField(max_length=100, verbose_name="School Motto")
+	motto = models.CharField(max_length=100, blank=True, null=True, verbose_name="School Motto")
 	email = models.EmailField(blank=True, null=True)
-	reg_no = models.CharField(max_length=100, verbose_name="Registration Number")
-	cen_no = models.CharField(max_length=100, verbose_name="Center Number")
-	yr_est = models.IntegerField(verbose_name="Year Established")
+	reg_no = models.CharField(max_length=100, blank=True, null=True, verbose_name="Registration Number")
+	cen_no = models.CharField(max_length=100, blank=True, null=True, verbose_name="Center Number")
+	yr_est = models.IntegerField(blank=True, null=True, verbose_name="Year Established")
 	yr_reg = models.IntegerField(blank=True, null=True, verbose_name="Year of Registration")
 	yr_cnr = models.IntegerField(blank=True, null=True, verbose_name="Year of Center No. Registration")
 	access = models.ForeignKey(Access, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="School Access")

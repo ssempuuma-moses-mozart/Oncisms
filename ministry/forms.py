@@ -1,9 +1,11 @@
+import io
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import *
 from users.models import *
 import datetime
+import csv
 def current_year():
     return datetime.date.today().year
 
@@ -29,3 +31,18 @@ class TeacherTransferForm(forms.ModelForm):
 	class Meta:
 		model = TransferTeacher
 		fields =('teacher','school','date_transfered','date_valid','designation')
+
+class UploadDistrict(forms.Form):
+	data_file = forms.FileField()
+
+	def process_data(self):
+		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+		reader = csv.DictReader(f)
+
+		for record in reader:
+			region = None
+			if record['region'] != '':
+				region = Region.objects.get(reg_name = (record['region']))
+			else:
+				region = Region.objects.get(pk = 1)
+			District.objects.create(dis_name=record['dis_name'], region=region )
