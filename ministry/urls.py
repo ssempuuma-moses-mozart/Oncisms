@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     # Home related urls-----------------------------------------------------------------------------
-    path('ministry/upload_district/', DistrictUploadView.as_view(), name='upload_district' ),
+    path('upload_district/', DistrictUploadView.as_view(), name='upload_district' ),
     path('', views.home, name='ministry-home'),
     # School related urls-----------------------------------------------------------------------------
     path('schools/', views.schools, name='strack-schools'),
