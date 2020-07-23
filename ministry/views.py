@@ -1025,7 +1025,16 @@ def settings(request):
 class DistrictUploadView(FormView):
 	template_name = 'ministry/upload_record.html'
 	form_class = UploadDistrict
-	success_url = '/upload_district/'
+	success_url = '/ministry/upload_district/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)
+
+class SchoolUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadSchool
+	success_url = '/ministry/upload_school/'
 
 	def form_valid(self, form):
 		form.process_data()

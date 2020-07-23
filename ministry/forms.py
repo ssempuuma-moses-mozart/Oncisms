@@ -46,3 +46,26 @@ class UploadDistrict(forms.Form):
 			else:
 				region = Region.objects.get(pk = 1)
 			District.objects.create(dis_name=record['dis_name'], region=region )
+
+class UploadSchool(forms.Form):
+	data_file = forms.FileField()
+
+	def process_data(self):
+		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+		reader = csv.DictReader(f)
+
+		for record in reader:
+			ownership = None
+			district = None
+			if record['ownership'] != '':
+				ownership = Ownership.objects.get(own_type = (record['ownership']))
+			else:
+				ownership = Ownership.objects.get(pk = 1)
+
+			if record['district'] != '':
+				district = District.objects.get(dis_name = (record['district']))
+			else:
+				district = District.objects.get(pk = 1)
+
+			level = Level.objects.get(pk = 2)
+			School.objects.create(name=record['name'], ownership=ownership, district=district, level=level )
