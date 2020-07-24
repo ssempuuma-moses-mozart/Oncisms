@@ -47,16 +47,47 @@ class UploadDistrict(forms.Form):
 				region = Region.objects.get(pk = 1)
 			District.objects.create(dis_name=record['dis_name'], region=region )
 
+# class UploadSchool(forms.Form):
+# 	data_file = forms.FileField()
+
+# 	def process_data(self):
+# 		# with open(self.cleaned_data['data_file'].file, 'rb') as f:
+# 		# 	reader = f.read()
+# 		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+# 		reader = csv.DictReader(f)
+
+# 		for record in reader:
+# 			ownership = None
+# 			district = None
+# 			if record['ownership'] != '':
+# 				ownership = Ownership.objects.get(own_type = (record['ownership']))
+# 			else:
+# 				ownership = Ownership.objects.get(pk = 1)
+
+# 			if record['district'] != '':
+# 				district = District.objects.get(dis_name = (record['district']))
+# 			else:
+# 				district = District.objects.get(pk = 1)
+
+# 			level = Level.objects.get(pk = 2)
+# 			School.objects.create(name=record['name'], ownership=ownership, district=district, level=level )
+
 class UploadSchool(forms.Form):
 	data_file = forms.FileField()
 
 	def process_data(self):
+		# with open(self.cleaned_data['data_file'].file, 'rb') as f:
+		# 	reader = f.read()
 		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
 		reader = csv.DictReader(f)
 
 		for record in reader:
 			ownership = None
 			district = None
+			level = None
+			category = None
+			section = None
+			schtype = None
 			if record['ownership'] != '':
 				ownership = Ownership.objects.get(own_type = (record['ownership']))
 			else:
@@ -67,5 +98,24 @@ class UploadSchool(forms.Form):
 			else:
 				district = District.objects.get(pk = 1)
 
-			level = Level.objects.get(pk = 2)
-			School.objects.create(name=record['name'], ownership=ownership, district=district, level=level )
+			if record['level'] != '':
+				level = Level.objects.get(lev_name = (record['level']))
+			else:
+				level = Level.objects.get(pk = 2)
+
+			if record['category'] != '':
+				category = Category.objects.get(cat_type = (record['category']))
+			else:
+				category = Category.objects.get(pk = 3)
+
+			if record['section'] != '':
+				section = Section.objects.get(sec_type = (record['section']))
+			else:
+				section = Section.objects.get(pk = 3)
+
+			if record['schtype'] != '':
+				schtype = Schtype.objects.get(sch_type = (record['schtype']))
+			else:
+				schtype = Schtype.objects.get(pk = 1)
+			School.objects.create(name=record['name'], ownership=ownership,
+			district=district, level=level, category=category, section=section, schtype=schtype )
