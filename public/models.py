@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from ministry.models import *
 
 class Service(models.Model):
 	name = models.CharField(max_length=45, unique=True, verbose_name="Service Name")
@@ -27,10 +28,11 @@ class ServiceProvider(models.Model):
 	name = models.CharField(max_length=250, verbose_name="Service Provider Name")
 	capacity = models.CharField(max_length=250, blank=True, null=True,)
 	address = models.CharField(max_length=250, blank=True, null=True,)
-	phone = models.CharField(max_length=13,)
-	email = models.CharField(max_length=30,)
+	phone = models.CharField(max_length=13,blank=True, null=True,)
+	email = models.CharField(max_length=30,blank=True, null=True,)
 	description = models.TextField(blank=True, null=True,)
 	service = models.ForeignKey(Service, on_delete = models.CASCADE)
+	district = models.ForeignKey(District, blank=True, null=True, on_delete = models.SET_NULL)
 	status = models.ForeignKey(Status, default=1, on_delete = models.SET_DEFAULT)
 	date_created = models.DateTimeField(default=timezone.now)
 	def __str__(self):

@@ -51,6 +51,25 @@ class Regstatus(models.Model):
 	def __str__(self):
 		return self.rs_type
 
+class County(models.Model):
+	county_name = models.CharField(max_length=45, unique=True, verbose_name="County")
+	def __str__(self):
+		return self.county_name
+
+class SubCounty(models.Model):
+	subcounty_name = models.CharField(max_length=45, unique=True, verbose_name="Sub-County")
+	def __str__(self):
+		return self.subcounty_name
+
+class Parish(models.Model):
+	parish_name = models.CharField(max_length=45, unique=True, verbose_name="Parish")
+	district = models.ForeignKey(District, on_delete = models.SET_NULL, blank=True, null=True,)
+	county = models.ForeignKey(County, on_delete = models.SET_NULL, blank=True, null=True,)
+	subcounty = models.ForeignKey(SubCounty, on_delete = models.SET_NULL, blank=True, null=True,)
+
+	def __str__(self):
+		return self.parish_name
+
 class Schtype(models.Model):
 	sch_type = models.CharField(max_length=45, unique=True, verbose_name="School Type")
 	def __str__(self):
@@ -61,9 +80,20 @@ class Section(models.Model):
 	def __str__(self):
 		return self.sec_type
 
+class Funder(models.Model):
+	funder_name = models.CharField(max_length=45, unique=True, verbose_name="Funder")
+	def __str__(self):
+		return self.funder_name
+
 class School(models.Model):
 	name = models.CharField(max_length=100, verbose_name="School Name")
 	motto = models.CharField(max_length=100, blank=True, null=True, verbose_name="School Motto")
+	address = models.CharField(max_length=100, blank=True, null=True,)
+	box_no = models.CharField(max_length=100, blank=True, null=True,)
+	website = models.CharField(max_length=100, blank=True, null=True,)
+	phone = models.CharField(max_length=15, blank=True, null=True,)
+	fax = models.CharField(max_length=100, blank=True, null=True,)
+	service_code = models.CharField(max_length=100, blank=True, null=True,)
 	email = models.EmailField(blank=True, null=True)
 	reg_no = models.CharField(max_length=100, blank=True, null=True, verbose_name="Registration Number")
 	cen_no = models.CharField(max_length=100, blank=True, null=True, verbose_name="Center Number")
@@ -75,9 +105,9 @@ class School(models.Model):
 	cennostatus = models.ForeignKey(Cennostatus, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Center No. Registration status")
 	regstatus = models.ForeignKey(Regstatus, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Registration status")
 	level = models.ForeignKey(Level, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Highest Level")
-	ownership = models.ForeignKey(Ownership, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Ownership")
+	founder = models.ForeignKey(Ownership, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Ownership")
 	section = models.ForeignKey(Section, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Section")
-	schtype = models.ForeignKey(Schtype, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="School Type")
+	operation_status = models.ForeignKey(Schtype, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="School Type")
 	district = models.ForeignKey(District, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="District")
 	date_created = models.DateTimeField(default=timezone.now)
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True,)
