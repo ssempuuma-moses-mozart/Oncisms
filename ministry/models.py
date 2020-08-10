@@ -3,6 +3,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+class Class(models.Model):
+	class_name = models.CharField(max_length=45, unique=True)
+
+	def __str__(self):
+		return self.class_name
+
 class Access(models.Model):
 	acc_type = models.CharField(max_length=45, unique=True, verbose_name="Access Type")
 	def __str__(self):
@@ -85,6 +91,22 @@ class Funder(models.Model):
 	def __str__(self):
 		return self.funder_name
 
+class DistanceToNearestSchool(models.Model):
+	distance = models.CharField(max_length=45, unique=True,)
+	def __str__(self):
+		return self.distance
+
+class DistanceToDeoOffice(models.Model):
+	distance = models.CharField(max_length=45, unique=True,)
+	def __str__(self):
+		return self.distance
+
+class RuralUrban(models.Model):
+	rural_urban = models.CharField(max_length=45, unique=True,)
+	def __str__(self):
+		return self.rural_urban
+
+
 class School(models.Model):
 	name = models.CharField(max_length=100, verbose_name="School Name")
 	motto = models.CharField(max_length=100, blank=True, null=True, verbose_name="School Motto")
@@ -105,10 +127,15 @@ class School(models.Model):
 	cennostatus = models.ForeignKey(Cennostatus, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Center No. Registration status")
 	regstatus = models.ForeignKey(Regstatus, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Registration status")
 	level = models.ForeignKey(Level, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Highest Level")
-	founder = models.ForeignKey(Ownership, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Ownership")
+	founder = models.ForeignKey(Ownership, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Founding Body")
 	section = models.ForeignKey(Section, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="Section")
 	operation_status = models.ForeignKey(Schtype, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="School Type")
-	district = models.ForeignKey(District, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="District")
+	parish = models.ForeignKey(Parish, on_delete = models.SET_NULL, blank=True, null=True,)
+	funder = models.ForeignKey(Funder, on_delete = models.SET_NULL, blank=True, null=True,)
+	distance_to_nearest_school = models.ForeignKey(DistanceToNearestSchool, on_delete = models.SET_NULL, blank=True, null=True,)
+	distance_to_deo_office = models.ForeignKey(DistanceToDeoOffice, on_delete = models.SET_NULL, blank=True, null=True,)
+	rural_urban = models.ForeignKey(RuralUrban, on_delete = models.SET_NULL, blank=True, null=True,)
+	highest_class = models.ForeignKey(Class, on_delete = models.SET_NULL, blank=True, null=True,)
 	date_created = models.DateTimeField(default=timezone.now)
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True,)
 	logo = models.ImageField(default='school_logos/default.png', upload_to='school_logos', blank=True, null=True,)

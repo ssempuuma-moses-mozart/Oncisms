@@ -37,12 +37,6 @@ class SchoolResource(models.Model):
 	def __str__(self):
 		return f'{self.resource.description}'
 
-class Class(models.Model):
-	class_name = models.CharField(max_length=45, unique=True)
-
-	def __str__(self):
-		return self.class_name
-
 class Student(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	class_name = models.ForeignKey(Class, on_delete=models.CASCADE)

@@ -13,14 +13,14 @@ def year_choices():
 	return [(r,r) for r in range(1200, datetime.date.today().year+1)]
 
 class SchoolCreateForm(forms.ModelForm):
-	yr_est = forms.TypedChoiceField(coerce=int, choices=year_choices, initial=current_year, label="Year Established")
-	yr_reg = forms.TypedChoiceField(coerce=int, choices=year_choices, initial=current_year, label="Year of Registration")
-	yr_cnr = forms.TypedChoiceField(coerce=int, choices=year_choices, initial=current_year, label="Year of Center No. Registration")
+	# yr_est = forms.TypedChoiceField(coerce=int, choices=year_choices, initial=current_year, label="Year Established")
+	# yr_reg = forms.TypedChoiceField(coerce=int, choices=year_choices, initial=current_year, label="Year of Registration")
+	# yr_cnr = forms.TypedChoiceField(coerce=int, choices=year_choices, initial=current_year, label="Year of Center No. Registration")
 	class Meta:
 		model = School
-		fields =('name','motto','email','yr_est','regstatus','reg_no','yr_reg','cen_no',
-			'cennostatus','yr_cnr','schtype','level','access','category','section',
-			'ownership','district','logo')
+		fields =('name','motto','phone','website','email','box_no','parish','address','fax','service_code','yr_est',
+			'regstatus','reg_no','cen_no','level','highest_class','access','category','section','founder',
+			'funder','operation_status','distance_to_nearest_school','distance_to_deo_office','logo')
 
 class TeacherCreateForm(forms.ModelForm):
 	class Meta:

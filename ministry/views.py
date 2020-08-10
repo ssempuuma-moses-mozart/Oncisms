@@ -65,9 +65,6 @@ class SchoolCreateView(LoginRequiredMixin, CreateView):
 	form_class = SchoolCreateForm
 	def get_context_data(self, **kwargs):
 		context = super(SchoolCreateView, self).get_context_data(**kwargs)
-		page = self.request.GET.get('page')
-		schools = Paginator(self.model.objects.all().order_by('-id'), 10)
-		context["schools"] = schools.get_page(page)
 		context["title"] = "Schools"
 		return context
 
@@ -84,15 +81,12 @@ class SchoolCreateView(LoginRequiredMixin, CreateView):
 				messages.warning(self.request, f'ERROR! Some thing went wrong. Try again')
 			return redirect('new-school')
 
-class SchoolUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class SchoolUpdateView(LoginRequiredMixin, UpdateView):
 	model = School
 	template_name = "ministry/school_form.html"
 	form_class = SchoolCreateForm
 	def get_context_data(self, **kwargs):
 		context = super(SchoolUpdateView, self).get_context_data(**kwargs)
-		page = self.request.GET.get('page')
-		schools = Paginator(self.model.objects.all().order_by('-id'), 10)
-		context["schools"] = schools.get_page(page)
 		context["title"] = "Schools"
 		return context
 
@@ -109,6 +103,8 @@ class SchoolUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 				name = form.cleaned_data.get('name')
 				messages.warning(self.request, f'ERROR! Some thing went wrong. Try again')
 			return redirect('new-school')
+		return redirect('new-school')
+
 
 # Teacher related views..................................................................................
 # Teacher related views..................................................................................
