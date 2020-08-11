@@ -212,13 +212,13 @@
                         {% for founder in founders %}
                         {% if school %}
                         {% if school.founder.id == founder.id %}
-                        <option value="{{founder.id}}" selected="selected">{{founder.own_type}}</option>
+                        <option value="{{founder.id}}" selected="selected">{{founder}}</option>
                         {% else %}
-                        <option value="{{founder.id}}">{{founder.own_type}}</option>
+                        <option value="{{founder.id}}">{{founder}}</option>
                         {% endif %}
                         {% else %}
                         <option></option>
-                        <option value="{{founder.id}}">{{founder.own_type}}</option>
+                        <option value="{{founder.id}}">{{founder}}</option>
                         {% endif %}
                         {% endfor %}
                     </select>

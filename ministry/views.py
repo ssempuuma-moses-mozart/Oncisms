@@ -66,6 +66,19 @@ class SchoolCreateView(LoginRequiredMixin, CreateView):
 	def get_context_data(self, **kwargs):
 		context = super(SchoolCreateView, self).get_context_data(**kwargs)
 		context["title"] = "Schools"
+		context["parishes"] = Parish.objects.all()
+		context["regstatuses"] = Regstatus.objects.all()
+		context["schtypes"] = Schtype.objects.all()
+		context["founders"] = Ownership.objects.all()
+		context["funders"] = Funder.objects.all()
+		context["accesses"] = Access.objects.all()
+		context["rural_urban"] = RuralUrban.objects.all()
+		context["categories"] = Category.objects.all()
+		context["sections"] = Section.objects.all()
+		context["levels"] = Level.objects.all()
+		context["classes"] = Class.objects.all()
+		context["dns"] = DistanceToNearestSchool.objects.all()
+		context["ddo"] = DistanceToDeoOffice.objects.all()
 		return context
 
 	def form_valid(self, form):
@@ -88,6 +101,19 @@ class SchoolUpdateView(LoginRequiredMixin, UpdateView):
 	def get_context_data(self, **kwargs):
 		context = super(SchoolUpdateView, self).get_context_data(**kwargs)
 		context["title"] = "Schools"
+		context["parishes"] = Parish.objects.all()
+		context["regstatuses"] = Regstatus.objects.all()
+		context["schtypes"] = Schtype.objects.all()
+		context["founders"] = Ownership.objects.all()
+		context["funders"] = Funder.objects.all()
+		context["accesses"] = Access.objects.all()
+		context["rural_urban"] = RuralUrban.objects.all()
+		context["categories"] = Category.objects.all()
+		context["sections"] = Section.objects.all()
+		context["levels"] = Level.objects.all()
+		context["classes"] = Class.objects.all()
+		context["dns"] = DistanceToNearestSchool.objects.all()
+		context["ddo"] = DistanceToDeoOffice.objects.all()
 		return context
 
 	def form_valid(self, form):
