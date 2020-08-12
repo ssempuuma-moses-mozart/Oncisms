@@ -8,8 +8,8 @@
                 <h3><b>Access learning materials for {{the_class}}</b></h3>
                 <hr>
                 {% for upload in uploads %}
-                <h4>{{upload.home_class}} - {{upload.subject}}</h4>
-                <p><a href="{{upload.home_work.url}}" target="_blank">{{upload.topic}}</a> <a href="{{upload.home_work.url}}" target="_blank" class="btn btn-success btn-xs">Download</a></p>
+                <h4>{{upload.home_class}} - {% if upload.subject %}{{upload.subject}}{% else %}All Subjects{% endif %}</h4>
+                <p><a href="{{upload.home_work.url}}" target="_blank">{% if upload.topic %}{{upload.topic}}{% else %}All Topics{% endif %}</a> <a href="{{upload.home_work.url}}" target="_blank" class="btn btn-success btn-xs">Download</a></p>
                 <hr>
                 {% endfor %}
 

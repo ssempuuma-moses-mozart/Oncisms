@@ -186,7 +186,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <ul class="nav nav-tabs custom-menu-wrap shadow-reset" style="background-color: red;">
+                    <ul class="nav nav-tabs custom-menu-wrap shadow-reset" style="background-color: black;">
                     {% if request.user|has_group:"Ministry" %}
                         <li class="{% if title == 'Home'  %} active {% endif %}"><a data-toggle="tab" href="#Home"><i class="fa fa-home"></i> Home</a>
                         </li>
@@ -207,6 +207,7 @@
                         <li class="{% if title == 'Settings'  %} active {% endif %}"><a data-toggle="tab" href="#settings"><i class="fa fa-gear"></i> Settings</a>
                         </li>
                     {% elif request.user|has_group:"School" %}
+                    {% if user.schoolprofile %}
                         <li class="{% if title == 'Home'  %} active {% endif %}"><a data-toggle="tab" href="#Home">Home</a>
                         </li>
                         <li class="{% if title == 'Teachers'  %} active {% endif %}"><a data-toggle="tab" href="#teachers">Teachers</a>
@@ -225,6 +226,7 @@
                         </li>
                         <li class="{% if title == 'Settings'  %} active {% endif %}"><a data-toggle="tab" href="#settings">Settings</a>
                         </li>
+                    {% endif %}
                     {% endif %}
 
 
@@ -323,11 +325,13 @@
                                 <li><a href="{% url 'ministry-home' %}">Marketing</a>
                                 </li>
                                 <li><a href="{% url 'ministry-home' %}">Inbox</a>
+                                <li><a href="{% url 'logout' %}">Logout</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     {% elif request.user|has_group:"School" %}
+                    {% if user.schoolprofile %}
                     <div id="Home" class="tab-pane {% if title == 'Home'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
                                 <li class="active" ><a href="{% url 'school-home'  %}">Home</a>
@@ -419,10 +423,12 @@
                                 <li><a href="{% url 'ministry-home' %}">Marketing</a>
                                 </li>
                                 <li><a href="{% url 'ministry-home' %}">Inbox</a>
+                                <li><a href="{% url 'logout' %}">logout</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>
@@ -522,6 +528,7 @@
                                 </li>
                             </ul>
                         </li>
+                    {% elif request.user|has_group:"School" %}
                     {% endif %}
 
 
