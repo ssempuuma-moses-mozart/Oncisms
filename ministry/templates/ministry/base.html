@@ -210,13 +210,13 @@
                     {% if user.schoolprofile %}
                         <li class="{% if title == 'Home'  %} active {% endif %}"><a data-toggle="tab" href="#Home">Home</a>
                         </li>
-                        <li class="{% if title == 'Teachers'  %} active {% endif %}"><a data-toggle="tab" href="#teachers">Teachers</a>
-                        </li>
-                        <li class="{% if title == 'Resources'  %} active {% endif %}"><a data-toggle="tab" href="#resources">Resources</a>
-                        </li>
                         <li class="{% if title == 'Students'  %} active {% endif %}"><a data-toggle="tab" href="#students">Students</a>
                         </li>
                         <li class="{% if title == 'Facilities'  %} active {% endif %}"><a data-toggle="tab" href="#facilities">Facilities</a>
+                        </li>
+                        <li class="{% if title == 'Teachers'  %} active {% endif %}"><a data-toggle="tab" href="#teachers">Teachers</a>
+                        </li>
+                        <li class="{% if title == 'Resources'  %} active {% endif %}"><a data-toggle="tab" href="#resources">Resources</a>
                         </li>
                         <li class="{% if title == 'Results'  %} active {% endif %}"><a data-toggle="tab" href="#results">UNEB Results</a>
                         </li>
@@ -336,8 +336,7 @@
                             <ul class="main-menu-dropdown">
                                 <li class="active" ><a href="{% url 'school-home'  %}">Home</a>
                                 </li>
-                            </ul>
-                            
+                            </ul> 
                         </div>
                         <div id="facilities" class="tab-pane {% if title == 'Facilities'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
@@ -348,15 +347,8 @@
                         </div>
                         <div id="students" class="tab-pane {% if title == 'Students'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
-                                <li><a href="{% url 'add-students'  %}">Add Students</a></li>
-                                <li><a href="{% url 'view-students'  %}">View Students</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="schools" class="tab-pane {% if title == 'Schools'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
-                            <ul class="main-menu-dropdown">
-                                <li><a href="{% url 'new-school'  %}">Add School</a></li>
-                                <li><a href="{% url 'view-schools'  %}">View Schools</a>
+                                <li><a href="{% url 'add-students'  %}">Record Enrolments</a></li>
+                                <li><a href="{% url 'view-students'  %}">View Enrolments</a>
                                 </li>
                             </ul>
                         </div>
@@ -605,18 +597,17 @@
 <div class="col-md-3">
 </div>
 <div class="col-md-6">
-<div class="button-ad-wrap mg-b-40 mg-t-40">
-
-        <h4>Please Create an account to Join!</h4>    
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}    
-                <fieldset>
-                    {{ form|crispy }}
-                    <button class="btn btn-success mg-b-4 " style="margin-bottom: 5%; margin: 5%;" type="submit">Register</button>
-                    <a class="btn btn-primary" style="margin-bottom: 5%; margin: 5%;" href="{% url 'login' %}">Already have an account</a>
-                </fieldset>
-            </form>
-        </div> 
+<div class="button-ad-wrap shadow-reset mg-b-40 mg-t-40">
+    <h4>Please Create an account to Join!</h4>    
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}    
+            <fieldset>
+                {{ form|crispy }}
+                <button class="btn btn-success mg-b-4 " style="margin-bottom: 5%; margin: 5%;" type="submit">Register</button>
+                <a class="btn btn-primary" style="margin-bottom: 5%; margin: 5%;" href="{% url 'login' %}">Already have an account</a>
+            </fieldset>
+        </form>
+    </div> 
 </div>
 </div>
 </div>
@@ -629,18 +620,17 @@
 <div class="col-md-4">
 </div>
 <div class="col-md-4">
-<div class="button-ad-wrap mg-b-40 mg-t-40">
-
-        <h4>Please Login again! or Register!</h4>    
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}    
-                <fieldset>
-                    {{ form|crispy }}
-                    <a class="btn btn-success" style="margin-bottom: 5%; margin: 5%;" href="{% url 'login' %}">Login</a>
-                    <a class="btn btn-primary" style="margin-bottom: 5%; margin: 5%;" href="{% url 'register' %}">Dont have an account</a>
-                </fieldset>
-            </form>
-        </div> 
+<div class="button-ad-wrap shadow-reset mg-b-40 mg-t-40">
+    <h4>Please Login again! or Register!</h4>    
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}    
+            <fieldset>
+                {{ form|crispy }}
+                <a class="btn btn-success" style="margin-bottom: 5%; margin: 5%;" href="{% url 'login' %}">Login</a>
+                <a class="btn btn-primary" style="margin-bottom: 5%; margin: 5%;" href="{% url 'register' %}">Dont have an account</a>
+            </fieldset>
+        </form>
+    </div> 
 </div>
 </div>
 </div>
@@ -653,8 +643,7 @@
 <div class="col-md-4">
 </div>
 <div class="col-md-4">
-<div class="button-ad-wrap mg-b-40 mg-t-40">
-
+<div class="button-ad-wrap shadow-reset mg-b-40 mg-t-40">
         <h4>Please Login again! or Register!</h4>    
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}    
@@ -677,8 +666,7 @@
 <div class="col-md-4">
 </div>
 <div class="col-md-4">
-<div class="button-ad-wrap mg-b-40 mg-t-40">
-
+<div class="button-ad-wrap shadow-reset mg-b-40 mg-t-40">
         <h4>Please Login to get Started</h4>    
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}    
