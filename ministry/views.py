@@ -4,7 +4,6 @@ from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
 from django.views.generic import (
@@ -40,7 +39,7 @@ from django.db.models import Sum
 # School related views..................................................................................
 # School related views..................................................................................
 
-class SchoolListView(LoginRequiredMixin, ListView):
+class SchoolListView(ListView):
 	model = School
 	def get_context_data(self, **kwargs):
 		context = super(SchoolListView, self).get_context_data(**kwargs)
@@ -50,7 +49,7 @@ class SchoolListView(LoginRequiredMixin, ListView):
 		context["title"] = "Schools"
 		return context
 
-class SchoolDetailView(LoginRequiredMixin, DetailView):
+class SchoolDetailView(DetailView):
 	model = School
 	def get_context_data(self, **kwargs):
 		context = super(SchoolDetailView, self).get_context_data(**kwargs)
@@ -185,7 +184,7 @@ class TeacherUpdateView(LoginRequiredMixin, UpdateView):
 				messages.warning(self.request, f'ERROR! Some thing went wrong. Try again')
 			return redirect('new-teacher')
 
-class TeacherListView(LoginRequiredMixin, ListView):
+class TeacherListView(ListView):
 	model = Teacher
 	def get_context_data(self, **kwargs):
 		context = super(TeacherListView, self).get_context_data(**kwargs)
@@ -195,7 +194,7 @@ class TeacherListView(LoginRequiredMixin, ListView):
 		context["title"] = "Teachers"
 		return context
 
-class TeacherDetailView(LoginRequiredMixin, DetailView):
+class TeacherDetailView(DetailView):
 	model = Teacher
 	def get_context_data(self, **kwargs):
 		context = super(TeacherDetailView, self).get_context_data(**kwargs)
@@ -205,7 +204,7 @@ class TeacherDetailView(LoginRequiredMixin, DetailView):
 		context["title"] = "Teachers"
 		return context
 
-class TeacherTransferListView(LoginRequiredMixin, ListView):
+class TeacherTransferListView(ListView):
 	model = TransferTeacher
 	def get_context_data(self, **kwargs):
 		context = super(TeacherTransferListView, self).get_context_data(**kwargs)
@@ -324,12 +323,12 @@ class DeoUpdateView(LoginRequiredMixin, UpdateView):
 		form.save()
 		return redirect('new-deo')
 
-class DeoListView(LoginRequiredMixin, ListView):
+class DeoListView(ListView):
 	model = Deo
 	context_object_name = 'deos'
 	ordering = ['-id']
 
-class DeoDetailView(LoginRequiredMixin, DetailView):
+class DeoDetailView(DetailView):
 	model = Deo
 	def get_context_data(self, **kwargs):
 		context = super(DeoDetailView, self).get_context_data(**kwargs)
@@ -772,7 +771,7 @@ class ResourceSourceUpdateView(LoginRequiredMixin, UpdateView):
 			form.save()
 			return redirect('resource-source')
 
-class ResourceListView(LoginRequiredMixin, ListView):
+class ResourceListView(ListView):
 	model = Resource
 	def get_context_data(self, **kwargs):
 		context = super(ResourceListView, self).get_context_data(**kwargs)
@@ -838,7 +837,7 @@ class ResourceUpdateView(LoginRequiredMixin, UpdateView):
 			form.save()
 			return redirect('resource')
 
-class ResourceDetailView(LoginRequiredMixin, DetailView):
+class ResourceDetailView(DetailView):
 	model = Resource
 	def get_context_data(self, **kwargs):
 		context = super(ResourceDetailView, self).get_context_data(**kwargs)
@@ -883,12 +882,12 @@ class AllocateResourceUpdateView(LoginRequiredMixin, UpdateView):
 			form.save()
 			return redirect('allocate-resource')
 
-class ResourceListView(LoginRequiredMixin, ListView):
+class ResourceListView(ListView):
 	model = Resource
 	context_object_name = 'resources'
 	ordering = ['-id']
 
-class AllocateResourceListView(LoginRequiredMixin, ListView):
+class AllocateResourceListView(ListView):
 	model = AllocateResource
 	def get_context_data(self, **kwargs):
 		context = super(AllocateResourceListView, self).get_context_data(**kwargs)
@@ -931,12 +930,12 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 			return True
 		return False
 
-class ProductListView(LoginRequiredMixin, ListView):
+class ProductListView(ListView):
 	model = Product
 	context_object_name = 'products'
 	ordering = ['-id']
 
-class UserProducts(LoginRequiredMixin, ListView):
+class UserProducts(ListView):
 	model = Product
 	def get_context_data(self, **kwargs):
 		context = super(UserProducts, self).get_context_data(**kwargs)
@@ -945,7 +944,7 @@ class UserProducts(LoginRequiredMixin, ListView):
 		context["products"] = products.get_page(page)
 		return context
 
-class ProductDetailView(LoginRequiredMixin, DetailView):
+class ProductDetailView(DetailView):
 	model = Product
 
 class ProductStatusCreateView(LoginRequiredMixin, CreateView):
@@ -1003,7 +1002,7 @@ class SubjectUpdateView(LoginRequiredMixin, UpdateView):
 			form.instance.user = self.request.user
 			form.save()
 			return redirect('subject')
-@login_required
+
 def home(request):
 	all_schools = School.objects.count()
 	all_deos = Deo.objects.count()
@@ -1019,23 +1018,18 @@ def home(request):
 		'all_trtransfer':all_trtransfer, 
 		'all_deotransfer':all_deotransfer })
 
-@login_required
 def schools(request):
 	return render(request, 'ministry/schools.html', {'title': 'Schools'})
 
-@login_required
 def teachers(request):
 	return render(request, 'ministry/teachers.html', {'title': 'Teachers'})
 
-@login_required
 def deos(request):
 	return render(request, 'ministry/deos.html', {'title': 'DEOs'})
 
-@login_required
 def resources(request):
 	return render(request, 'ministry/resources.html', {'title': 'Resources'})
 
-@login_required
 def marketing(request):
 	product_list = Product.objects.filter(status=1).order_by('-id')
 	products_sold = Product.objects.filter(user=request.user, status=2).order_by('-id')
@@ -1044,15 +1038,13 @@ def marketing(request):
 	products = paginator.get_page(page)
 	return render(request, 'ministry/marketing.html', {'title': 'Marketing', 'products':products, 'products_sold':products_sold})
 
-@login_required
 def communication(request):
 	return render(request, 'ministry/communication.html', {'title': 'Communication'})
 
-@login_required
 def settings(request):
 	return render(request, 'ministry/settings.html', {'title': 'Settings'})
 
-class DistrictUploadView(LoginRequiredMixin, FormView):
+class DistrictUploadView(FormView):
 	template_name = 'ministry/upload_record.html'
 	form_class = UploadDistrict
 	success_url = '/ministry/upload_district/'
@@ -1061,7 +1053,7 @@ class DistrictUploadView(LoginRequiredMixin, FormView):
 		form.process_data()
 		return super().form_valid(form)
 
-class SchoolUploadView(LoginRequiredMixin, FormView):
+class SchoolUploadView(FormView):
 	template_name = 'ministry/upload_record.html'
 	form_class = UploadSchool
 	success_url = '/ministry/upload_school/'

@@ -6,19 +6,15 @@ from ministry.models import *
 from users.models import *
 class OnPayroll(models.Model):
 	payroll = models.CharField(max_length=200)
+
 	def __str__(self):
 		return self.payroll
 
-class Age(models.Model):
-	value = models.CharField(max_length=200)
-	def __str__(self):
-		return self.value
-
 class SchoolTeacherStatus(models.Model):
 	status = models.CharField(max_length=200)
+
 	def __str__(self):
 		return self.status
-
 class SchoolTeacher(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
@@ -26,6 +22,7 @@ class SchoolTeacher(models.Model):
 	status = models.ForeignKey(SchoolTeacherStatus, default=1, on_delete=models.SET_DEFAULT)
 	year_since = models.DateField()
 	date_created = models.DateTimeField(default=timezone.now)
+
 	def __str__(self):
 		return f'{self.teacher.name}'
 
@@ -43,17 +40,12 @@ class SchoolResource(models.Model):
 class Student(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	class_name = models.ForeignKey(Class, on_delete=models.CASCADE)
-	age = models.ForeignKey(Age, on_delete=models.CASCADE)
-	girls = models.IntegerField(blank=True)
-	boys = models.IntegerField(blank=True)
-	year = models.IntegerField()
+	no_of_students = models.IntegerField()
+	year = models.DateField(default=timezone.now)
 	date_created = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
-		return f'{self.class_name} {self.user.schoolprofile} {self.class_name}'
-
-	class Meta():
-		unique_together=['user','class_name','age','year',]
+		return f'{self.class_name}'
 
 class Subject(models.Model):
 	subject_name = models.CharField(max_length=45)
