@@ -42,7 +42,7 @@ class ServiceProvider(models.Model):
 		unique_together=['service','email',]
 
 class LockdownPackage(models.Model):
-	subject = models.ForeignKey(Subject, on_delete = models.SET_NULL, blank=True, null=True,)
+	subject = models.ManyToManyField(Subject,)
 	topic = models.CharField(max_length = 200, blank=True, null=True,)
 	date_created = models.DateTimeField(default=timezone.now)
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True, )

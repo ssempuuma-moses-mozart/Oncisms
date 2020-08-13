@@ -9,7 +9,7 @@ class OnPayroll(models.Model):
 	def __str__(self):
 		return self.payroll
 
-class Age(models.Model):
+class AgeGroup(models.Model):
 	value = models.CharField(max_length=200)
 	def __str__(self):
 		return self.value
@@ -43,7 +43,7 @@ class SchoolResource(models.Model):
 class Student(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	class_name = models.ForeignKey(Class, on_delete=models.CASCADE)
-	age = models.ForeignKey(Age, on_delete=models.CASCADE)
+	age = models.ForeignKey(AgeGroup, on_delete=models.CASCADE)
 	girls = models.IntegerField(blank=True)
 	boys = models.IntegerField(blank=True)
 	year = models.IntegerField()

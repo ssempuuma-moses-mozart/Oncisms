@@ -245,13 +245,13 @@ def add_students(request):
 		classes = Class.objects.filter(pk__gt=16,)
 
 	if(request.user.schoolprofile.school.level_id==1):
-		ages = Age.objects.filter(pk__lte=4)
+		ages = AgeGroup.objects.filter(pk__lte=4)
 	elif(request.user.schoolprofile.school.level_id==2):
-		ages = Age.objects.filter(pk__gte=5, pk__lte=12,)
+		ages = AgeGroup.objects.filter(pk__gte=5, pk__lte=12,)
 	elif(request.user.schoolprofile.school.level_id==3):
-		ages = Age.objects.filter(pk__gte=13, pk__lte=22,)
+		ages = AgeGroup.objects.filter(pk__gte=13, pk__lte=22,)
 	else:
-		ages = Age.objects.filter(pk__gt=22,)
+		ages = AgeGroup.objects.filter(pk__gt=22,)
 
 	# if request.method == 'POST':
 	# 	student_form = StudentCreateForm(request.POST, request.FILES)
@@ -357,13 +357,13 @@ def view_students(request):
 		classes = Class.objects.filter(pk__gt=16,)
 
 	if(request.user.schoolprofile.school.level_id==1):
-		ages = Age.objects.filter(pk__lte=4)
+		ages = AgeGroup.objects.filter(pk__lte=4)
 	elif(request.user.schoolprofile.school.level_id==2):
-		ages = Age.objects.filter(pk__gte=5, pk__lte=12,)
+		ages = AgeGroup.objects.filter(pk__gte=5, pk__lte=12,)
 	elif(request.user.schoolprofile.school.level_id==3):
-		ages = Age.objects.filter(pk__gte=13, pk__lte=22,)
+		ages = AgeGroup.objects.filter(pk__gte=13, pk__lte=22,)
 	else:
-		ages = Age.objects.filter(pk__gt=22,)
+		ages = AgeGroup.objects.filter(pk__gt=22,)
 
 	context = {
 	'title': 'Students',
