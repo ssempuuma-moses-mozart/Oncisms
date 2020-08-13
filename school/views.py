@@ -18,6 +18,8 @@ from users.models import *
 from .models import *
 from .forms import *
 import datetime
+from django.db.models import Sum
+from django.db.models import  Q, Count
 
 class SchoolCreateView(LoginRequiredMixin, CreateView):
 	model = School
@@ -333,7 +335,16 @@ class StudentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 @login_required
 def view_students(request):
-	students = Student.objects.filter(user=request.user, year=datetime.datetime.now().year).order_by('age_id',)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = Student.objects.filter(user=request.user, year=year).order_by('age_id',)
+	students_by_class = Student.objects.values('class_name').filter(user=request.user, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	students_by_age = Student.objects.values('age').filter(user=request.user, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	total_students = Student.objects.filter(user=request.user, 
+		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	classes = None
 	ages = None
 	if(request.user.schoolprofile.school.level_id==1):
@@ -359,6 +370,10 @@ def view_students(request):
 	'students': students,
 	'classes': classes,
 	'ages': ages,
+	'students_by_class': students_by_class,
+	'students_by_age': students_by_age,
+	'total_students': total_students,
+	'year':year
 	}
 	return render(request, 'school/view_students.html', context)
 
