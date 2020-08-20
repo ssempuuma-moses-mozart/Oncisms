@@ -68,7 +68,7 @@ def school(request, pk):
 	return render(request, 'public/school.html', context)
 
 def teachers(request):
-	teacher_list = District.objects.annotate(total_teachers = Count('teacher')).order_by('-total_teachers')
+	teacher_list = District.objects.annotate(total_teachers = Count('district')).order_by('-total_teachers')
 	paginator = Paginator(teacher_list, 1000)
 	page = request.GET.get('page')
 	teachers = paginator.get_page(page)
