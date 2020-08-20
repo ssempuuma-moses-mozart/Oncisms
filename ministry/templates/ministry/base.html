@@ -212,9 +212,9 @@
                         </li>
                         <li class="{% if title == 'Students'  %} active {% endif %}"><a data-toggle="tab" href="#students">Students</a>
                         </li>
-                        <li class="{% if title == 'Facilities'  %} active {% endif %}"><a data-toggle="tab" href="#facilities">Facilities</a>
-                        </li>
                         <li class="{% if title == 'Teachers'  %} active {% endif %}"><a data-toggle="tab" href="#teachers">Teachers</a>
+                        </li>
+                        <li class="{% if title == 'Facilities'  %} active {% endif %}"><a data-toggle="tab" href="#facilities">Facilities</a>
                         </li>
                         <li class="{% if title == 'Resources'  %} active {% endif %}"><a data-toggle="tab" href="#resources">Resources</a>
                         </li>
@@ -535,7 +535,7 @@
     {% endblock menu %}
     <div class="container">
     <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 mg-t-30">
         {% if messages%}
             {% for message in messages %}
                 <div class="alert alert-{{message.tags}}">

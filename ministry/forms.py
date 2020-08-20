@@ -25,7 +25,10 @@ class SchoolCreateForm(forms.ModelForm):
 class TeacherCreateForm(forms.ModelForm):
 	class Meta:
 		model = Teacher
-		fields =('name','reg_no','date_registered','email','status','gender','dob','district','school','photo')
+		fields =('surname','first_name','payroll_number','education','profession','email','phone',
+			'first_posting','first_appointment','responsibilities','gender','dob','nin',
+			'salary_scale','on_payroll','training','previous_post','specialization','taught',
+			'district','photo')
 
 class TeacherTransferForm(forms.ModelForm):
 	class Meta:

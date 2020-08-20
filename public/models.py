@@ -19,11 +19,6 @@ class Classe(models.Model):
 	def __str__(self):
 		return self.name
 
-class Subject(models.Model):
-	name = models.CharField(max_length=45, unique=True,)
-	def __str__(self):
-		return self.name
-
 class ServiceProvider(models.Model):
 	name = models.CharField(max_length=250, verbose_name="Service Provider Name")
 	capacity = models.CharField(max_length=250, blank=True, null=True,)

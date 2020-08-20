@@ -9,6 +9,12 @@ class Class(models.Model):
 	def __str__(self):
 		return self.class_name
 
+class Country(models.Model):
+	country_name = models.CharField(max_length=45, unique=True)
+
+	def __str__(self):
+		return self.country_name
+
 class Access(models.Model):
 	acc_type = models.CharField(max_length=45, unique=True, verbose_name="Access Type")
 	def __str__(self):
@@ -35,6 +41,12 @@ class Level(models.Model):
 	lev_name = models.CharField(max_length=45, unique=True, verbose_name="Level")
 	def __str__(self):
 		return self.lev_name
+
+class Subject(models.Model):
+	name = models.CharField(max_length=45, unique=True,)
+	subject_level = models.ManyToManyField(Level,)
+	def __str__(self):
+		return self.name
 
 class Ownership(models.Model):
 	own_type = models.CharField(max_length=45, unique=True, verbose_name="Ownership Type")
@@ -142,10 +154,30 @@ class School(models.Model):
 	def __str__(self):
 		return self.name
 
-class Designation(models.Model):
-	des_type = models.CharField(max_length=45, unique=True, verbose_name="Designation" )
+class TeacherResponsibility(models.Model):
+	responsibility = models.CharField(max_length=45, unique=True,)
 	def __str__(self):
-		return self.des_type
+		return self.responsibility
+
+class TeacherEducation(models.Model):
+	education_level = models.CharField(max_length=45, unique=True, )
+	def __str__(self):
+		return self.education_level
+
+class TeacherProfession(models.Model):
+	profession = models.CharField(max_length=45, unique=True, )
+	def __str__(self):
+		return self.profession
+
+class TeacherSalaryScale(models.Model):
+	profession = models.CharField(max_length=45, unique=True, )
+	def __str__(self):
+		return self.profession
+
+class TeacherTraining(models.Model):
+	training = models.CharField(max_length=45, unique=True, )
+	def __str__(self):
+		return self.training
 
 class Gender(models.Model):
 	gender = models.CharField(max_length=45, unique=True, verbose_name="Gender")
@@ -213,27 +245,40 @@ class Facility(models.Model):
 		return self.facility_type
 
 class Teacher(models.Model):
-	name = models.CharField(max_length=200, verbose_name="Teacher's Name")
+	surname = models.CharField(max_length=200,)
+	first_name = models.CharField(max_length=200,)
 	school = models.ForeignKey(School, on_delete = models.CASCADE, verbose_name="Current School")
-	reg_no = models.CharField(max_length=200, blank=True, null=True, verbose_name="Registration Number")
+	payroll_number = models.CharField(max_length=11, blank=True, null=True,)
+	phone = models.CharField(max_length=13, blank=True, null=True,)
+	nin = models.CharField(max_length=14, blank=True, null=True,)
 	email = models.EmailField(blank=True, null=True)
+	on_payroll = models.BooleanField(default=True,)
 	status = models.ForeignKey(TeacherStatus, default=1, on_delete = models.SET_DEFAULT, verbose_name="Teacher Status")
 	gender = models.ForeignKey(Gender, on_delete = models.SET_NULL, blank=True, null=True,)
-	date_registered = models.DateTimeField(blank=True, null=True,)
-	dob = models.DateTimeField(blank=True, null=True, verbose_name="Date of Birth")
-	district = models.ForeignKey(District, on_delete = models.SET_NULL, blank=True, null=True,)
+	responsibilities = models.ManyToManyField(TeacherResponsibility, blank=True,)
+	specialization = models.ManyToManyField(Subject, related_name="specialization", blank=True,)
+	taught = models.ManyToManyField(Subject, related_name="taught", blank=True,)
+	dob = models.DateField(blank=True, null=True, verbose_name="Date of Birth")
+	first_posting = models.DateField(blank=True, null=True, verbose_name="Date of first posting")
+	first_appointment = models.DateField(blank=True, null=True, verbose_name="Date of first appointment")
+	district = models.ForeignKey(District, on_delete = models.SET_NULL, blank=True, null=True, related_name="district")
+	previous_post = models.ForeignKey(District, on_delete = models.SET_NULL, blank=True, null=True, related_name="previous_post")
+	education = models.ForeignKey(TeacherEducation, on_delete = models.SET_NULL, blank=True, null=True,)
+	profession = models.ForeignKey(TeacherProfession, on_delete = models.SET_NULL, blank=True, null=True,)
+	salary_scale = models.ForeignKey(TeacherSalaryScale, on_delete = models.SET_NULL, blank=True, null=True,)
+	training = models.ForeignKey(TeacherTraining, on_delete = models.SET_NULL, blank=True, null=True,)
 	date_created = models.DateTimeField(default=timezone.now)
 	user = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True,)
-	photo = models.ImageField(default='teacher_photos/default.png', upload_to='teacher_photos')
+	photo = models.ImageField(default='teacher_photos/default.png', upload_to='teacher_photos', blank=True, null=True,)
 			
 	def __str__(self):
-		return self.name
+		return f'{self.surname} {self.first_name}'
 
 class TransferTeacher(models.Model):
 	teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE)
 	school = models.ForeignKey(School, on_delete = models.CASCADE, related_name='school_to')
 	school_from = models.ForeignKey(School, on_delete = models.CASCADE, related_name='school_from')
-	designation = models.ForeignKey(Designation, default=1, on_delete = models.SET_DEFAULT, blank=True, null=True,)
+	designation = models.ForeignKey(TeacherResponsibility, default=1, on_delete = models.SET_DEFAULT, blank=True, null=True,)
 	date_valid = models.DateField(blank=True, null=True, verbose_name="Transfer Teacher Until")
 	date_transfered = models.DateTimeField(default=timezone.now)
 	date_created = models.DateTimeField(default=timezone.now)

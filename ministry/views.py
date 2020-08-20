@@ -140,9 +140,14 @@ class TeacherCreateView(LoginRequiredMixin, CreateView):
 	form_class = TeacherCreateForm
 	def get_context_data(self, **kwargs):
 		context = super(TeacherCreateView, self).get_context_data(**kwargs)
-		page = self.request.GET.get('page')
-		teachers = Paginator(self.model.objects.all().order_by('-id'), 10)
-		context["teachers"] = teachers.get_page(page)
+		context["genders"] = Gender.objects.all()
+		context["educations"] = TeacherEducation.objects.all()
+		context["professions"] = TeacherProfession.objects.all()
+		context["responsibilities"] = TeacherResponsibility.objects.all()
+		context["salary_scales"] = TeacherSalaryScale.objects.all()
+		context["trainings"] = TeacherTraining.objects.all()
+		context["districts"] = District.objects.all()
+		context["subjects"] = Subject.objects.all()
 		context["title"] = "Teachers"
 		return context
 
@@ -150,12 +155,13 @@ class TeacherCreateView(LoginRequiredMixin, CreateView):
 		form = TeacherCreateForm(self.request.POST, self.request.FILES)
 		if form.is_valid():
 			form.instance.user = self.request.user
+			form.instance.school = self.request.user.schoolprofile.school
 			try:
 				form.save()
-				name = form.cleaned_data.get('name')
-				messages.success(self.request, f'Thank you! You have added {name}')
+				name = form.cleaned_data.get('surname')
+				first_name = form.cleaned_data.get('first_name')
+				messages.success(self.request, f'Thank you! You have added {name} {first_name}')
 			except IntegrityError:
-				name = form.cleaned_data.get('name')
 				messages.warning(self.request, f'ERROR! Some thing went wrong. Try again')
 			return redirect('new-teacher')
 
@@ -189,7 +195,7 @@ class TeacherListView(ListView):
 	def get_context_data(self, **kwargs):
 		context = super(TeacherListView, self).get_context_data(**kwargs)
 		page = self.request.GET.get('page')
-		teachers = Paginator(self.model.objects.all().order_by('-id'), 10)
+		teachers = Paginator(self.model.objects.filter(school=self.request.user.schoolprofile.school).order_by('-id'), 1000)
 		context["teachers"] = teachers.get_page(page)
 		context["title"] = "Teachers"
 		return context
@@ -267,8 +273,8 @@ class TransferTeacherUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class DesignationCreateView(LoginRequiredMixin, CreateView):
-	model = Designation
-	fields =['des_type']
+	model = TeacherResponsibility
+	fields =['responsibility']
 	def get_context_data(self, **kwargs):
 		context = super(DesignationCreateView, self).get_context_data(**kwargs)
 		context["des"] = self.model.objects.all().order_by('-id')
@@ -276,10 +282,10 @@ class DesignationCreateView(LoginRequiredMixin, CreateView):
 
 	def form_valid(self, form):
 		form.save()
-		return redirect('designation')
+		return redirect('responsibility')
 
 class DesignationUpdateView(LoginRequiredMixin, UpdateView):
-	model = Designation
+	model = TeacherResponsibility
 	fields =['des_type']
 	def get_context_data(self, **kwargs):
 		context = super(DesignationUpdateView, self).get_context_data(**kwargs)
