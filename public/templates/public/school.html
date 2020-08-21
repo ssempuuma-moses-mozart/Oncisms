@@ -1,280 +1,75 @@
 {% extends 'public/base.html' %}
 {% load static %}
-{% load humanize %}
-{% load crispy_forms_tags %}
 {% block content %} 
-<div class="project-details-area mg-t-40 mg-b-40">
-    <div class="container">
+<div class="button-adminpro-area mg-b-40 mg-t-40">
+<div class="container">
+<div class="user-profile-wrap shadow-reset">
+<div class="row">
+    <div class="col-lg-12">
         <div class="row">
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                <div class="project-details-wrap shadow-reset">
-                    <div class="row">
-                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                            <div class="project-details-title">
-                                <h2><span class="profile-details-name-nn">{{ school.name}}</span></h2>
-                            </div>
-                            <ul id="adminpro-demo2" class="comment-action-st collapse">
-                                <!-- <li><a href="" target="_blank">Update</a>
-                                </li> -->
-                            </ul>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                            <div class="admin-comment-month project-details-action">
-                                <button class="comment-setting" data-toggle="collapse" data-target="#adminpro-demo2"></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <img src="{{school.logo.url}}">
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                            <div class="project-details-mg">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <div class="project-details-st">
-                                            <span><strong>Motto:</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="btn-group project-list-ad">
-                                            {{ school.motto }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-details-mg">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <div class="project-details-st">
-                                            <span><strong>Type:</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="btn-group project-list-ad">
-                                            {{ school.schtype }} School
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-details-mg">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <div class="project-details-st">
-                                            <span><strong>Founder:</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="btn-group project-list-ad">
-                                            {{ school.ownership }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-details-mg">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <div class="project-details-st">
-                                            <span><strong>Access:</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="btn-group project-list-ad">
-                                            {{ school.access }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-details-mg">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <div class="project-details-st">
-                                            <span><strong>Category:</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="project-details-dt">
-                                            <span>{{ school.category}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-details-mg">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <div class="project-details-st">
-                                            <span><strong>Section:</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="project-details-dt">
-                                            <a href="#">{{ school.section}} </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="project-details-mg">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <div class="project-details-st">
-                                            <span><strong>Level:</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="project-details-dt">
-                                            <span>{{ school.level}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-details-mg">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <div class="project-details-st">
-                                            <span><strong>District:</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="project-details-dt">
-                                            <span>{{ school.district}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-details-mg">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <div class="project-details-st">
-                                            <span><strong>Email:</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="project-details-dt">
-                                            <span>{{ school.email}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-details-mg">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                        <div class="project-details-st">
-                                            <span><strong>Center:</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                        <div class="project-details-dt">
-                                            <span>{{ school.cen_no}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="project-details-tab">
-                                <ul class="nav nav-tabs res-pd-less-sm">
-                                    <li class="active"><a data-toggle="tab" href="#staff">Staff</a>
-                                    </li>
-                                    <li><a data-toggle="tab" href="#allrooms">Students</a>
-                                    </li>
-                                    <li><a data-toggle="tab" href="#freerooms">Facilities</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content res-tab-content-project">
-                                    <div id="staff" class="tab-pane fade in active">
-                                        <div class="user-profile-comment-list">
-                                            <div class="row">
-                                            {% for teacher in teachers %}
-                                                <div class="col-lg-4 mg-t-30">
-                                                    <div class="author-permissio-wrap shadow-reset">
-                                                        <div class="author-per-img">
-                                                            <a href="#"><img src="{{teacher.photo.url}}" alt="" />
-                                                            </a>
-                                                            <div class="author-per-content">
-                                                                <h2>{{teacher.name}}</h2>
-                                                                <p>{{teacher.email}}</p>
-                                                                <a id="group1" data-type="select" data-pk="1" data-value="5" data-source="/groups" data-title="Select group" href="#">{{teacher.reg_no}}</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            {% endfor %}
-                                            </div>
-                                            <div class="pagination">
-                                            <span class="step-links">
-                                                {% if employees.has_previous %}
-                                                    <a class="btn btn-custon-three btn-default btn-sm" href="?page=1">&laquo; first</a>
-                                                    <a class="btn btn-custon-three btn-default btn-sm" href="?page={{ employees.previous_page_number }}">previous</a>
-                                                {% endif %}
-                                                <span class="current">
-                                                    Page {{ employees.number }} of {{ employees.paginator.num_pages }}.
-                                                </span>
-                                                {% if employees.has_next %}
-                                                    <a class="btn btn-custon-three btn-default btn-sm" href="?page={{ employees.next_page_number }}">next</a>
-                                                    <a class="btn btn-custon-three btn-default btn-sm" href="?page={{ employees.paginator.num_pages }}">last &raquo;</a>
-                                                {% endif %}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                <div id="allrooms" class="tab-pane fade">
-                    <div class="project-details-completeness">
-                        <div class="sparkline13-graph">
-                            <div class="datatable-dashv1-list custom-datatable-overright">
-                                <div id="toolbar1">
-                                    <select class="form-control">
-                                        <option value="">Export Basic</option>
-                                        <option value="all">Export All</option>
-                                        <option value="selected">Export Selected</option>
-                                    </select>
-                                </div>
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar1">
-                                    <thead>
-                                        <tr>
-                                            <th data-field="state" data-checkbox="true"></th>
-                                            <th data-field="name" data-editable="false">Class</th>
-                                            <th data-field="district" data-editable="false">Year</th>
-                                            <th data-field="company" data-editable="false">Number of Students</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for room in rooms %}
-                                        <tr>
-                                            <td></td>
-                                            <td>{{room.size}}</td>
-                                            <td>{{room.monthly_rate}}</td>
-                                            <td>{{room.floor}}</td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                     </div>
+            <div class="col-lg-2">
+                <div class="">
+                    <img src="{{ school.logo.url }}" alt="{{ school.name }} Logo" />
+                </div>
+                <div class="mg-t-30">
+                {{ school.name }} - {{ school.motto }}
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-
-    <div class="income-dashone-total shadow-reset nt-mg-b-30">
-        <div class="income-title">
-            <div class="main-income-head">
-                <h2>School Description</h2>
+            <div class="col-lg-10">
+            <div class="col-lg-6">
+                <div class="user-profile-content">
+                    <h2>School Information</h2>
+                    <table  class="table small m-b-xs">
+                    <tr>
+                    <td>Name: </td><td><strong>{{ school.name }}</strong></td></tr>
+                    <tr><td>District: </td><td><strong>{{school.parish.district}}</strong></td></tr>
+                    <tr><td>County: </td><td><strong>{{ school.parish.county }}</strong></td></tr>
+                    <tr><td>Sub-county: </td><td><strong>{{ school.parish.subcounty }}</strong></td></tr>
+                    <tr><td>Parish: </td><td><strong>{{ school.parish }}</strong></td></tr>
+                    <tr><td>Address: </td><td><strong>{{ school.address }}</strong></td></tr>
+                    <tr><td>P.O.Box: </td><td><strong>{{ school.box_no }}</strong></td></tr>
+                    <tr><td>Email: </td><td><strong>{{ school.email }}</strong></td></tr>
+                    <tr><td>Website: </td><td><strong>{{ school.website }}</strong></td></tr>
+                    <tr><td>Phone: </td><td><strong>{{ school.phone }}</strong></td></tr>
+                    <tr><td>Fax: </td><td><strong>{{ school.fax }}</strong></td></tr>
+                    <tr><td>Service Code: </td><td><strong>{{ school.service_code }}</strong></td></tr>
+                    <td>Reg No.: </td><td><strong>{{ school.reg_no }}</strong></td></tr>
+                    <td>Center No.: </td><td><strong>{{ school.cen_no }}</strong></td></tr>
+                    </table>
+                </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="user-profile-content">
+                    <h2>School Particulars</h2>
+                    <table  class="table small m-b-xs">
+                    <tr><td>Operation Satus: </td><td><strong>{{ school.operation_status }}</strong></td></tr>
+                    <tr><td>Founder: </td><td><strong>{{ school.founder }}</strong></td></tr>
+                    <tr><td>Funder: </td><td><strong>{{ school.funder }}</strong></td></tr>
+                    <tr><td>Boys/Girls: </td><td><strong>{{ school.category }}</strong></td></tr>
+                    <tr><td>Day/Boarding: </td><td><strong>{{ school.section }}</strong></td></tr>
+                    </tr>
+                    <td>Registry Status: </td><td><strong>{{ school.regstatus }}</strong></td></tr>
+                    </tr>
+                    <td>Nearest School: </td><td><strong>{{ school.distance_to_nearest_school }}</strong></td></tr>
+                    </tr>
+                    <td>Main DEO Office: </td><td><strong>{{ school.distance_to_deo_office }}</strong></td></tr>
+                    </tr>
+                    <td>Urban/Rural: </td><td><strong>{{ school.rural_urban }}</strong></td></tr>
+                    </tr>
+                    <td>Founding Year: </td><td><strong>{{ school.yr_est }}</strong></td></tr>
+                    </tr>
+                    <td>Level: </td><td><strong>{{ school.level }}</strong></td></tr>
+                    </tr>
+                    <td>Highest Class: </td><td><strong>{{ school.highest_class }}</strong></td></tr>
+                    </tr>
+                    <td>Access: </td><td><strong>{{ school.access }}</strong></td></tr>
+                    </table>
+                </div>
+            </div>
             </div>
         </div>
-        <div class="income-dashone-pro">
-            <p>Description</p>
-        </div>
     </div>
-</div>
+    </div>
 </div>
 </div>
 </div>

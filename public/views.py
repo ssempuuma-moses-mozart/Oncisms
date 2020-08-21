@@ -58,7 +58,7 @@ def school_levels(request, pk):
 
 def school(request, pk):
 	school = School.objects.get(pk=pk)
-	teachers = Teacher.objects.filter(school=school).order_by('name')
+	teachers = Teacher.objects.filter(school=school).order_by('-id')
 	context = {
 	'title': 'Schools', 
 	'school': school,
