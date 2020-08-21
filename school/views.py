@@ -18,7 +18,7 @@ from users.models import *
 from .models import *
 from .forms import *
 import datetime
-from django.db.models import Sum
+from django.db.models import Sum, F
 from django.db.models import  Q, Count
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
@@ -1318,6 +1318,179 @@ def view_examinations(request):
 	'year':year
 	}
 	return render(request, 'school/view_students.html', context)
+
+@login_required
+def add_left_teachers(request):
+	yr=datetime.datetime.now().year
+	if request.GET.get('yr', None):
+		yr=request.GET.get('yr', None)
+	teachers = LeftTeacher.objects.filter(school=request.user.schoolprofile.school, year=yr)
+	teachers_by_reason = LeftTeacher.objects.values('reason').filter(school=request.user.schoolprofile.school, 
+		year=yr).annotate(total=F('female')+F('male'))
+	teachers_by_sex = LeftTeacher.objects.filter(school=request.user.schoolprofile.school, 
+		year=yr).aggregate(total_female=Sum('female'), total_male=Sum('male'))
+	reasons = Reason.objects.all()
+	enrolment_list = []
+	total_rows = len(reasons)
+	if request.method == 'POST':
+		teacher_form = LeftTeacherCreateForm(request.POST, )
+		if teacher_form.is_valid():
+			year = teacher_form.cleaned_data.get('year')
+			reason = request.POST.getlist('reason')
+			male = request.POST.getlist('male')
+			female = request.POST.getlist('female')
+			std_records = [reason, male, female]
+			enrolment_list.append(std_records)
+			for c, f, m in enrolment_list:
+				some_data = []
+				for i in range(0, total_rows):
+					if f[i]=='':
+						f[i]=0
+					if m[i]=='':
+						m[i]=0
+					if int(f[i])>0 or int(m[i])>0:
+						some_data.append(LeftTeacher(**{
+	                                        'year' : year,
+	                                        'user' : request.user,
+	                                        'school' : request.user.schoolprofile.school,
+	                                        'reason' : Reason.objects.get(pk=c[i]),
+	                                        'female' : f[i],
+	                                        'male' : m[i],
+	                                        }))
+			try:
+				LeftTeacher.objects.bulk_create(some_data)
+				messages.success(request, f'Teachers Who left in {year} have been recorded')
+			except Exception:
+				messages.warning(request, f'ERROR! May be Teachers who left in {year} are already recorded. Only Fill the ones that are not yet recorded.')				
+	else:
+		teacher_form = LeftTeacherCreateForm()
+	context = {
+	'title': 'Teachers',
+	'sub_title': 'Left Teachers',
+	'teacher_form': teacher_form,
+	'reasons': reasons,
+	'yr': yr,
+	'teachers': teachers,
+	'teachers_by_reason': teachers_by_reason,
+	'teachers_by_sex': teachers_by_sex,
+	}
+	return render(request, 'school/add_left_teachers.html', context)
+
+@login_required
+def add_non_teaching_staff(request):
+	yr=datetime.datetime.now().year
+	if request.GET.get('yr', None):
+		yr=request.GET.get('yr', None)
+	teachers = NonTeachingStaff.objects.filter(school=request.user.schoolprofile.school, year=yr)
+	teachers_by_type = NonTeachingStaff.objects.values('staff_type').filter(school=request.user.schoolprofile.school, 
+		year=yr).annotate(total=F('female')+F('male'))
+	teachers_by_sex = NonTeachingStaff.objects.filter(school=request.user.schoolprofile.school, 
+		year=yr).aggregate(total_female=Sum('female'), total_male=Sum('male'))
+	staff_types = StaffType.objects.all()
+	enrolment_list = []
+	total_rows = len(staff_types)
+	if request.method == 'POST':
+		teacher_form = NonTeachingStaffCreateForm(request.POST, )
+		if teacher_form.is_valid():
+			year = teacher_form.cleaned_data.get('year')
+			staff_type = request.POST.getlist('staff_type')
+			male = request.POST.getlist('male')
+			female = request.POST.getlist('female')
+			std_records = [staff_type, male, female]
+			enrolment_list.append(std_records)
+			for c, f, m in enrolment_list:
+				some_data = []
+				for i in range(0, total_rows):
+					if f[i]=='':
+						f[i]=0
+					if m[i]=='':
+						m[i]=0
+					if int(f[i])>0 or int(m[i])>0:
+						some_data.append(NonTeachingStaff(**{
+	                                        'year' : year,
+	                                        'user' : request.user,
+	                                        'school' : request.user.schoolprofile.school,
+	                                        'staff_type' : StaffType.objects.get(pk=c[i]),
+	                                        'female' : f[i],
+	                                        'male' : m[i],
+	                                        }))
+			try:
+				NonTeachingStaff.objects.bulk_create(some_data)
+				messages.success(request, f'Non-Teaching Staff in {year} have been recorded')
+			except Exception:
+				messages.warning(request, f'ERROR! May be Non-Teaching Staff in {year} are already recorded. Only Fill the ones that are not yet recorded.')				
+	else:
+		teacher_form = NonTeachingStaffCreateForm()
+	context = {
+	'title': 'Teachers',
+	'sub_title': 'Non Non-Teaching Staff',
+	'teacher_form': teacher_form,
+	'staff_types': staff_types,
+	'yr': yr,
+	'teachers': teachers,
+	'teachers_by_type': teachers_by_type,
+	'teachers_by_sex': teachers_by_sex,
+	}
+	return render(request, 'school/add_non_teaching_staff.html', context)
+
+@login_required
+def teacher_allocation(request):
+	yr=datetime.datetime.now().year
+	if request.GET.get('yr', None):
+		yr=request.GET.get('yr', None)
+	teachers_list = TeacherAllocation.objects.filter(school=request.user.schoolprofile.school, year=yr)
+	teachers_total = TeacherAllocation.objects.filter(school=request.user.schoolprofile.school, 
+		year=yr).aggregate(total=Sum('teachers'))
+	classes = None
+	terms = Term.objects.all()
+	if(request.user.schoolprofile.school.level_id==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(request.user.schoolprofile.school.level_id==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(request.user.schoolprofile.school.level_id==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+	enrolment_list = []
+	total_rows = len(classes)
+	if request.method == 'POST':
+		teacher_form = TeacherAllocationCreateForm(request.POST, )
+		if teacher_form.is_valid():
+			year = teacher_form.cleaned_data.get('year')
+			class_name = request.POST.getlist('class_name')
+			teachers = request.POST.getlist('teachers')
+			std_records = [class_name, teachers]
+			enrolment_list.append(std_records)
+			for c, f in enrolment_list:
+				some_data = []
+				for i in range(0, total_rows):
+					if f[i]=='':
+						f[i]=0
+					if int(f[i])>0:
+						some_data.append(TeacherAllocation(**{
+	                                        'year' : year,
+	                                        'user' : request.user,
+	                                        'school' : request.user.schoolprofile.school,
+	                                        'class_name' : Class.objects.get(pk=c[i]),
+	                                        'teachers' : f[i],
+	                                        }))
+			try:
+				TeacherAllocation.objects.bulk_create(some_data)
+				messages.success(request, f'Teacher Allocation by class in {year} have been recorded')
+			except Exception:
+				messages.warning(request, f'ERROR! May be Teacher Allocation by class in {year} are already recorded. Only Fill the ones that are not yet recorded.')				
+	else:
+		teacher_form = TeacherAllocationCreateForm()
+	context = {
+	'title': 'Teachers',
+	'sub_title': 'Teacher Allocation',
+	'teacher_form': teacher_form,
+	'classes': classes,
+	'yr': yr,
+	'teachers_list': teachers_list,
+	'teachers_total': teachers_total,
+	}
+	return render(request, 'school/teacher_allocation.html', context)
 
 class RequestTeacherCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 	model = RequestTeacher

@@ -4,6 +4,17 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from ministry.models import * 
 from users.models import *
+
+class Reason(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
+class StaffType(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
 class OnPayroll(models.Model):
 	payroll = models.CharField(max_length=200, unique=True)
 	def __str__(self):
@@ -222,6 +233,50 @@ class Examination(models.Model):
 	term = models.ForeignKey(Term, on_delete=models.CASCADE)
 	girls = models.IntegerField(blank=True)
 	boys = models.IntegerField(blank=True)
+	year = models.IntegerField()
+	date_created = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return f'{self.class_name} {self.school.name} {self.year}'
+
+	class Meta():
+		unique_together=['school','class_name','year',]
+
+class LeftTeacher(models.Model):
+	user = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL)
+	school = models.ForeignKey(School, on_delete=models.CASCADE)
+	reason = models.ForeignKey(Reason, on_delete=models.CASCADE)
+	male = models.IntegerField(blank=True)
+	female = models.IntegerField(blank=True)
+	year = models.IntegerField()
+	date_created = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return f'{self.reason} {self.school.name} {self.year}'
+
+	class Meta():
+		unique_together=['school','reason','year',]
+
+class NonTeachingStaff(models.Model):
+	user = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL)
+	school = models.ForeignKey(School, on_delete=models.CASCADE)
+	staff_type = models.ForeignKey(StaffType, on_delete=models.CASCADE)
+	male = models.IntegerField(blank=True)
+	female = models.IntegerField(blank=True)
+	year = models.IntegerField()
+	date_created = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return f'{self.staff_type} {self.school.name} {self.year}'
+
+	class Meta():
+		unique_together=['school','staff_type','year',]
+
+class TeacherAllocation(models.Model):
+	user = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL)
+	school = models.ForeignKey(School, on_delete=models.CASCADE)
+	class_name = models.ForeignKey(Class, on_delete=models.CASCADE)
+	teachers = models.IntegerField(blank=True)
 	year = models.IntegerField()
 	date_created = models.DateTimeField(default=timezone.now)
 

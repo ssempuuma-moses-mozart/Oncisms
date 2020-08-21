@@ -66,3 +66,18 @@ class ExaminationCreateForm(forms.ModelForm):
 	class Meta:
 		model = Examination
 		fields =('class_name','girls','boys','term','year')
+
+class LeftTeacherCreateForm(forms.ModelForm):
+	class Meta:
+		model = LeftTeacher
+		fields =('reason','male','female','year')
+
+class NonTeachingStaffCreateForm(forms.ModelForm):
+	class Meta:
+		model = NonTeachingStaff
+		fields =('staff_type','male','female','year')
+
+class TeacherAllocationCreateForm(forms.ModelForm):
+	class Meta:
+		model = TeacherAllocation
+		fields =('class_name','teachers','year')
