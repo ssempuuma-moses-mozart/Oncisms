@@ -336,6 +336,16 @@
                             <ul class="main-menu-dropdown">
                                 <li class="active" ><a href="{% url 'school-home'  %}">Home</a>
                                 </li>
+                                <li class="active" ><a href="{% url 'update-school-profile' user.schoolprofile.school.id %}">Update School Profile</a>
+                                </li>
+                                <li class="active" ><a href="{% url 'school-profile' %}">View School Profile</a>
+                                </li>
+                                <li class="active" ><a href="{% url 'update-profile'  %}">Update User Profile</a>
+                                </li>
+                                <li class="active" ><a href="{% url 'profile'  %}">User Profile</a>
+                                </li>
+                                <li class="active" ><a href="{% url 'logout'  %}">Logout</a>
+                                </li>
                             </ul> 
                         </div>
                         <div id="facilities" class="tab-pane {% if title == 'Facilities'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">

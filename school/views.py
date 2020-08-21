@@ -59,15 +59,15 @@ class SchoolCreateView(LoginRequiredMixin, CreateView):
 		school_profile = SchoolProfile.objects.create(user=self.request.user, school=school, group=4)
 		return redirect('school-home')
 
-class SchoolUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class SchoolProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = School
 	template_name = "ministry/school_form.html"
 	fields = ['name','motto','phone','website','email','box_no','parish','address','fax','service_code','yr_est',
 			'regstatus','reg_no','cen_no','level','highest_class','access','category','section','founder',
-			'funder','operation_status','distance_to_nearest_school','distance_to_deo_office','logo'] 
+			'funder','operation_status','distance_to_nearest_school','distance_to_deo_office','logo']
 	def get_context_data(self, **kwargs):
-		context = super(SchoolUpdateView, self).get_context_data(**kwargs)
-		context["title"] = "Settings"
+		context = super(SchoolProfileUpdateView, self).get_context_data(**kwargs)
+		context["title"] = "Home"
 		context["parishes"] = Parish.objects.all()
 		context["regstatuses"] = Regstatus.objects.all()
 		context["schtypes"] = Schtype.objects.all()
@@ -84,13 +84,17 @@ class SchoolUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 		return context
 
 	def form_valid(self, form):
-		form.instance.user = self.request.user
-		form.save()
-		return redirect('school-home')
+		try:
+			form.save()
+			messages.success(self.request, f'The school profile has been updated')
+			return redirect('school-profile')
+		except Exception:
+			messages.warning(self.request, f'ERROR! Some fields are not correct')
+			return redirect('school-profile')
 
 	def test_func(self):
-		school = SchoolProfile.objects.filter(user=self.request.user).first()
-		if self.request.user == school.user:
+		school = SchoolProfile.objects.filter(school=self.request.user.schoolprofile.school).last()
+		if self.request.user.schoolprofile.school == school.school:
 			return True
 		return False
 
@@ -1614,9 +1618,9 @@ def teachers(request):
 
 @login_required
 def profile(request):
-	profiles = SchoolProfile.objects.filter(user=request.user)
-	return render(request, 'school/profile.html', {'title': 'Profile', 
-		'profiles':profiles, })
+	profile = SchoolProfile.objects.filter(school=request.user.schoolprofile.school)
+	return render(request, 'school/school_profile.html', {'title': 'Home', 
+		'profile':profile, })
 
 @login_required
 def resources(request):
