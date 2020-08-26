@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.paginator import Paginator
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.http import HttpResponseRedirect
 from django.views.generic import (
 	ListView,
@@ -18,7 +18,7 @@ from .models import *
 from .forms import *
 from school.models import *
 from django.db import IntegrityError
-from django.db.models import Sum
+from django.db.models import Sum, Count, Q
 
 
 # class HomeView(DetailView):
@@ -53,9 +53,6 @@ class SchoolDetailView(DetailView):
 	model = School
 	def get_context_data(self, **kwargs):
 		context = super(SchoolDetailView, self).get_context_data(**kwargs)
-		page = self.request.GET.get('page')
-		schools = Paginator(self.model.objects.all().order_by('-id'), 10)
-		context["schools"] = schools.get_page(page)
 		context["title"] = "Schools"
 		return context
 
@@ -1009,6 +1006,391 @@ class SubjectUpdateView(LoginRequiredMixin, UpdateView):
 			form.save()
 			return redirect('subject')
 
+@login_required
+def enrolments(request, pk):
+	level = Level.objects.get(pk=pk)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = Student.objects.filter(school__level=level, year=year).order_by('age_id',)
+	students_by_class = Student.objects.values('class_name').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	students_by_age = Student.objects.values('age').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	total_students = Student.objects.filter(school__level=level, 
+		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	classes = None
+	ages = None
+	if(pk==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(pk==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(pk==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+
+	if(pk==1):
+		ages = AgeGroup.objects.filter(pk__lte=4)
+	elif(pk==2):
+		ages = AgeGroup.objects.filter(pk__gte=5, pk__lte=12,)
+	elif(pk==3):
+		ages = AgeGroup.objects.filter(pk__gte=13, pk__lte=22,)
+	else:
+		ages = AgeGroup.objects.filter(pk__gt=22,)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'Enrolment',
+	'students': students,
+	'classes': classes,
+	'ages': ages,
+	'students_by_class': students_by_class,
+	'students_by_age': students_by_age,
+	'total_students': total_students,
+	'year':year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
+def repeaters(request, pk):
+	level = Level.objects.get(pk=pk)
+	classes = None
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = Repeater.objects.filter(school__level=level, year=year)
+	students_by_class = Repeater.objects.filter(school__level=level, 
+		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	if(pk==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(pk==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(pk==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'Repeaters',
+	'classes': classes,
+	'students': students,
+	'students_by_class': students_by_class,
+	'year': year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
+def nationality(request, pk):
+	level = Level.objects.get(pk=pk)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = Nationality.objects.filter(school__level=level, year=year).order_by('country_id',)
+	students_by_class = Nationality.objects.values('class_name').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	students_by_country = Nationality.objects.values('country').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	total_students = Nationality.objects.filter(school__level=level, 
+		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	classes = None
+	countries = Country.objects.all()
+	if(pk==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(pk==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(pk==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'Nationality',
+	'students': students,
+	'classes': classes,
+	'countries': countries,
+	'students_by_class': students_by_class,
+	'students_by_country': students_by_country,
+	'total_students': total_students,
+	'year':year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
+def proposed_intake(request, pk):
+	level = Level.objects.get(pk=pk)
+	classes = None
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = ProposedIntake.objects.filter(school__level=level, year=year)
+	students_by_class = ProposedIntake.objects.filter(school__level=level, 
+		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	if(pk==1):
+		classes = IntakeClass.objects.filter(pk__lte=1)
+	elif(pk==2):
+		classes = IntakeClass.objects.filter(pk__gte=2, pk__lte=2,)
+	elif(pk==3):
+		classes = IntakeClass.objects.filter(pk__gte=3, pk__lte=5,)
+	else:
+		classes = IntakeClass.objects.filter(pk__gt=5,)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'Proposed Intake',
+	'classes': classes,
+	'students': students,
+	'students_by_class': students_by_class,
+	'year': year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
+def physical_streams(request, pk):
+	level = Level.objects.get(pk=pk)
+	classes = None
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = PhysicalStream.objects.filter(school__level=level, year=year)
+	students_by_stream = PhysicalStream.objects.filter(school__level=level, 
+		year=year).aggregate(total_streams=Sum('streams'))
+	if(pk==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(pk==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(pk==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'Physical Streams',
+	'classes': classes,
+	'students': students,
+	'students_by_stream': students_by_stream,
+	'year': year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
+def orphans(request, pk):
+	level = Level.objects.get(pk=pk)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = Orphan.objects.filter(school__level=level, year=year)
+	students_by_class = Orphan.objects.values('class_name').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	students_by_status = Orphan.objects.values('status').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	total_students = Orphan.objects.filter(school__level=level, 
+		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	classes = None
+	statuses = OrphanStatus.objects.all()
+	if(pk==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(pk==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(pk==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'Orphans',
+	'students': students,
+	'classes': classes,
+	'statuses': statuses,
+	'students_by_class': students_by_class,
+	'students_by_status': students_by_status,
+	'total_students': total_students,
+	'year':year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
+def special_needs(request, pk):
+	level = Level.objects.get(pk=pk)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = SpecialNeed.objects.filter(school__level=level, year=year)
+	students_by_class = SpecialNeed.objects.values('class_name').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	students_by_status = SpecialNeed.objects.values('status').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	total_students = SpecialNeed.objects.filter(school__level=level, 
+		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	classes = None
+	statuses = SpecialNeedStatus.objects.all()
+	if(pk==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(pk==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(pk==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'Special Needs',
+	'students': students,
+	'classes': classes,
+	'statuses': statuses,
+	'students_by_class': students_by_class,
+	'students_by_status': students_by_status,
+	'total_students': total_students,
+	'year':year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
+def new_entrants(request, pk):
+	level = Level.objects.get(pk=pk)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = NewEntrant.objects.filter(school__level=level, year=year)
+	students_by_age = NewEntrant.objects.filter(school__level=level, 
+		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	ages = None
+	if(pk==1):
+		ages = AgeGroup.objects.filter(pk__lte=4)
+	elif(pk==2):
+		ages = AgeGroup.objects.filter(pk__gte=5, pk__lte=10,)
+	elif(pk==3):
+		ages = AgeGroup.objects.filter(pk__gte=13, pk__lte=20,)
+	else:
+		ages = AgeGroup.objects.filter(pk__gt=22,)
+
+	classes = None
+	if(pk==1):
+		classes = Class.objects.get(pk=1)
+	elif(pk==2):
+		classes = Class.objects.get(pk=4)
+	elif(pk==3):
+		classes = Class.objects.get(pk=11)
+	else:
+		classes = Class.objects.get(pk=17)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'New Entrants',
+	'classes': classes,
+	'ages': ages,
+	'students': students,
+	'students_by_age': students_by_age,
+	'year': year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
+def seating_and_writing_space(request, pk):
+	level = Level.objects.get(pk=pk)
+	classes = None
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = SeatingAndWritingSpace.objects.filter(school__level=level, year=year)
+	students_by_class = SeatingAndWritingSpace.objects.filter(school__level=level, 
+		year=year).aggregate(total_pupils=Sum('pupils'))
+	if(pk==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(pk==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(pk==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'Seating and Writing Space',
+	'classes': classes,
+	'students': students,
+	'students_by_class': students_by_class,
+	'year': year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
+def transfered_students(request, pk):
+	level = Level.objects.get(pk=pk)
+	classes = None
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = TransferedStudent.objects.filter(school__level=level, year=year)
+	students_by_class = TransferedStudent.objects.filter(school__level=level, 
+		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	if(pk==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(pk==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(pk==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'Transfered Students',
+	'classes': classes,
+	'students': students,
+	'students_by_class': students_by_class,
+	'year': year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
+def examinations(request, pk):
+	level = Level.objects.get(pk=pk)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	students = Examination.objects.filter(school__level=level, year=year)
+	students_by_term = Examination.objects.values('term').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	classes = None
+	terms = Term.objects.all()
+	if(pk==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(pk==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(pk==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+
+	context = {
+	'title': 'Students',
+	'sub_title': 'Examinations',
+	'students': students,
+	'classes': classes,
+	'terms': terms,
+	'students_by_term': students_by_term,
+	'year':year,
+	'level':level,
+	}
+	return render(request, 'ministry/students.html', context)
+
+@login_required
 def home(request):
 	all_schools = School.objects.count()
 	all_deos = Deo.objects.count()
@@ -1024,12 +1406,253 @@ def home(request):
 		'all_trtransfer':all_trtransfer, 
 		'all_deotransfer':all_deotransfer })
 
-def schools(request):
-	return render(request, 'ministry/schools.html', {'title': 'Schools'})
+@login_required
+def view_schools(request, pk):
+	item = District.objects.get(pk=1)
+	if request.GET.get('dist', None):
+		dis_id=request.GET.get('dist', None)
+		item = District.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, parish__district=item)
+	records = District.objects.annotate(total_schools=Count('parish__school'))
+	context = {
+	'title': 'Schools',
+	'head': 'in',
+	'sub_title': 'District',
+	'link': 'dist',
+	'side_title': 'Districts',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
 
+@login_required
+def operation_status(request, pk):
+	item = Schtype.objects.get(pk=1)
+	if request.GET.get('status', None):
+		dis_id=request.GET.get('status', None)
+		item = Schtype.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, operation_status=item)
+	records = Schtype.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Operation Status',
+	'sub_title': 'Operation Status',
+	'link': 'status',
+	'side_title': 'Operation Status',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
+
+@login_required
+def founder(request, pk):
+	item = Ownership.objects.get(pk=1)
+	if request.GET.get('status', None):
+		dis_id=request.GET.get('status', None)
+		item = Ownership.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, founder=item)
+	records = Ownership.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Founding Body',
+	'sub_title': 'Founding Body',
+	'link': 'founder',
+	'side_title': 'Founding Bodies',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
+
+@login_required
+def funders(request, pk):
+	item = Funder.objects.get(pk=1)
+	if request.GET.get('funder', None):
+		dis_id=request.GET.get('funder', None)
+		item = Funder.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, funder=item)
+	records = Funder.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Funding Source',
+	'sub_title': 'Funders',
+	'link': 'funder',
+	'side_title': 'Funding Sources',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
+
+@login_required
+def category(request, pk):
+	item = Category.objects.get(pk=1)
+	if request.GET.get('category', None):
+		dis_id=request.GET.get('category', None)
+		item = Category.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, category=item)
+	records = Category.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Category',
+	'sub_title': 'Category',
+	'link': 'category',
+	'side_title': 'Categories',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
+
+@login_required
+def section(request, pk):
+	item = Section.objects.get(pk=1)
+	if request.GET.get('section', None):
+		dis_id=request.GET.get('section', None)
+		item = Section.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, section=item)
+	records = Section.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Section',
+	'sub_title': 'Section',
+	'link': 'section',
+	'side_title': 'Sections',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
+
+@login_required
+def registration_status(request, pk):
+	item = Regstatus.objects.get(pk=1)
+	if request.GET.get('status', None):
+		dis_id=request.GET.get('status', None)
+		item = Regstatus.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, regstatus=item)
+	records = Regstatus.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Registration Status',
+	'sub_title': 'Registration Status',
+	'link': 'status',
+	'side_title': 'Statuses',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
+
+@login_required
+def nearest_school(request, pk):
+	item = DistanceToNearestSchool.objects.get(pk=1)
+	if request.GET.get('distance', None):
+		dis_id=request.GET.get('distance', None)
+		item = DistanceToNearestSchool.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, distance_to_nearest_school=item)
+	records = DistanceToNearestSchool.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Distance To Nearest School of',
+	'sub_title': 'Nearest School',
+	'link': 'distance',
+	'side_title': 'Distance Range',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
+
+@login_required
+def nearest_deo(request, pk):
+	item = DistanceToDeoOffice.objects.get(pk=1)
+	if request.GET.get('distance', None):
+		dis_id=request.GET.get('distance', None)
+		item = DistanceToDeoOffice.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, distance_to_deo_office=item)
+	records = DistanceToDeoOffice.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Distance To Main Office of DEO/DIS/ESA of',
+	'sub_title': 'Nearest DEO',
+	'link': 'distance',
+	'side_title': 'Distance Range',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
+
+@login_required
+def rural_urban(request, pk):
+	item = RuralUrban.objects.get(pk=1)
+	if request.GET.get('status', None):
+		dis_id=request.GET.get('status', None)
+		item = RuralUrban.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, rural_urban=item)
+	records = RuralUrban.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Status',
+	'sub_title': 'Rural/Urban',
+	'link': 'status',
+	'side_title': 'Rural/Urban',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
+
+@login_required
+def access(request, pk):
+	item = Access.objects.get(pk=1)
+	if request.GET.get('access', None):
+		dis_id=request.GET.get('access', None)
+		item = Access.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, access=item)
+	records = Access.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Access Level',
+	'sub_title': 'Access',
+	'link': 'access',
+	'side_title': 'Access',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'ministry/school_list.html', context)
+
+@login_required
 def teachers(request):
 	return render(request, 'ministry/teachers.html', {'title': 'Teachers'})
 
+@login_required
 def deos(request):
 	return render(request, 'ministry/deos.html', {'title': 'DEOs'})
 

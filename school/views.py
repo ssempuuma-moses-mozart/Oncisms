@@ -673,8 +673,6 @@ def add_special_needs(request):
 	}
 	return render(request, 'school/add_students.html', context)
 
-
-
 @login_required
 def add_seating_and_writing_space(request):
 	classes = None
@@ -1495,6 +1493,222 @@ def teacher_allocation(request):
 	'teachers_total': teachers_total,
 	}
 	return render(request, 'school/teacher_allocation.html', context)
+
+@login_required
+def add_buildings(request):
+	types = RoomType.objects.all()
+	states = RoomState.objects.all()
+	statuses = RoomStatus.objects.all()
+	room_list = []
+	total_rows = len(types)*len(states)*len(statuses)
+	if request.method == 'POST':
+		room_form = BuildingCreateForm(request.POST, )
+		if room_form.is_valid():
+			year = room_form.cleaned_data.get('year')
+			room_type = request.POST.getlist('room_type')
+			room_state = request.POST.getlist('room_state')
+			room_status = request.POST.getlist('room_status')
+			permanent = request.POST.getlist('permanent')
+			temporary = request.POST.getlist('temporary')
+			room_records = [room_type, room_state, room_status, permanent, temporary]
+			room_list.append(room_records)
+			for y, e, u, p, t in room_list:
+				some_data = []
+				for i in range(0, total_rows):
+					if p[i]=='':
+						p[i]=0
+					if t[i]=='':
+						t[i]=0
+					if int(p[i])>0 or int(t[i])>0:
+						some_data.append(Building(**{
+	                                        'year' : year,
+	                                        'user' : request.user,
+	                                        'school' : request.user.schoolprofile.school,
+	                                        'room_type' : RoomType.objects.get(pk=y[i]),
+	                                        'room_state' : RoomState.objects.get(pk=e[i]),
+	                                        'room_status' : RoomStatus.objects.get(pk=u[i]),
+	                                        'permanent' : p[i],
+	                                        'temporary' : t[i],
+	                                        }))
+			try:
+				Building.objects.bulk_create(some_data)
+				messages.success(request, f'Building Rooms by {year} have been recorded. Proceed to record Buildings Under Construction.')
+				return redirect('add-buildings')
+			except Exception:
+				messages.warning(request, f'ERROR! May be Building Rooms By {year} are already recorded. Only Fill the ones that are not yet entered.')				
+	else:
+		room_form = BuildingCreateForm()
+	context = {
+	'title': 'Facilities',
+	'sub_title': 'Buildings',
+	'room_form': room_form,
+	'types': types,
+	'states': states,
+	'statuses': statuses,
+	}
+	return render(request, 'school/add_buildings.html', context)
+
+@login_required
+def add_buildings_under_construction(request):
+	types = RoomType.objects.all()
+	stages = RoomCompletion.objects.all()
+	room_list = []
+	total_rows = len(types)*len(stages)
+	if request.method == 'POST':
+		room_form = UnderConstructionBuildingCreateForm(request.POST, )
+		if room_form.is_valid():
+			year = room_form.cleaned_data.get('year')
+			room_type = request.POST.getlist('room_type')
+			room_completion = request.POST.getlist('room_completion')
+			rooms = request.POST.getlist('rooms')
+			room_records = [room_type, room_completion, rooms]
+			room_list.append(room_records)
+			for t, c, r in room_list:
+				some_data = []
+				for i in range(0, total_rows):
+					if r[i]=='':
+						r[i]=0
+					if int(r[i])>0:
+						some_data.append(UnderConstructionBuilding(**{
+	                                        'year' : year,
+	                                        'user' : request.user,
+	                                        'school' : request.user.schoolprofile.school,
+	                                        'room_type' : RoomType.objects.get(pk=t[i]),
+	                                        'room_completion' : RoomCompletion.objects.get(pk=c[i]),
+	                                        'rooms' : r[i],
+	                                        }))
+			try:
+				UnderConstructionBuilding.objects.bulk_create(some_data)
+				messages.success(request, f'Building Rooms Under Construction by {year} have been recorded. Proceed to record Rooms Needed.')
+				return redirect('add-buildings')
+			except Exception:
+				messages.warning(request, f'ERROR! May be Building Rooms Under Construction By {year} are already recorded. Only Fill the ones that are not yet entered.')				
+	else:
+		room_form = UnderConstructionBuildingCreateForm()
+	context = {
+	'title': 'Facilities',
+	'sub_title': 'Buildings Under Construction',
+	'room_form': room_form,
+	'types': types,
+	'stages': stages,
+	}
+	return render(request, 'school/add_buildings_under_construction.html', context)
+
+@login_required
+def add_rooms_needed(request):
+	types = RoomType.objects.all()
+	room_list = []
+	total_rows = len(types)
+	if request.method == 'POST':
+		room_form = NeededBuildingCreateForm(request.POST, )
+		if room_form.is_valid():
+			year = room_form.cleaned_data.get('year')
+			room_type = request.POST.getlist('room_type')
+			rooms = request.POST.getlist('rooms')
+			room_records = [room_type, rooms]
+			room_list.append(room_records)
+			for t, r in room_list:
+				some_data = []
+				for i in range(0, total_rows):
+					if r[i]=='':
+						r[i]=0
+					if int(r[i])>0:
+						some_data.append(NeededBuilding(**{
+	                                        'year' : year,
+	                                        'user' : request.user,
+	                                        'school' : request.user.schoolprofile.school,
+	                                        'room_type' : RoomType.objects.get(pk=t[i]),
+	                                        'rooms' : r[i],
+	                                        }))
+			try:
+				NeededBuilding.objects.bulk_create(some_data)
+				messages.success(request, f'Building Rooms Needed by {year} have been recorded. Proceed to record Water and Energy Sources.')
+				return redirect('add-buildings')
+			except Exception:
+				messages.warning(request, f'ERROR! May be Building Rooms Needed By {year} are already recorded. Only Fill the ones that are not yet entered.')				
+	else:
+		room_form = NeededBuildingCreateForm()
+	context = {
+	'title': 'Facilities',
+	'sub_title': 'Buildings Needed',
+	'room_form': room_form,
+	'types': types,
+	}
+	return render(request, 'school/add_buildings_needed.html', context)
+
+@login_required
+def add_latrines(request):
+	uses = LatrineUse.objects.all()
+	states = LatrineState.objects.all()
+	room_list = []
+	total_rows = len(uses)*len(states)
+	if request.method == 'POST':
+		room_form = LatrineCreateForm(request.POST, )
+		if room_form.is_valid():
+			year = room_form.cleaned_data.get('year')
+			use = request.POST.getlist('use')
+			state = request.POST.getlist('state')
+			rooms = request.POST.getlist('rooms')
+			room_records = [use, state, rooms]
+			room_list.append(room_records)
+			for u, s, r in room_list:
+				some_data = []
+				for i in range(0, total_rows):
+					if r[i]=='':
+						r[i]=0
+					if int(r[i])>0:
+						some_data.append(Latrine(**{
+	                                        'year' : year,
+	                                        'user' : request.user,
+	                                        'school' : request.user.schoolprofile.school,
+	                                        'use' : LatrineUse.objects.get(pk=u[i]),
+	                                        'state' : LatrineState.objects.get(pk=s[i]),
+	                                        'rooms' : r[i],
+	                                        }))
+			try:
+				Latrine.objects.bulk_create(some_data)
+				messages.success(request, f'Number of Latrine Rooms/Stances by {year} have been recorded.')
+				return redirect('add-latrines')
+			except Exception:
+				messages.warning(request, f'ERROR! May be Number of Latrine Rooms/Stances By {year} are already recorded. Only Fill the ones that are not yet entered.')				
+	else:
+		room_form = LatrineCreateForm()
+	context = {
+	'title': 'Facilities',
+	'sub_title': 'Latrines',
+	'room_form': room_form,
+	'uses': uses,
+	'states': states,
+	}
+	return render(request, 'school/add_latrines.html', context)
+
+@login_required
+def add_water_and_energy_sources(request):
+	water_sources = WaterSource.objects.all()
+	energy_sources = EnergySource.objects.all()
+	if request.method == 'POST':
+			source_form = WaterAndEnergySourceCreateForm(request.POST, request.FILES)
+			if source_form.is_valid():
+				source_form.instance.user = request.user
+				source_form.instance.school = request.user
+				source_form.save(commit=False)
+				if 'save_source' in request.POST:
+					try:
+						source_form.save()
+						messages.success(request, f'You have added new set of enrolment.')
+						return HttpResponseRedirect(reverse('add-students'))
+					except Exception:
+						messages.warning(request, f'Error! May be Contact admin')
+	else:
+		source_form = WaterAndEnergySourceCreateForm()
+	context = {
+	'title': 'Facilities',
+	'sub_title': 'Energy and Water Source',
+	'source_form': source_form,
+	'uses': uses,
+	'states': states,
+	}
+	return render(request, 'school/add_latrines.html', context)
 
 class RequestTeacherCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 	model = RequestTeacher

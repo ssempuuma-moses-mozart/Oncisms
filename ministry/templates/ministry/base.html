@@ -188,23 +188,23 @@
                 <div class="col-lg-12">
                     <ul class="nav nav-tabs custom-menu-wrap shadow-reset" style="background-color: black;">
                     {% if request.user|has_group:"Ministry" %}
-                        <li class="{% if title == 'Home'  %} active {% endif %}"><a data-toggle="tab" href="#Home"><i class="fa fa-home"></i> Home</a>
+                        <li class="{% if title == 'Home'  %} active {% endif %}"><a data-toggle="tab" href="#Home"><i class="fa fa-home"></i></a>
                         </li>
-                        <li class="{% if title == 'Schools'  %} active {% endif %}"><a data-toggle="tab" href="#schools"><i class="fa fa-home"></i> Schools</a>
+                        <li class="{% if title == 'Schools'  %} active {% endif %}"><a data-toggle="tab" href="#schools"><i class="fa fa-book"></i> Schools</a>
+                        </li>
+                        <li class="{% if title == 'Students'  %} active {% endif %}"><a data-toggle="tab" href="#students"><i class="fa fa-users"></i> Students</a>
                         </li>
                         <li class="{% if title == 'Teachers'  %} active {% endif %}"><a data-toggle="tab" href="#teachers"><i class="fa fa-users"></i> Teachers</a>
                         </li>
-                        <li class="{% if title == 'Resources'  %} active {% endif %}"><a data-toggle="tab" href="#resources"><i class="fa fa-desktop"></i> Resources</a>
+                        <li class="{% if title == 'Resources'  %} active {% endif %}"><a data-toggle="tab" href="#resources"><i class="fa fa-desktop"></i> Infrastructure</a>
                         </li>
                         <li class="{% if title == 'DEOs'  %} active {% endif %}"><a data-toggle="tab" href="#deos"><i class="fa fa-users"></i> DEOs</a>
                         </li>
-                        <li class="{% if title == 'Results'  %} active {% endif %}"><a data-toggle="tab" href="#results"><i class="fa fa-book"></i> Results</a>
-                        </li>
-                        <li class="{% if title == 'Marketing'  %} active {% endif %}"><a data-toggle="tab" href="#marketing"><i class="fa fa-send"></i> Marketing</a>
+                        <li class="{% if title == 'Results'  %} active {% endif %}"><a data-toggle="tab" href="#results"><i class="fa fa-pencil"></i> Results</a>
                         </li>
                         <li class="{% if title == 'Inbox'  %} active {% endif %}"><a data-toggle="tab" href="#inbox"><i class="fa fa-envelope"></i> Inbox</a>
                         </li>
-                        <li class="{% if title == 'Settings'  %} active {% endif %}"><a data-toggle="tab" href="#settings"><i class="fa fa-gear"></i> Settings</a>
+                        <li class="{% if title == 'Settings'  %} active {% endif %}"><a data-toggle="tab" href="#settings"><i class="fa fa-gear"></i></a>
                         </li>
                     {% elif request.user|has_group:"School" %}
                     {% if user.schoolprofile %}
@@ -242,9 +242,22 @@
                         </div>
                         <div id="schools" class="tab-pane {% if title == 'Schools'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
-                                <li><a href="{% url 'new-school'  %}">Add School</a></li>
-                                <li><a href="{% url 'view-schools'  %}">View Schools</a>
+                                <li><a href="{% url 'new-school' %}">Add School</a></li>
+                                <li><a href="{% url 'schools' 1 %}">Nursery</a></li>
+                                <li><a href="{% url 'schools' 2  %}">Primary</a></li>
+                                <li><a href="{% url 'schools' 3  %}">Secondary</a></li>
+                                <li><a href="{% url 'schools' 4  %}">Tertiary</a></li>
+                                <li><a href="{% url 'schools' 5  %}">University</a></li>
                                 </li>
+                            </ul>
+                        </div>
+                        <div id="students" class="tab-pane {% if title == 'Students'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
+                            <ul class="main-menu-dropdown">
+                                <li><a href="{% url 'enrolments' 1 %}">Nursery</a></li>
+                                <li><a href="{% url 'enrolments' 2  %}">Primary</a></li>
+                                <li><a href="{% url 'enrolments' 3  %}">Secondary</a></li>
+                                <li><a href="{% url 'enrolments' 4  %}">Tertiary</a></li>
+                                <li><a href="{% url 'enrolments' 5  %}">University</a></li>
                             </ul>
                         </div>
                         <div id="results" class="tab-pane {% if title == 'Results'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
@@ -258,37 +271,63 @@
                         </div>
                         <div id="teachers" class="tab-pane {% if title == 'Teachers'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
-                                <li><a href="{% url 'new-teacher'  %}">Add Teacher</a>
+                                <!-- <li><a href="{% url 'new-teacher'  %}">Add Teacher</a>
                                 </li>
                                 <li><a href="{% url 'view-teachers'  %}">View Teachers</a>
                                 </li>
                                 <li><a href="{% url 'transfer-teacher'  %}">Transfer Teachers</a>
                                 </li>
                                 <li><a href="{% url 'view-teacher-transfers'  %}">View Transfers</a>
-                                </li>
+                                </li> -->
+                                <li><a href="{% url 'enrolments' 1 %}">Nursery</a></li>
+                                <li><a href="{% url 'enrolments' 2  %}">Primary</a></li>
+                                <li><a href="{% url 'enrolments' 3  %}">Secondary</a></li>
+                                <li><a href="{% url 'enrolments' 4  %}">Tertiary</a></li>
+                                <li><a href="{% url 'enrolments' 5  %}">University</a></li>
                             </ul>
                         </div>
                         <div id="resources" class="tab-pane {% if title == 'Resources'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
-                                <li><a href="{% url 'resource'  %}">Add Resource</a>
+                                <!-- <li><a href="{% url 'resource'  %}">Add Resource</a>
                                 </li>
                                 <li><a href="{% url 'view-resources'  %}">View Resources</a>
                                 </li>
                                 <li><a href="{% url 'allocate-resource'  %}">Allocate Resources</a>
                                 </li>
                                 <li><a href="{% url 'allocated-resources'  %}">View Allocated Resources</a>
+                                </li> -->
+                                <li><a href="">Buildings</a>
                                 </li>
+                                <li><a href="">Under Construction</a>
+                                </li>
+                                <li><a href="">Rooms Needed</a>
+                                </li>
+                                <li><a href="">Water & Energy</a>
+                                </li>
+                                <li><a href="">Latrine</a>
+                                </li>
+                                <li><a href="">Teaching Materials</a>
+                                </li>
+
                             </ul>
                         </div>
                         <div id="deos" class="tab-pane {% if title == 'DEOs'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
-                                <li><a href="{% url 'new-deo'  %}">Add DEO</a>
+                                <!-- <li><a href="{% url 'new-deo'  %}">Add DEO</a>
                                 </li>
                                 <li><a href="{% url 'view-deos'  %}">View DEOs</a>
                                 </li>
                                 <li><a href="{% url 'transfer-deo'  %}">Transfer DEOs</a>
                                 </li>
                                 <li><a href="{% url 'ministry-home'  %}">View DEO Transfers</a>
+                                </li> -->
+                                <li><a href="">Add DEO</a>
+                                </li>
+                                <li><a href="">View DEOs</a>
+                                </li>
+                                <li><a href="">Transfer DEOs</a>
+                                </li>
+                                <li><a href="">View DEO Transfers</a>
                                 </li>
                             </ul>
                         </div>
@@ -350,9 +389,14 @@
                         </div>
                         <div id="facilities" class="tab-pane {% if title == 'Facilities'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
-                                <li><a href="{% url 'school-home'  %}">Add Facility</a></li>
-                                <li><a href="{% url 'school-home'  %}">View Facilities</a>
+                                <li><a href="{% url 'add-buildings'  %}">Rooms</a></li>
+                                <li><a href="{% url 'add-buildings-under-construction'  %}">Rooms Under Construction</a>
                                 </li>
+                                <li><a href="{% url 'add-buildings-needed'  %}">Rooms Needed</a></li>
+                                <li><a href="{% url 'school-home'  %}">Water & Energy Sources</a></li>
+                                <li><a href="{% url 'add-latrines'  %}">Latrine</a></li>
+                                <li><a href="{% url 'school-home'  %}">View Rooms</a></li>
+                                <li><a href="{% url 'school-home'  %}">View Rooms Under Construction</a></li>
                             </ul>
                         </div>
                         <div id="students" class="tab-pane {% if title == 'Students'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">

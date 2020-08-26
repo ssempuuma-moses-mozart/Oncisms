@@ -30,7 +30,7 @@
                     <tr><td>Address: </td><td><strong>{{ user.schoolprofile.school.address }}</strong></td></tr>
                     <tr><td>P.O.Box: </td><td><strong>{{ user.schoolprofile.school.box_no }}</strong></td></tr>
                     <tr><td>Email: </td><td><strong>{{ user.schoolprofile.school.email }}</strong></td></tr>
-                    <tr><td>Website: </td><td><strong>{{ user.schoolprofile.school.website }}</strong></td></tr>
+                    <tr><td>Website: </td><td><strong><a href="http://{{ school.website }}" target="_blank">{{ user.schoolprofile.school.website }}</a></strong></td></tr>
                     <tr><td>Phone: </td><td><strong>{{ user.schoolprofile.school.phone }}</strong></td></tr>
                     <tr><td>Fax: </td><td><strong>{{ user.schoolprofile.school.fax }}</strong></td></tr>
                     <tr><td>Service Code: </td><td><strong>{{ user.schoolprofile.school.service_code }}</strong></td></tr>
@@ -51,9 +51,9 @@
                     </tr>
                     <td>Registry Status: </td><td><strong>{{ user.schoolprofile.school.regstatus }}</strong></td></tr>
                     </tr>
-                    <td>Nearest School: </td><td><strong>{{ user.schoolprofile.school.distance_to_nearest_school }}</strong></td></tr>
+                    <td>Distance to Nearest {{ user.schoolprofile.school.level }} School: </td><td><strong>{{ user.schoolprofile.school.distance_to_nearest_school }}</strong></td></tr>
                     </tr>
-                    <td>Main DEO Office: </td><td><strong>{{ user.schoolprofile.school.distance_to_deo_office }}</strong></td></tr>
+                    <td>Distance to Main DEO Office: </td><td><strong>{{ user.schoolprofile.school.distance_to_deo_office }}</strong></td></tr>
                     </tr>
                     <td>Urban/Rural: </td><td><strong>{{ user.schoolprofile.school.rural_urban }}</strong></td></tr>
                     </tr>

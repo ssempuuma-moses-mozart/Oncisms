@@ -10,6 +10,51 @@ class Reason(models.Model):
 	def __str__(self):
 		return self.name
 
+class RoomType(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
+class RoomCompletion(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
+class RoomState(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
+class RoomStatus(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
+class WaterSource(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
+class EnergySource(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
+class DistanceToMainWaterSource(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
+class LatrineState(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
+class LatrineUse(models.Model):
+	name = models.CharField(max_length=200, unique=True)
+	def __str__(self):
+		return self.name
+
 class StaffType(models.Model):
 	name = models.CharField(max_length=200, unique=True)
 	def __str__(self):
@@ -285,6 +330,82 @@ class TeacherAllocation(models.Model):
 
 	class Meta():
 		unique_together=['school','class_name','year',]
+
+class Building(models.Model):
+	user = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL)
+	school = models.ForeignKey(School, on_delete=models.CASCADE)
+	room_state = models.ForeignKey(RoomState, on_delete=models.CASCADE)
+	room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
+	room_status = models.ForeignKey(RoomStatus, on_delete=models.CASCADE)
+	permanent = models.IntegerField(blank=True)
+	temporary = models.IntegerField(blank=True)
+	year = models.IntegerField()
+	date_created = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return f'{self.room_type} {self.room_state} {self.room_status} {self.school.name} {self.year}'
+
+	class Meta():
+		unique_together=['room_status','room_type','room_state','school','year',]
+
+class NeededBuilding(models.Model):
+	user = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL)
+	school = models.ForeignKey(School, on_delete=models.CASCADE)
+	room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
+	rooms = models.IntegerField(blank=True)
+	year = models.IntegerField()
+	date_created = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return f'{self.room_type} {self.school.name} {self.year}'
+
+	class Meta():
+		unique_together=['room_type','school','year',]
+
+class UnderConstructionBuilding(models.Model):
+	user = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL)
+	school = models.ForeignKey(School, on_delete=models.CASCADE)
+	room_completion = models.ForeignKey(RoomCompletion, on_delete=models.CASCADE)
+	room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
+	rooms = models.IntegerField(blank=True)
+	year = models.IntegerField()
+	date_created = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return f'{self.room_type} {self.room_completion} {self.school.name} {self.year}'
+
+	class Meta():
+		unique_together=['room_type','room_completion','school','year',]
+
+class Latrine(models.Model):
+	user = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL)
+	school = models.ForeignKey(School, on_delete=models.CASCADE)
+	use = models.ForeignKey(LatrineUse, on_delete=models.CASCADE)
+	state = models.ForeignKey(LatrineState, on_delete=models.CASCADE)
+	rooms = models.IntegerField(blank=True)
+	year = models.IntegerField()
+	date_created = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return f'{self.room_completion} {self.school.name} {self.year}'
+
+	class Meta():
+		unique_together=['state','use','school','year',]
+
+class WaterAndEnergySource(models.Model):
+	user = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL)
+	school = models.ForeignKey(School, on_delete=models.CASCADE)
+	water_sources = models.ManyToManyField(WaterSource,)
+	energy_sources = models.ManyToManyField(EnergySource,)
+	distance_to_water_source = models.ForeignKey(DistanceToMainWaterSource, null=True, blank=True, on_delete = models.SET_NULL)
+	year = models.IntegerField()
+	date_created = models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return f'{self.school.name} {self.year}'
+
+	class Meta():
+		unique_together=['school','year',]
 
 class RequestStatus(models.Model):
 	status = models.CharField(max_length=45)

@@ -1,18 +1,41 @@
 {% extends "ministry/base.html" %}
 {% block content %}
-<div class="data-table-area mg-t-40 mg-b-40">
-        <div class="container">
+<div class="data-table-area mg-b-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="user-profile-wrap shadow-reset mg-b-40">
+                <a href="{% url 'schools' level.id %}" {% if sub_title == "District" %} class="btn" style="background: skyblue; color: white;" {% endif %}> District </a> | 
+
+                <a href="{% url 'operation-status' level.id %}" {% if sub_title == "Operation Status" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Operation Status </a> | 
+
+                <a href="{% url 'founder' level.id %}" {% if sub_title == "Founding Body" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Founders </a> | 
+
+                <a href="{% url 'funder' level.id %}" {% if sub_title == "Funders" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Funders </a> | 
+
+                <a href="{% url 'categories' level.id %}" {% if sub_title == "Category" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Boy/Girls </a> | 
+
+                <a href="{% url 'sections' level.id %}" {% if sub_title == "Section" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Day/Boarding </a> | 
+
+                <a href="{% url 'registration-status' level.id %}" {% if sub_title == "Registration Status" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Registry Status </a> | 
+
+                <a href="{% url 'rural-urban' level.id %}" {% if sub_title == "Rural/Urban" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Rural/Urban </a>  | 
+
+                <a href="{% url 'accesses' level.id %}" {% if sub_title == "Access" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Access Level </a>  | 
+
+                <a href="{% url 'nearest-school' level.id %}" {% if sub_title == "Nearest School" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Nearest School </a> | 
+
+                <a href="{% url 'nearest-deo' level.id %}" {% if sub_title == "Nearest DEO" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Main DEO Office </a>
+                </div>
+            </div>
+            </div>
+
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-9">
                     <div class="sparkline13-list shadow-reset">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1>{{ head }}<span class="table-project-n"> All Schools</span></h1>
-                                <div class="sparkline13-outline-icon">
-                                    <span class="sparkline13-collapse-link"><i class="fa fa-chevron-up"></i></span>
-                                    <span><i class="fa fa-wrench"></i></span>
-                                    <span class="sparkline13-collapse-close"><i class="fa fa-times"></i></span>
-                                </div>
+                                <h1>{{schools|length}} {{ level }}<span class="table-project-n"> Schools {{head}} {{item}}</span></h1>
                             </div>
                         </div>
                         <div class="sparkline13-graph">
@@ -29,27 +52,48 @@
                                         <tr>
                                             <th data-field="state" data-checkbox="true"></th>
                                             <th data-field="name" data-editable="false">Name</th>
-                                            <th data-field="level" data-editable="false">Level</th>
                                             <th data-field="cen_no" data-editable="false">Center No.</th>
                                             <th data-field="reg_no" data-editable="false">Reg No.</th>
-                                            <th data-field="dst" data-editable="false">District</th>
-                                            <th data-field="moto" data-editable="false">Motto</th>
                                             <th data-field="year_est" data-editable="false">Year Est</th>
-                                            <th data-field="act" data-editable="false">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     {% for school in schools %}
                                         <tr>
                                             <td></td>
-                                            <td><a href="{% url 'school-details' school.id %}" >{{school.name}}</a></td>
-                                            <td>{{school.level}}</td>
+                                            <td><a href="{% url 'school-details' school.id %}" style="color: skyblue;">{{school.name}}</a></td>
                                             <td>{{school.cen_no}}</td>
                                             <td>{{school.reg_no}}</td>
-                                            <td>{{school.district}} {{school.region}} Uganda</td>
-                                            <td>{{school.motto}}</td>
                                             <td>{{school.yr_est}}</td>
-                                            <td><a class="btn btn-custon-two btn-primary btn-xs" href="{% url 'school-details' school.id %} " style="color: white;"><span class="adminpro-icon adminpro-informatio"></span> view</a> <a class="btn btn-custon-two btn-primary btn-xs" href="{% url 'update-school' school.id %}"style="color: white;"><span class="adminpro-icon adminpro-edit"></span> edit</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="sparkline13-list shadow-reset">
+                        <div class="sparkline13-hd">
+                            <div class="main-sparkline13-hd">
+                                <h1><span class="table-project-n"> {{side_title}}</span></h1>
+                            </div>
+                        </div>
+                        <div class="sparkline13-graph">
+                            <div class="datatable-dashv1-list custom-datatable-overright">
+                                <div id="toolba">
+                                </div>
+                                <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="false" data-show-pagination-switch="false" data-show-refresh="false" data-key-events="true" data-show-toggle="false" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="false" data-click-to-select="false" data-toolbar="#toolba">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="name" data-editable="false">{{side_title}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for record in records %}
+                                        <tr>
+                                            <td><a href="?{{link}}={{record.id}}" style="color: skyblue;">{{record}}({{record.total_schools}})</a></td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
