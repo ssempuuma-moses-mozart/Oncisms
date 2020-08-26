@@ -72,3 +72,15 @@ def register(request):
 	else:
 		form = UserRegisterForm()
 	return render(request, 'ministry/base.html', {'form': form, 'title': 'Register'})
+
+def register_school(request):
+	if request.method == 'POST':
+		form = UserRegisterForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			group = Group.objects.get(pk=settings.SCHOOL_GROUP_ID)
+			user.groups.add(group)
+			return redirect('login')
+	else:
+		form = UserRegisterForm()
+	return render(request, 'ministry/base.html', {'form': form, 'title': 'Register'})
