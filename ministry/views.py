@@ -1408,7 +1408,7 @@ def home(request):
 
 @login_required
 def view_schools(request, pk):
-	item = District.objects.get(pk=1)
+	item = District.objects.get(pk=5)
 	if request.GET.get('dist', None):
 		dis_id=request.GET.get('dist', None)
 		item = District.objects.get(pk=dis_id)
