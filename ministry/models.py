@@ -80,7 +80,7 @@ class SubCounty(models.Model):
 		return self.subcounty_name
 
 class Parish(models.Model):
-	parish_name = models.CharField(max_length=45, unique=True, verbose_name="Parish")
+	parish_name = models.CharField(max_length=45, verbose_name="Parish")
 	district = models.ForeignKey(District, on_delete = models.SET_NULL, blank=True, null=True,)
 	county = models.ForeignKey(County, on_delete = models.SET_NULL, blank=True, null=True,)
 	subcounty = models.ForeignKey(SubCounty, on_delete = models.SET_NULL, blank=True, null=True,)
