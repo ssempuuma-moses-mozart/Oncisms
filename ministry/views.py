@@ -1690,3 +1690,30 @@ class SchoolUploadView(FormView):
 	def form_valid(self, form):
 		form.process_data()
 		return super().form_valid(form)
+
+class CountyUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadCounty
+	success_url = '/ministry/upload_county/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)
+
+class SubCountyUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadSubCounty
+	success_url = '/ministry/upload_subcounty/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)
+
+class ParishUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadParish
+	success_url = '/ministry/upload_parish/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)

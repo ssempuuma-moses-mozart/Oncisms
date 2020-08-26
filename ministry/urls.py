@@ -5,6 +5,9 @@ from . import views
 urlpatterns = [
     # Home related urls-----------------------------------------------------------------------------
     path('upload_district/', DistrictUploadView.as_view(), name='upload_district' ),
+    path('upload_county/', CountyUploadView.as_view(), name='upload_county' ),
+    path('upload_subcounty/', SubCountyUploadView.as_view(), name='upload_subcounty' ),
+    path('upload_parish/', ParishUploadView.as_view(), name='upload_parish' ),
     path('upload_school/', SchoolUploadView.as_view(), name='upload_school' ),
     path('', views.home, name='ministry-home'),
     # Student's Tab ----------------------------------------------------------------------------

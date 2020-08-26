@@ -50,6 +50,52 @@ class UploadDistrict(forms.Form):
 				region = Region.objects.get(pk = 1)
 			District.objects.create(dis_name=record['dis_name'], region=region )
 
+class UploadCounty(forms.Form):
+	data_file = forms.FileField()
+
+	def process_data(self):
+		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+		reader = csv.DictReader(f)
+
+		for record in reader:
+			County.objects.create(county_name=record['county'],)
+
+class UploadSubCounty(forms.Form):
+	data_file = forms.FileField()
+
+	def process_data(self):
+		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+		reader = csv.DictReader(f)
+
+		for record in reader:
+			SubCounty.objects.create(subcounty_name=record['subcounty'],)
+
+class UploadParish(forms.Form):
+	data_file = forms.FileField()
+
+	def process_data(self):
+		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+		reader = csv.DictReader(f)
+
+		for record in reader:
+			district = None
+			county = None
+			subcounty = None
+			if record['district'] != '':
+				district = District.objects.get(dis_name = (record['district']))
+			else:
+				district = District.objects.get(pk = 1)
+			if record['county'] != '':
+				county = County.objects.get(county_name = (record['county']))
+			else:
+				county = County.objects.get(pk = 1)
+
+			if record['subcounty'] != '':
+				subcounty = SubCounty.objects.get(subcounty_name = (record['subcounty']))
+			else:
+				subcounty = SubCounty.objects.get(pk = 1)
+			Parish.objects.create(parish_name=record['parish'], district=district, county=county, subcounty=subcounty )
+
 # class UploadSchool(forms.Form):
 # 	data_file = forms.FileField()
 
