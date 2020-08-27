@@ -32,6 +32,8 @@
 
             <div class="row">
                 <div class="col-lg-9">
+                    <div class="row">
+                    <div class="col-lg-12 mg-b-40">
                     <div class="sparkline13-list shadow-reset">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
@@ -73,6 +75,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 mg-b-40">
+                    <div class="sparkline13-graph shadow-reset">
+                        <canvas id="schools-in-region-chart" data-url="{% url 'schools-in-region-chart' level.id %}"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-12 mg-b-40">
+                    <div class="sparkline13-graph shadow-reset">
+                        <canvas id="schools-in-year-chart" data-url="{% url 'schools-in-year-chart' level.id %}"></canvas>
+                    </div>
+                </div>
+                </div>
+                </div>
                 <div class="col-lg-3">
                     <div class="sparkline13-list shadow-reset">
                         <div class="sparkline13-hd">
@@ -107,4 +121,81 @@
     </div>
     <!-- Static Table End -->
      <!-- welcome Project, sale area start-->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+<script>
+    $(function () {
+
+      var $regionChart = $("#schools-in-region-chart");
+      $.ajax({
+        url: $regionChart.data("url"),
+        success: function (data) {
+
+          var ctx = $regionChart[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                label: 'Number of {{level}} Schools',
+                backgroundColor: 'skyblue',
+                data: data.data
+              }]          
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Chart showing {{level}} Schools Distribution Across Regions'
+              }
+            }
+          });
+
+        }
+      });
+
+
+
+      var $yearChart = $("#schools-in-year-chart");
+      $.ajax({
+        url: $yearChart.data("url"),
+        success: function (data) {
+
+          var ctx = $yearChart[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                label: 'Number of {{level}} Schools',
+                backgroundColor: 'skyblue',
+                data: data.data
+              }]          
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Chart showing {{level}} Schools Growth in the past five years'
+              }
+            }
+          });
+
+        }
+      });
+
+    });
+
+
+
+  </script>
     {% endblock content %}

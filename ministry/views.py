@@ -17,6 +17,7 @@ from django.views.generic import (
 from .models import *
 from .forms import *
 from school.models import *
+from django.http import JsonResponse
 from django.db import IntegrityError
 from django.db.models import Sum, Count, Q
 
@@ -1427,6 +1428,41 @@ def view_schools(request, pk):
 	'item':item,
 	}
 	return render(request, 'ministry/school_list.html', context)
+
+@login_required
+def schools_region_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools_in_region = School.objects.values('parish__district__region__reg_name').annotate(total_schools=Count('parish__district__region')).filter(level=level)
+	for school in schools_in_region:
+		labels.append(school['parish__district__region__reg_name'])
+		data.append(school['total_schools'])
+
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def schools_year_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	year1 = School.objects.filter(level=level, yr_est__lte=datetime.datetime.now().year-4).count()
+	year2 = School.objects.filter(level=level, yr_est__lte=datetime.datetime.now().year-3).count()
+	year3 = School.objects.filter(level=level, yr_est__lte=datetime.datetime.now().year-2).count()
+	year4 = School.objects.filter(level=level, yr_est__lte=datetime.datetime.now().year-1).count()
+	year5 = School.objects.filter(level=level, yr_est__lte=datetime.datetime.now().year).count()
+	labels.append(datetime.datetime.now().year-4)
+	labels.append(datetime.datetime.now().year-3)
+	labels.append(datetime.datetime.now().year-2)
+	labels.append(datetime.datetime.now().year-1)
+	labels.append(datetime.datetime.now().year)
+	data.append(year1)
+	data.append(year2)
+	data.append(year3)
+	data.append(year4)
+	data.append(year5)
+
+	return JsonResponse(data={'labels': labels, 'data': data, })
 
 @login_required
 def operation_status(request, pk):

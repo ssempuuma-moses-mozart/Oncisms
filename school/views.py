@@ -1696,7 +1696,7 @@ def add_water_and_energy_sources(request):
 				if 'save_source' in request.POST:
 					try:
 						source_form.save()
-						messages.success(request, f'You have added new set of enrolment.')
+						messages.success(request, f'Energy and Water Sources have been recorded.')
 						return HttpResponseRedirect(reverse('add-students'))
 					except Exception:
 						messages.warning(request, f'Error! May be Contact admin')

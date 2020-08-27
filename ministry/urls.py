@@ -10,6 +10,8 @@ urlpatterns = [
     path('upload_parish/', ParishUploadView.as_view(), name='upload_parish' ),
     path('upload_school/', SchoolUploadView.as_view(), name='upload_school' ),
     path('', views.home, name='ministry-home'),
+    path('schools_in_region_chart/<int:pk>/', views.schools_region_chart, name='schools-in-region-chart'),
+    path('schools_in_year_chart/<int:pk>/', views.schools_year_chart, name='schools-in-year-chart'),
     # Student's Tab ----------------------------------------------------------------------------
     path('students/<int:pk>/repeaters/', views.repeaters, name='repeaters'),
     path('students/<int:pk>/nationality/', views.nationality, name='nationality'),
