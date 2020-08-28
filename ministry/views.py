@@ -1465,6 +1465,129 @@ def schools_year_chart(request, pk):
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
 @login_required
+def operation_status_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('operation_status__sch_type').annotate(total_schools=Count('operation_status')).filter(level=level)
+	for school in schools:
+		labels.append(school['operation_status__sch_type'])
+		data.append(school['total_schools'])
+
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def founder_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('founder__own_type').annotate(total_schools=Count('founder')).filter(level=level)
+	for school in schools:
+		labels.append(school['founder__own_type'])
+		data.append(school['total_schools'])
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def funder_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('funder__funder_name').annotate(total_schools=Count('funder')).filter(level=level)
+	for school in schools:
+		labels.append(school['funder__funder_name'])
+		data.append(school['total_schools'])
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def category_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('category__cat_type').annotate(total_schools=Count('category')).filter(level=level)
+	for school in schools:
+		labels.append(school['category__cat_type'])
+		data.append(school['total_schools'])
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def section_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('section__sec_type').annotate(total_schools=Count('section')).filter(level=level)
+	for school in schools:
+		labels.append(school['section__sec_type'])
+		data.append(school['total_schools'])
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def registry_status_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('regstatus__reg_status').annotate(total_schools=Count('regstatus')).filter(level=level)
+	for school in schools:
+		labels.append(school['regstatus__reg_status'])
+		data.append(school['total_schools'])
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def rural_urban_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('rural_urban__rural_urban').annotate(total_schools=Count('rural_urban')).filter(level=level)
+	for school in schools:
+		labels.append(school['rural_urban__rural_urban'])
+		data.append(school['total_schools'])
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def access_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('access__acc_type').annotate(total_schools=Count('access')).filter(level=level)
+	for school in schools:
+		labels.append(school['access__acc_type'])
+		data.append(school['total_schools'])
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def registry_status_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('regstatus__rs_type').annotate(total_schools=Count('regstatus')).filter(level=level)
+	for school in schools:
+		labels.append(school['regstatus__rs_type'])
+		data.append(school['total_schools'])
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def nearest_school_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('distance_to_nearest_school__distance').annotate(total_schools=Count('distance_to_nearest_school')).filter(level=level)
+	for school in schools:
+		labels.append(school['distance_to_nearest_school__distance'])
+		data.append(school['total_schools'])
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+@login_required
+def deo_office_chart(request, pk):
+	level = Level.objects.get(pk=pk)
+	labels = []
+	data = []
+	schools = School.objects.values('distance_to_deo_office__distance').annotate(total_schools=Count('distance_to_deo_office')).filter(level=level)
+	for school in schools:
+		labels.append(school['distance_to_deo_office__distance'])
+		data.append(school['total_schools'])
+	return JsonResponse(data={'labels': labels, 'data': data, })
+
+
+@login_required
 def operation_status(request, pk):
 	item = Schtype.objects.get(pk=1)
 	if request.GET.get('status', None):
