@@ -29,7 +29,7 @@ def home(request):
 	return render(request, 'public/home.html', context)
 
 def schools(request, pk):
-	item = District.objects.get(pk=5)
+	item = District.objects.first()
 	if request.GET.get('dist', None):
 		dis_id=request.GET.get('dist', None)
 		item = District.objects.get(pk=dis_id)
@@ -51,7 +51,7 @@ def schools(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def operation_status(request, pk):
-	item = Schtype.objects.get(pk=1)
+	item = Schtype.objects.first()
 	if request.GET.get('status', None):
 		dis_id=request.GET.get('status', None)
 		item = Schtype.objects.get(pk=dis_id)
@@ -72,7 +72,7 @@ def operation_status(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def founder(request, pk):
-	item = Ownership.objects.get(pk=1)
+	item = Ownership.objects.first()
 	if request.GET.get('status', None):
 		dis_id=request.GET.get('status', None)
 		item = Ownership.objects.get(pk=dis_id)
@@ -93,7 +93,7 @@ def founder(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def funders(request, pk):
-	item = Funder.objects.get(pk=1)
+	item = Funder.objects.first()
 	if request.GET.get('funder', None):
 		dis_id=request.GET.get('funder', None)
 		item = Funder.objects.get(pk=dis_id)
@@ -114,7 +114,7 @@ def funders(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def category(request, pk):
-	item = Category.objects.get(pk=1)
+	item = Category.objects.first()
 	if request.GET.get('category', None):
 		dis_id=request.GET.get('category', None)
 		item = Category.objects.get(pk=dis_id)
@@ -135,7 +135,7 @@ def category(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def section(request, pk):
-	item = Section.objects.get(pk=1)
+	item = Section.objects.first()
 	if request.GET.get('section', None):
 		dis_id=request.GET.get('section', None)
 		item = Section.objects.get(pk=dis_id)
@@ -156,7 +156,7 @@ def section(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def registration_status(request, pk):
-	item = Regstatus.objects.get(pk=1)
+	item = Regstatus.objects.first()
 	if request.GET.get('status', None):
 		dis_id=request.GET.get('status', None)
 		item = Regstatus.objects.get(pk=dis_id)
@@ -177,7 +177,7 @@ def registration_status(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def nearest_school(request, pk):
-	item = DistanceToNearestSchool.objects.get(pk=1)
+	item = DistanceToNearestSchool.objects.first()
 	if request.GET.get('distance', None):
 		dis_id=request.GET.get('distance', None)
 		item = DistanceToNearestSchool.objects.get(pk=dis_id)
@@ -198,7 +198,7 @@ def nearest_school(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def nearest_deo(request, pk):
-	item = DistanceToDeoOffice.objects.get(pk=1)
+	item = DistanceToDeoOffice.objects.first()
 	if request.GET.get('distance', None):
 		dis_id=request.GET.get('distance', None)
 		item = DistanceToDeoOffice.objects.get(pk=dis_id)
@@ -219,7 +219,7 @@ def nearest_deo(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def rural_urban(request, pk):
-	item = RuralUrban.objects.get(pk=1)
+	item = RuralUrban.objects.first()
 	if request.GET.get('status', None):
 		dis_id=request.GET.get('status', None)
 		item = RuralUrban.objects.get(pk=dis_id)
@@ -240,7 +240,7 @@ def rural_urban(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def access(request, pk):
-	item = Access.objects.get(pk=1)
+	item = Access.objects.first()
 	if request.GET.get('access', None):
 		dis_id=request.GET.get('access', None)
 		item = Access.objects.get(pk=dis_id)
@@ -261,7 +261,7 @@ def access(request, pk):
 	return render(request, 'public/schools.html', context)
 
 def school_levels(request, pk):
-	schtype = Level.objects.get(pk=pk)
+	schtype = Level.objects.first()
 	school_list = School.objects.filter(level=pk).order_by('name')
 	paginator = Paginator(school_list, 1000)
 	page = request.GET.get('page')
