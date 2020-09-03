@@ -138,10 +138,8 @@ class UploadSchool(forms.Form):
 			schtype = None
 
 			if record['parish'] != '':
-				parish = Parish.objects.get(parish_name = (record['parish']),
-					district__dis_name = (record['district']), county__county_name = (record['county']),
-					subcounty__subcounty_name = (record['subcounty']),
-					district__region__reg_name = (record['region']),)
+				parish = Parish.objects.get(parish_name = (record['parish']), 
+					subcounty__subcounty_name = record.get('subcounty'),)
 			else:
 				parish = Parish.objects.get(pk = 1)
 
