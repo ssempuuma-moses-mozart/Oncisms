@@ -17,7 +17,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>Register Enrolment by Class, Sex and Age (<i><small>Age at the beginning of the first term</small></i>)
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %} Register Enrolment by Class, Sex and Age (<i><small>Age at the beginning of the first term</small></i>)
         <input type="number" name="year" placeholder="Enrolment Year" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}
@@ -70,7 +70,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>Repeaters by Class and Sex (<i><small>pupils who repeated class during the year selected</small></i>)
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %}Repeaters by Class and Sex (<i><small>pupils who repeated class during the year selected</small></i>)
         <input type="number" name="year" placeholder="Year Repeated" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}
@@ -116,7 +116,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>Register Enrolment by Nationality of Pupils by  Class, Sex and Gender
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %}Register Enrolment by Nationality of Pupils by  Class, Sex and Gender
         <input type="number" name="year" placeholder="Enrolment Year" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}
@@ -169,7 +169,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>Physical Streams by Class (<i><small>Number of seperate groups existing for each Class</small></i>)
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %}Physical Streams by Class (<i><small>Number of seperate groups existing for each Class</small></i>)
         <input type="number" name="year" placeholder="Year" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}
@@ -208,7 +208,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>Register Orphans by Class and Sex
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %}Register Orphans by Class and Sex
         <input type="number" name="year" placeholder="Year" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}
@@ -261,7 +261,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>Register Pupils with Special Learning Needs by Class and Sex
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %}Register Pupils with Special Learning Needs by Class and Sex
         <input type="number" name="year" placeholder="Year" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}
@@ -314,7 +314,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>Proposed intake by Class, Sex and Type of Combination for the selected year 
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %}Proposed intake by Class, Sex and Type of Combination for the selected year 
         <input type="number" name="year" placeholder="Year" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}
@@ -362,7 +362,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>New Entrants to {{classes}} by Age and Sex (<i><small>DO NOT Include Repeaters</small></i>) 
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %}New Entrants to {{classes}} by Age and Sex (<i><small>DO NOT Include Repeaters</small></i>) 
         <input type="number" name="year" placeholder="Year" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}
@@ -409,7 +409,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>Pupils with Adquate Seating and Writing Space (<i><small>sitting on a chair or with a desk</small></i>)
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %}Pupils with Adquate Seating and Writing Space (<i><small>sitting on a chair or with a desk</small></i>)
         <input type="number" name="year" placeholder="Year" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}
@@ -448,7 +448,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>Transfered Students into Your School by Class and Gender (<i><small>for the year selected</small></i>)
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %}Transfered Students into Your School by Class and Gender (<i><small>for the year selected</small></i>)
         <input type="number" name="year" placeholder="Year" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}
@@ -494,7 +494,7 @@
 <div class="user-profile-wrap shadow-reset mg-b-40">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-    <h4>Number of Students Sitting at the end of each term by Class, Gender and Term
+    <h4>{% if school %}<strong>{{school}} - </strong>{% endif %}Number of Students Sitting at the end of each term by Class, Gender and Term
         <input type="number" name="year" placeholder="Year" required class="form-control pull-right" style="width: 20%; margin-bottom: 1%;">
     </h4>  
     {% if student_form.errors %}

@@ -57,6 +57,7 @@
                                             <th data-field="cen_no" data-editable="false">Center No.</th>
                                             <th data-field="reg_no" data-editable="false">Reg No.</th>
                                             <th data-field="year_est" data-editable="false">Year Est</th>
+                                            <th data-field="act" data-editable="false"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,6 +68,7 @@
                                             <td>{{school.cen_no}}</td>
                                             <td>{{school.reg_no}}</td>
                                             <td>{{school.yr_est}}</td>
+                                            <td><a href="{% url 'ministry-add-students' school.id %}" class="btn btn-primary btn-xs" style="color: white;">Enter Data</a></td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

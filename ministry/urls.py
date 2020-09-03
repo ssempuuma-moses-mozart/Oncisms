@@ -34,6 +34,7 @@ urlpatterns = [
     path('students/<int:pk>/proposed_intake/', views.proposed_intake, name='proposed-intake'),
     path('students/<int:pk>/new_entrants/', views.new_entrants, name='new-entrants'),
     path('students/<int:pk>/enrolments/', views.enrolments, name='enrolments'),
+    path('ministry_add_students/<int:pk>/enrolments/', views.ministry_add_students, name='ministry-add-students'),
     # School related urls-----------------------------------------------------------------------------
     path('schools/<int:pk>/district', views.view_schools, name='schools'),
     path('schools/<int:pk>/op_status', views.operation_status, name='operation-status'),

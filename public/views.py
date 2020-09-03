@@ -29,16 +29,234 @@ def home(request):
 	return render(request, 'public/home.html', context)
 
 def schools(request, pk):
-	schtype = Schtype.objects.get(pk=pk)
-	school_list = School.objects.filter(schtype=pk).order_by('name')
-	paginator = Paginator(school_list, 1000)
-	page = request.GET.get('page')
-	schools = paginator.get_page(page)
+	item = District.objects.get(pk=5)
+	if request.GET.get('dist', None):
+		dis_id=request.GET.get('dist', None)
+		item = District.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, parish__district=item)
+	records = District.objects.annotate(total_schools=Count('parish__school'))
 	context = {
-	'title': 'Schools', 
-	'schools': schools,
-	'schtype':schtype,
+	'title': 'Schools',
+	'head': 'in',
+	'sub_title': 'District',
+	'link': 'dist',
+	'side_title': 'Districts',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
 
+	}
+	return render(request, 'public/schools.html', context)
+
+def operation_status(request, pk):
+	item = Schtype.objects.get(pk=1)
+	if request.GET.get('status', None):
+		dis_id=request.GET.get('status', None)
+		item = Schtype.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, operation_status=item)
+	records = Schtype.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Operation Status',
+	'sub_title': 'Operation Status',
+	'link': 'status',
+	'side_title': 'Operation Status',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'public/schools.html', context)
+
+def founder(request, pk):
+	item = Ownership.objects.get(pk=1)
+	if request.GET.get('status', None):
+		dis_id=request.GET.get('status', None)
+		item = Ownership.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, founder=item)
+	records = Ownership.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Founding Body',
+	'sub_title': 'Founding Body',
+	'link': 'founder',
+	'side_title': 'Founding Bodies',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'public/schools.html', context)
+
+def funders(request, pk):
+	item = Funder.objects.get(pk=1)
+	if request.GET.get('funder', None):
+		dis_id=request.GET.get('funder', None)
+		item = Funder.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, funder=item)
+	records = Funder.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Funding Source',
+	'sub_title': 'Funders',
+	'link': 'funder',
+	'side_title': 'Funding Sources',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'public/schools.html', context)
+
+def category(request, pk):
+	item = Category.objects.get(pk=1)
+	if request.GET.get('category', None):
+		dis_id=request.GET.get('category', None)
+		item = Category.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, category=item)
+	records = Category.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Category',
+	'sub_title': 'Category',
+	'link': 'category',
+	'side_title': 'Categories',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'public/schools.html', context)
+
+def section(request, pk):
+	item = Section.objects.get(pk=1)
+	if request.GET.get('section', None):
+		dis_id=request.GET.get('section', None)
+		item = Section.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, section=item)
+	records = Section.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Section',
+	'sub_title': 'Section',
+	'link': 'section',
+	'side_title': 'Sections',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'public/schools.html', context)
+
+def registration_status(request, pk):
+	item = Regstatus.objects.get(pk=1)
+	if request.GET.get('status', None):
+		dis_id=request.GET.get('status', None)
+		item = Regstatus.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, regstatus=item)
+	records = Regstatus.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Registration Status',
+	'sub_title': 'Registration Status',
+	'link': 'status',
+	'side_title': 'Statuses',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'public/schools.html', context)
+
+def nearest_school(request, pk):
+	item = DistanceToNearestSchool.objects.get(pk=1)
+	if request.GET.get('distance', None):
+		dis_id=request.GET.get('distance', None)
+		item = DistanceToNearestSchool.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, distance_to_nearest_school=item)
+	records = DistanceToNearestSchool.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Distance To Nearest School of',
+	'sub_title': 'Nearest School',
+	'link': 'distance',
+	'side_title': 'Distance Range',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'public/schools.html', context)
+
+def nearest_deo(request, pk):
+	item = DistanceToDeoOffice.objects.get(pk=1)
+	if request.GET.get('distance', None):
+		dis_id=request.GET.get('distance', None)
+		item = DistanceToDeoOffice.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, distance_to_deo_office=item)
+	records = DistanceToDeoOffice.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Distance To Main Office of DEO/DIS/ESA of',
+	'sub_title': 'Nearest DEO',
+	'link': 'distance',
+	'side_title': 'Distance Range',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'public/schools.html', context)
+
+def rural_urban(request, pk):
+	item = RuralUrban.objects.get(pk=1)
+	if request.GET.get('status', None):
+		dis_id=request.GET.get('status', None)
+		item = RuralUrban.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, rural_urban=item)
+	records = RuralUrban.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Status',
+	'sub_title': 'Rural/Urban',
+	'link': 'status',
+	'side_title': 'Rural/Urban',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+	}
+	return render(request, 'public/schools.html', context)
+
+def access(request, pk):
+	item = Access.objects.get(pk=1)
+	if request.GET.get('access', None):
+		dis_id=request.GET.get('access', None)
+		item = Access.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, access=item)
+	records = Access.objects.annotate(total_schools=Count('school'))
+	context = {
+	'title': 'Schools',
+	'head': 'With Access Level',
+	'sub_title': 'Access',
+	'link': 'access',
+	'side_title': 'Access',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
 	}
 	return render(request, 'public/schools.html', context)
 
@@ -147,6 +365,9 @@ def resources(request):
 
 def settings(request):
 	return render(request, 'public/settings.html', {'title': 'Settings'})
+
+def search_google(request):
+	return render(request, 'public/search_google.html', {'title': 'Search'})
 
 class SliderTemplate(TemplateView):
 	template_name = 'public/slider.html'

@@ -131,21 +131,16 @@ class UploadSchool(forms.Form):
 		reader = csv.DictReader(f)
 
 		for record in reader:
-			ownership = None
-			district = None
+			parish = None
 			level = None
 			category = None
 			section = None
 			schtype = None
-			if record['ownership'] != '':
-				ownership = Ownership.objects.get(own_type = (record['ownership']))
-			else:
-				ownership = Ownership.objects.get(pk = 1)
 
-			if record['district'] != '':
-				district = District.objects.get(dis_name = (record['district']))
+			if record['parish'] != '':
+				parish = Parish.objects.get(parish_name = (record['parish']))
 			else:
-				district = District.objects.get(pk = 1)
+				parish = Parish.objects.get(pk = 1)
 
 			if record['level'] != '':
 				level = Level.objects.get(lev_name = (record['level']))
@@ -162,9 +157,9 @@ class UploadSchool(forms.Form):
 			else:
 				section = Section.objects.get(pk = 3)
 
-			if record['schtype'] != '':
-				schtype = Schtype.objects.get(sch_type = (record['schtype']))
+			if record['operation_status'] != '':
+				operation_status = Schtype.objects.get(sch_type = (record['operation_status']))
 			else:
-				schtype = Schtype.objects.get(pk = 1)
-			School.objects.create(name=record['name'], ownership=ownership,
-			district=district, level=level, category=category, section=section, schtype=schtype )
+				operation_status = Schtype.objects.get(pk = 1)
+			School.objects.create(name=record['name'], phone=record['phone'], parish=parish, level=level, category=category, 
+				section=section, operation_status=operation_status )

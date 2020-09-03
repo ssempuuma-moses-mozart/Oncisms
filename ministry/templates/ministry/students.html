@@ -111,8 +111,8 @@
                             </strong>
                         </td>
                     {% for class in classes %}
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id and student.age.id == age.id %} {{student.boys}} {% endif %}{% endfor %}</td>
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id and student.age.id == age.id %}{{student.girls}}{% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id and student.age == age.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id and student.age == age.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
                     {% endfor %}
                     <td style="text-align: center;">{% for student in students_by_age %}{% if student.age == age.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
                     <td style="text-align: center;">{% for student in students_by_age %}{% if student.age == age.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
@@ -154,8 +154,8 @@
                 <tr>
                     <td style="text-align: center;"><strong>Repeaters</strong></td>
                     {% for class in classes %}
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id %} {{student.boys}} {% endif %}{% endfor %}</td>
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id %}{{student.girls}}{% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
                     {% endfor %}
                     <td style="text-align: center;"><strong>{{students_by_class.total_boys}}</strong></td>
                     <td style="text-align: center;"><strong>{{students_by_class.total_girls}}</strong></td>
@@ -192,8 +192,8 @@
                             </strong>
                         </td>
                     {% for class in classes %}
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id and student.country.id == country.id %} {{student.boys}} {% endif %}{% endfor %}</td>
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id and student.country.id == country.id %}{{student.girls}}{% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id and student.country == country.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id and student.country == country.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
                     {% endfor %}
                     <td style="text-align: center;">{% for student in students_by_country %}{% if student.country == country.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
                     <td style="text-align: center;">{% for student in students_by_country %}{% if student.country == country.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
@@ -225,7 +225,7 @@
                 <tr>
                     <td style="text-align: center;"><strong>Streams</strong></td>
                     {% for class in classes %}
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id %} {{student.streams}} {% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id %} {{student.total_streams}} {% endif %}{% endfor %}</td>
                     {% endfor %}
                     <td style="text-align: center;"><strong>{{students_by_stream.total_streams}}</strong></td>
                 </tr>
@@ -259,8 +259,8 @@
                             </strong>
                         </td>
                     {% for class in classes %}
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id and student.status.id == status.id %} {{student.boys}} {% endif %}{% endfor %}</td>
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id and student.status.id == status.id %}{{student.girls}}{% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id and student.status == status.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id and student.status == status.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
                     {% endfor %}
                     <td style="text-align: center;">{% for student in students_by_status %}{% if student.status == status.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
                     <td style="text-align: center;">{% for student in students_by_status %}{% if student.status == status.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
@@ -300,8 +300,8 @@
                 <tr>
                     <td style="text-align: center;"><strong>Proposed Intake</strong></td>
                     {% for class in classes %}
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id %} {{student.boys}} {% endif %}{% endfor %}</td>
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id %}{{student.girls}}{% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
                     {% endfor %}
                     <td style="text-align: center;"><strong>{{students_by_class.total_boys}}</strong></td>
                     <td style="text-align: center;"><strong>{{students_by_class.total_girls}}</strong></td>
@@ -331,8 +331,8 @@
                 <tr>
                     <td style="text-align: center;"><strong>New Entrants</strong></td>
                     {% for age in ages %}
-                    <td style="text-align: center;">{% for student in students %}{% if student.age.id == age.id %} {{student.boys}} {% endif %}{% endfor %}</td>
-                    <td style="text-align: center;">{% for student in students %}{% if student.age.id == age.id %}{{student.girls}}{% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.age == age.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.age == age.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
                     {% endfor %}
                     <td style="text-align: center;"><strong>{{students_by_age.total_boys}}</strong></td>
                     <td style="text-align: center;"><strong>{{students_by_age.total_girls}}</strong></td>
@@ -354,7 +354,7 @@
                 <tr>
                     <td style="text-align: center;"><strong>Pupils</strong></td>
                     {% for class in classes %}
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id %} {{student.pupils}} {% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id %} {{student.total_pupils}} {% endif %}{% endfor %}</td>
                     {% endfor %}
                     <td style="text-align: center;"><strong>{{students_by_class.total_pupils}}</strong></td>
                 </tr>
@@ -383,8 +383,8 @@
                 <tr>
                     <td style="text-align: center;"><strong>Tranfers</strong></td>
                     {% for class in classes %}
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id %} {{student.boys}} {% endif %}{% endfor %}</td>
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id %}{{student.girls}}{% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
                     {% endfor %}
                     <td style="text-align: center;"><strong>{{students_by_class.total_boys}}</strong></td>
                     <td style="text-align: center;"><strong>{{students_by_class.total_girls}}</strong></td>
@@ -419,8 +419,8 @@
                             </strong>
                         </td>
                     {% for class in classes %}
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id and student.term.id == term.id %} {{student.boys}} {% endif %}{% endfor %}</td>
-                    <td style="text-align: center;">{% for student in students %}{% if student.class_name.id == class.id and student.term.id == term.id %}{{student.girls}}{% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id and student.term == term.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
+                    <td style="text-align: center;">{% for student in students %}{% if student.class_name == class.id and student.term == term.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>
                     {% endfor %}
                     <td style="text-align: center;">{% for student in students_by_term %}{% if student.term == term.id %} {{student.total_boys}} {% endif %}{% endfor %}</td>
                     <td style="text-align: center;">{% for student in students_by_term %}{% if student.term == term.id %}{{student.total_girls}}{% endif %}{% endfor %}</td>

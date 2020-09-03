@@ -16,6 +16,7 @@ from django.views.generic import (
 
 from .models import *
 from .forms import *
+from school.forms import *
 from school.models import *
 from django.http import JsonResponse
 from django.db import IntegrityError
@@ -1008,12 +1009,83 @@ class SubjectUpdateView(LoginRequiredMixin, UpdateView):
 			return redirect('subject')
 
 @login_required
+def ministry_add_students(request, pk):
+	school = School.objects.get(pk=pk)
+	classes = None
+	ages = None
+	if(school.level_id==1):
+		classes = Class.objects.filter(pk__lte=3)
+	elif(school.level_id==2):
+		classes = Class.objects.filter(pk__gte=4, pk__lte=10,)
+	elif(school.level_id==3):
+		classes = Class.objects.filter(pk__gte=11, pk__lte=16,)
+	else:
+		classes = Class.objects.filter(pk__gt=16,)
+
+	if(school.level_id==1):
+		ages = AgeGroup.objects.filter(pk__lte=4)
+	elif(school.level_id==2):
+		ages = AgeGroup.objects.filter(pk__gte=5, pk__lte=12,)
+	elif(school.level_id==3):
+		ages = AgeGroup.objects.filter(pk__gte=13, pk__lte=22,)
+	else:
+		ages = AgeGroup.objects.filter(pk__gt=22,)
+	enrolment_list = []
+	total_rows = len(classes)*len(ages)
+	if request.method == 'POST':
+		student_form = StudentCreateForm(request.POST, )
+		if student_form.is_valid():
+			year = student_form.cleaned_data.get('year')
+			class_name = request.POST.getlist('class_name')
+			age = request.POST.getlist('age')
+			girls = request.POST.getlist('girls')
+			boys = request.POST.getlist('boys')
+			std_records = [class_name, age, boys, girls]
+			enrolment_list.append(std_records)
+			for c, a, g, b in enrolment_list:
+				some_data = []
+				for i in range(0, total_rows):
+					if g[i]=='':
+						g[i]=0
+					if b[i]=='':
+						b[i]=0
+					if int(g[i])>0 or int(b[i])>0:
+						some_data.append(Student(**{
+	                                        'year' : year,
+	                                        'user' : request.user,
+	                                        'school' : school,
+	                                        'class_name' : Class.objects.get(pk=c[i]),
+	                                        'age' : AgeGroup.objects.get(pk=a[i]),
+	                                        'girls' : g[i],
+	                                        'boys' : b[i],
+	                                        }))
+			# Student.objects.bulk_create(some_data)
+			try:
+				Student.objects.bulk_create(some_data)
+				messages.success(request, f'Enrolments for {year} have been recorded. Proceed to record Repeaters')
+				
+			except Exception:
+				messages.warning(request, f'ERROR! May be some enrolments of {year} are already recorded. Only Fill the ones that are not yet entered.')				
+	else:
+		student_form = StudentCreateForm()
+	context = {
+	'title': 'Students',
+	'sub_title': 'Enrolment',
+	'student_form': student_form,
+	'classes': classes,
+	'ages': ages,
+	'school': school,
+	}
+	return render(request, 'school/add_students.html', context)
+
+@login_required
 def enrolments(request, pk):
 	level = Level.objects.get(pk=pk)
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = Student.objects.filter(school__level=level, year=year).order_by('age_id',)
+	students = Student.objects.values('school__level','year','class_name','age').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys')).order_by('age')
 	students_by_class = Student.objects.values('class_name').filter(school__level=level, 
 		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_age = Student.objects.values('age').filter(school__level=level, 
@@ -1061,7 +1133,7 @@ def repeaters(request, pk):
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = Repeater.objects.filter(school__level=level, year=year)
+	students = Repeater.objects.values('school__level','year','class_name').filter(school__level=level, year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_class = Repeater.objects.filter(school__level=level, 
 		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	if(pk==1):
@@ -1090,7 +1162,7 @@ def nationality(request, pk):
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = Nationality.objects.filter(school__level=level, year=year).order_by('country_id',)
+	students = Nationality.objects.values('school__level','year','class_name','country').filter(school__level=level, year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys')).order_by('country_id',)
 	students_by_class = Nationality.objects.values('class_name').filter(school__level=level, 
 		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_country = Nationality.objects.values('country').filter(school__level=level, 
@@ -1129,7 +1201,8 @@ def proposed_intake(request, pk):
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = ProposedIntake.objects.filter(school__level=level, year=year)
+	students = ProposedIntake.objects.values('school__level','year','class_name').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_class = ProposedIntake.objects.filter(school__level=level, 
 		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	if(pk==1):
@@ -1159,7 +1232,7 @@ def physical_streams(request, pk):
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = PhysicalStream.objects.filter(school__level=level, year=year)
+	students = PhysicalStream.objects.values('school__level','year','class_name').filter(school__level=level, year=year).annotate(total_streams=Sum('streams'))
 	students_by_stream = PhysicalStream.objects.filter(school__level=level, 
 		year=year).aggregate(total_streams=Sum('streams'))
 	if(pk==1):
@@ -1188,7 +1261,7 @@ def orphans(request, pk):
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = Orphan.objects.filter(school__level=level, year=year)
+	students = Orphan.objects.values('school__level','year','class_name','status').filter(school__level=level, year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_class = Orphan.objects.values('class_name').filter(school__level=level, 
 		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_status = Orphan.objects.values('status').filter(school__level=level, 
@@ -1226,7 +1299,7 @@ def special_needs(request, pk):
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = SpecialNeed.objects.filter(school__level=level, year=year)
+	students = SpecialNeed.objects.values('school__level','year','class_name','status').filter(school__level=level, year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_class = SpecialNeed.objects.values('class_name').filter(school__level=level, 
 		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_status = SpecialNeed.objects.values('status').filter(school__level=level, 
@@ -1264,7 +1337,7 @@ def new_entrants(request, pk):
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = NewEntrant.objects.filter(school__level=level, year=year)
+	students = NewEntrant.objects.values('school__level','year','age').filter(school__level=level, year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_age = NewEntrant.objects.filter(school__level=level, 
 		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	ages = None
@@ -1306,7 +1379,7 @@ def seating_and_writing_space(request, pk):
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = SeatingAndWritingSpace.objects.filter(school__level=level, year=year)
+	students = SeatingAndWritingSpace.objects.values('school__level','year','class_name').filter(school__level=level, year=year).annotate(total_pupils=Sum('pupils'))
 	students_by_class = SeatingAndWritingSpace.objects.filter(school__level=level, 
 		year=year).aggregate(total_pupils=Sum('pupils'))
 	if(pk==1):
@@ -1336,7 +1409,7 @@ def transfered_students(request, pk):
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = TransferedStudent.objects.filter(school__level=level, year=year)
+	students = TransferedStudent.objects.values('school__level','year','class_name').filter(school__level=level, year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_class = TransferedStudent.objects.filter(school__level=level, 
 		year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	if(pk==1):
@@ -1365,7 +1438,7 @@ def examinations(request, pk):
 	year=datetime.datetime.now().year
 	if request.GET.get('year', None):
 		year=request.GET.get('year', None)
-	students = Examination.objects.filter(school__level=level, year=year)
+	students = Examination.objects.values('school__level','year','class_name','term').filter(school__level=level, year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	students_by_term = Examination.objects.values('term').filter(school__level=level, 
 		year=year).annotate(total_girls=Sum('girls'), total_boys=Sum('boys'))
 	classes = None
@@ -1429,7 +1502,6 @@ def view_schools(request, pk):
 	}
 	return render(request, 'ministry/school_list.html', context)
 
-@login_required
 def schools_region_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1441,7 +1513,6 @@ def schools_region_chart(request, pk):
 
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def schools_year_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1464,7 +1535,6 @@ def schools_year_chart(request, pk):
 
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def operation_status_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1476,7 +1546,6 @@ def operation_status_chart(request, pk):
 
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def founder_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1487,7 +1556,6 @@ def founder_chart(request, pk):
 		data.append(school['total_schools'])
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def funder_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1498,7 +1566,6 @@ def funder_chart(request, pk):
 		data.append(school['total_schools'])
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def category_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1509,7 +1576,6 @@ def category_chart(request, pk):
 		data.append(school['total_schools'])
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def section_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1520,7 +1586,6 @@ def section_chart(request, pk):
 		data.append(school['total_schools'])
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def registry_status_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1531,7 +1596,6 @@ def registry_status_chart(request, pk):
 		data.append(school['total_schools'])
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def rural_urban_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1542,7 +1606,6 @@ def rural_urban_chart(request, pk):
 		data.append(school['total_schools'])
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def access_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1553,7 +1616,6 @@ def access_chart(request, pk):
 		data.append(school['total_schools'])
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def registry_status_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1564,7 +1626,6 @@ def registry_status_chart(request, pk):
 		data.append(school['total_schools'])
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def nearest_school_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
@@ -1575,7 +1636,6 @@ def nearest_school_chart(request, pk):
 		data.append(school['total_schools'])
 	return JsonResponse(data={'labels': labels, 'data': data, })
 
-@login_required
 def deo_office_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
