@@ -387,7 +387,7 @@ class Latrine(models.Model):
 	date_created = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
-		return f'{self.room_completion} {self.school.name} {self.year}'
+		return f'{self.use} {self.state} {self.school.name} {self.year}'
 
 	class Meta():
 		unique_together=['state','use','school','year',]

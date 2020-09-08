@@ -22,6 +22,7 @@ urlpatterns = [
     path('access_chart/<int:pk>/', views.access_chart, name='access-chart'),
     path('nearest_school_chart/<int:pk>/', views.nearest_school_chart, name='nearest-school-chart'),
     path('deo_office_chart/<int:pk>/', views.deo_office_chart, name='deo-office-chart'),
+    path('pie-chart/', views.pie_chart, name='pie-chart'),
     # Student's Tab ----------------------------------------------------------------------------
     path('students/<int:pk>/repeaters/', views.repeaters, name='repeaters'),
     path('students/<int:pk>/nationality/', views.nationality, name='nationality'),

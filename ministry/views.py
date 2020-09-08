@@ -1465,22 +1465,6 @@ def examinations(request, pk):
 	return render(request, 'ministry/students.html', context)
 
 @login_required
-def home(request):
-	all_schools = School.objects.count()
-	all_deos = Deo.objects.count()
-	all_teachers = Teacher.objects.count()
-	all_resources = Resource.objects.count()
-	all_trtransfer = TransferTeacher.objects.count()
-	all_deotransfer = TransferDeo.objects.count()
-	return render(request, 'ministry/home.html', {'title': 'Home', 
-		'all_schools':all_schools, 
-		'all_deos':all_deos, 
-		'all_teachers':all_teachers, 
-		'all_resources':all_resources, 
-		'all_trtransfer':all_trtransfer, 
-		'all_deotransfer':all_deotransfer })
-
-@login_required
 def view_schools(request, pk):
 	item = District.objects.first()
 	if request.GET.get('dist', None):
@@ -1506,7 +1490,7 @@ def schools_region_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools_in_region = School.objects.values('parish__district__region__reg_name').annotate(total_schools=Count('parish__district__region')).filter(level=level)
+	schools_in_region = School.objects.values('parish__district__region__reg_name').annotate(total_schools=Count('parish__district__region')).filter(level=level).order_by('-total_schools')
 	for school in schools_in_region:
 		labels.append(school['parish__district__region__reg_name'])
 		data.append(school['total_schools'])
@@ -1539,7 +1523,7 @@ def operation_status_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('operation_status__sch_type').annotate(total_schools=Count('operation_status')).filter(level=level)
+	schools = School.objects.values('operation_status__sch_type').annotate(total_schools=Count('operation_status')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['operation_status__sch_type'])
 		data.append(school['total_schools'])
@@ -1550,7 +1534,7 @@ def founder_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('founder__own_type').annotate(total_schools=Count('founder')).filter(level=level)
+	schools = School.objects.values('founder__own_type').annotate(total_schools=Count('founder')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['founder__own_type'])
 		data.append(school['total_schools'])
@@ -1560,7 +1544,7 @@ def funder_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('funder__funder_name').annotate(total_schools=Count('funder')).filter(level=level)
+	schools = School.objects.values('funder__funder_name').annotate(total_schools=Count('funder')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['funder__funder_name'])
 		data.append(school['total_schools'])
@@ -1570,7 +1554,7 @@ def category_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('category__cat_type').annotate(total_schools=Count('category')).filter(level=level)
+	schools = School.objects.values('category__cat_type').annotate(total_schools=Count('category')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['category__cat_type'])
 		data.append(school['total_schools'])
@@ -1580,7 +1564,7 @@ def section_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('section__sec_type').annotate(total_schools=Count('section')).filter(level=level)
+	schools = School.objects.values('section__sec_type').annotate(total_schools=Count('section')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['section__sec_type'])
 		data.append(school['total_schools'])
@@ -1590,7 +1574,7 @@ def registry_status_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('regstatus__reg_status').annotate(total_schools=Count('regstatus')).filter(level=level)
+	schools = School.objects.values('regstatus__reg_status').annotate(total_schools=Count('regstatus')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['regstatus__reg_status'])
 		data.append(school['total_schools'])
@@ -1600,7 +1584,7 @@ def rural_urban_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('rural_urban__rural_urban').annotate(total_schools=Count('rural_urban')).filter(level=level)
+	schools = School.objects.values('rural_urban__rural_urban').annotate(total_schools=Count('rural_urban')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['rural_urban__rural_urban'])
 		data.append(school['total_schools'])
@@ -1610,7 +1594,7 @@ def access_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('access__acc_type').annotate(total_schools=Count('access')).filter(level=level)
+	schools = School.objects.values('access__acc_type').annotate(total_schools=Count('access')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['access__acc_type'])
 		data.append(school['total_schools'])
@@ -1620,7 +1604,7 @@ def registry_status_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('regstatus__rs_type').annotate(total_schools=Count('regstatus')).filter(level=level)
+	schools = School.objects.values('regstatus__rs_type').annotate(total_schools=Count('regstatus')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['regstatus__rs_type'])
 		data.append(school['total_schools'])
@@ -1630,7 +1614,7 @@ def nearest_school_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('distance_to_nearest_school__distance').annotate(total_schools=Count('distance_to_nearest_school')).filter(level=level)
+	schools = School.objects.values('distance_to_nearest_school__distance').annotate(total_schools=Count('distance_to_nearest_school')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['distance_to_nearest_school__distance'])
 		data.append(school['total_schools'])
@@ -1640,7 +1624,7 @@ def deo_office_chart(request, pk):
 	level = Level.objects.get(pk=pk)
 	labels = []
 	data = []
-	schools = School.objects.values('distance_to_deo_office__distance').annotate(total_schools=Count('distance_to_deo_office')).filter(level=level)
+	schools = School.objects.values('distance_to_deo_office__distance').annotate(total_schools=Count('distance_to_deo_office')).filter(level=level).order_by('-total_schools')
 	for school in schools:
 		labels.append(school['distance_to_deo_office__distance'])
 		data.append(school['total_schools'])
@@ -1891,6 +1875,76 @@ def communication(request):
 
 def settings(request):
 	return render(request, 'ministry/settings.html', {'title': 'Settings'})
+
+@login_required
+def home(request):
+	primary_schools = School.objects.filter(level=2).count()
+	secondary_schools = School.objects.filter(level=3).count()
+	tertiary_schools = School.objects.filter(level=4).count()
+	universities = School.objects.filter(level=5).count()
+	all_deos = Deo.objects.count()
+	all_teachers = Teacher.objects.count()
+	all_resources = Resource.objects.count()
+	all_trtransfer = TransferTeacher.objects.count()
+	all_deotransfer = TransferDeo.objects.count()
+	primary_labels = []
+	primary_data = []
+	primary_queryset = School.objects.values('founder__own_type').annotate(total_schools=Count('founder')).filter(level=2).order_by('-total_schools')
+	for school in primary_queryset:
+		primary_labels.append(school['founder__own_type'])
+		primary_data.append(school['total_schools'])
+
+	secondary_labels = []
+	secondary_data = []
+	secondary_queryset = School.objects.values('founder__own_type').annotate(total_schools=Count('founder')).filter(level=3).order_by('-total_schools')
+	for school in secondary_queryset:
+		secondary_labels.append(school['founder__own_type'])
+		secondary_data.append(school['total_schools'])
+
+	tertiary_labels = []
+	tertiary_data = []
+	tertiary_queryset = School.objects.values('founder__own_type').annotate(total_schools=Count('founder')).filter(level=4).order_by('-total_schools')
+	for school in tertiary_queryset:
+		tertiary_labels.append(school['founder__own_type'])
+		tertiary_data.append(school['total_schools'])
+
+	university_labels = []
+	university_data = []
+	university_queryset = School.objects.values('founder__own_type').annotate(total_schools=Count('founder')).filter(level=5).order_by('-total_schools')
+	for school in university_queryset:
+		university_labels.append(school['founder__own_type'])
+		university_data.append(school['total_schools'])
+
+	context = {'title': 'Home', 
+		'primary_schools':primary_schools, 
+		'secondary_schools':secondary_schools, 
+		'tertiary_schools':tertiary_schools, 
+		'universities':universities, 
+		'all_trtransfer':all_trtransfer, 
+		'all_deotransfer':all_deotransfer,
+		'primary_labels': primary_labels,
+		'primary_data': primary_data,
+		'secondary_labels': secondary_labels,
+		'secondary_data': secondary_data,
+		'tertiary_labels': tertiary_labels,
+		'tertiary_data': tertiary_data,
+		'university_labels': university_labels,
+		'university_data': university_data, }
+	return render(request, 'ministry/home.html', context)
+
+def pie_chart(request):
+    labels = []
+    data = []
+
+    queryset = School.objects.values('founder__own_type').annotate(total_schools=Count('founder')).filter(level=2)
+    for city in queryset:
+        labels.append(city['founder__own_type'])
+        data.append(city['total_schools'])
+
+    return render(request, 'home.html', {
+        'labels': labels,
+        'data': data,
+    })
 
 class DistrictUploadView(FormView):
 	template_name = 'ministry/upload_record.html'
