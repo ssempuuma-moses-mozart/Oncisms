@@ -86,7 +86,7 @@ class Parish(models.Model):
 	subcounty = models.ForeignKey(SubCounty, on_delete = models.SET_NULL, blank=True, null=True,)
 
 	def __str__(self):
-		return self.parish_name
+		return f'{self.parish_name}, {self.subcounty}, {self.county}, {self.district}'
 
 class Schtype(models.Model):
 	sch_type = models.CharField(max_length=45, unique=True, verbose_name="School Type")
