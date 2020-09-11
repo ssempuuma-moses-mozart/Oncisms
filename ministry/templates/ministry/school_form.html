@@ -86,13 +86,13 @@
                         {% for parish in parishes %}
                         {% if school %}
                         {% if school.parish.id == parish.id %}
-                        <option value="{{parish.id}}" selected="selected">{{parish.parish_name}}</option>
+                        <option value="{{parish.id}}" selected="selected">{{parish}}</option>
                         {% else %}
-                        <option value="{{parish.id}}">{{parish.parish_name}}</option>
+                        <option value="{{parish.id}}">{{parish}}</option>
                         {% endif %}
                         {% else %}
                         <option></option>
-                        <option value="{{parish.id}}">{{parish.parish_name}}</option>
+                        <option value="{{parish.id}}">{{parish}}</option>
                         {% endif %}
                         {% endfor %}
                     </select>
