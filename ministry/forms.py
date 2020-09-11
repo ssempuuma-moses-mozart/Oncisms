@@ -205,7 +205,7 @@ class UploadSecondarySchool(forms.Form):
 				highest_class = Class.objects.get(pk = 14)
 
 			if record['reg_status'] != '':
-				regstatus = Regstatus.objects.get(reg_status = (record['reg_status']))
+				regstatus = Regstatus.objects.get(rs_type = (record['reg_status']))
 			else:
 				regstatus = Regstatus.objects.get(pk = 1)
 
