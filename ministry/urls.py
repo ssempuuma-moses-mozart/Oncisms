@@ -9,6 +9,7 @@ urlpatterns = [
     path('upload_subcounty/', SubCountyUploadView.as_view(), name='upload_subcounty' ),
     path('upload_parish/', ParishUploadView.as_view(), name='upload_parish' ),
     path('upload_school/', SchoolUploadView.as_view(), name='upload_school' ),
+    path('upload_secondary_school/', SecondarySchoolUploadView.as_view(), name='upload_secondary_school' ),
     path('', views.home, name='ministry-home'),
     path('schools_in_region_chart/<int:pk>/', views.schools_region_chart, name='schools-in-region-chart'),
     path('schools_in_year_chart/<int:pk>/', views.schools_year_chart, name='schools-in-year-chart'),

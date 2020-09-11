@@ -166,3 +166,73 @@ class UploadSchool(forms.Form):
 				operation_status = Schtype.objects.get(pk = 1)
 			School.objects.create(name=record['name'], phone=record['phone'], parish=parish, level=level, category=category, 
 				section=section, operation_status=operation_status )
+
+class UploadSecondarySchool(forms.Form):
+	data_file = forms.FileField()
+
+	def process_data(self):
+		# with open(self.cleaned_data['data_file'].file, 'rb') as f:
+		# 	reader = f.read()
+		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+		reader = csv.DictReader(f)
+
+		for record in reader:
+			parish = None
+			level = None
+			category = None
+			section = None
+			schtype = None
+			highest_class = None
+			regstatus = None
+			operation_status = None
+			founder = None
+			funder = None
+			if record['parish'] != '':
+				parish = Parish.objects.get(parish_name = (record['parish']), 
+					subcounty__subcounty_name = record.get('subcounty'),
+					district__dis_name = record.get('district'),)
+			else:
+				parish = Parish.objects.get(pk = 1)
+
+			if record['level'] != '':
+				level = Level.objects.get(lev_name = (record['level']))
+			else:
+				level = Level.objects.get(pk = 2)
+
+			if record['highest_class'] != '':
+				highest_class = Class.objects.get(class_name = (record['highest_class']))
+			else:
+				highest_class = Class.objects.get(pk = 14)
+
+			if record['regstatus'] != '':
+				regstatus = Regstatus.objects.get(reg_status = (record['reg_status']))
+			else:
+				regstatus = Regstatus.objects.get(pk = 1)
+
+			if record['founder'] != '':
+				founder = Ownership.objects.get(own_type = (record['founder']))
+			else:
+				founder = Ownership.objects.get(pk = 1)
+
+			if record['funder'] != '':
+				funder = Funder.objects.get(funder_name = (record['funder']))
+			else:
+				funder = Funder.objects.get(pk = 1)
+
+			if record['category'] != '':
+				category = Category.objects.get(cat_type = (record['category']))
+			else:
+				category = Category.objects.get(pk = 3)
+
+			if record['section'] != '':
+				section = Section.objects.get(sec_type = (record['section']))
+			else:
+				section = Section.objects.get(pk = 3)
+
+			if record['operation_status'] != '':
+				operation_status = Schtype.objects.get(sch_type = (record['operation_status']))
+			else:
+				operation_status = Schtype.objects.get(pk = 1)
+			School.objects.create(name=record['name'], highest_class=highest_class, founder=founder, 
+				funder=funder, regstatus=regstatus, parish=parish, level=level, category=category, 
+				section=section, operation_status=operation_status )

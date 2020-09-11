@@ -1964,6 +1964,15 @@ class SchoolUploadView(FormView):
 		form.process_data()
 		return super().form_valid(form)
 
+class SecondarySchoolUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadSecondarySchool
+	success_url = '/ministry/upload_secondary_school/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)
+
 class CountyUploadView(FormView):
 	template_name = 'ministry/upload_record.html'
 	form_class = UploadCounty
