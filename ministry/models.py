@@ -103,6 +103,16 @@ class Funder(models.Model):
 	def __str__(self):
 		return self.funder_name
 
+class TertiaryLevel(models.Model):
+	level_name = models.CharField(max_length=45, unique=True,)
+	def __str__(self):
+		return self.level_name
+
+class TertiaryCategory(models.Model):
+	category_name = models.CharField(max_length=45, unique=True,)
+	def __str__(self):
+		return self.category_name
+
 class DistanceToNearestSchool(models.Model):
 	distance = models.CharField(max_length=45, unique=True,)
 	def __str__(self):
@@ -144,6 +154,8 @@ class School(models.Model):
 	operation_status = models.ForeignKey(Schtype, on_delete = models.SET_NULL, blank=True, null=True, verbose_name="School Type")
 	parish = models.ForeignKey(Parish, on_delete = models.SET_NULL, blank=True, null=True,)
 	funder = models.ForeignKey(Funder, on_delete = models.SET_NULL, blank=True, null=True,)
+	tertiary_level = models.ForeignKey(TertiaryLevel, on_delete = models.SET_NULL, blank=True, null=True,)
+	tertiary_category = models.ForeignKey(TertiaryCategory, on_delete = models.SET_NULL, blank=True, null=True,)
 	distance_to_nearest_school = models.ForeignKey(DistanceToNearestSchool, on_delete = models.SET_NULL, blank=True, null=True,)
 	distance_to_deo_office = models.ForeignKey(DistanceToDeoOffice, on_delete = models.SET_NULL, blank=True, null=True,)
 	rural_urban = models.ForeignKey(RuralUrban, on_delete = models.SET_NULL, blank=True, null=True,)

@@ -1856,6 +1856,29 @@ def teachers(request):
 	return render(request, 'ministry/teachers.html', {'title': 'Teachers'})
 
 @login_required
+def region_teachers(request, pk):
+	level = Level.objects.get(pk=pk)
+	schtypes = Schtype.objects.all()
+	regions = Region.objects.all()
+	f_teachers = Teacher.objects.values('school__parish__district__region',
+		'school__operation_status').filter(school__level=level, gender=2).annotate(total_girls=Count('school__parish__district__region'))
+	m_teachers = Teacher.objects.values('school__parish__district__region',
+		'school__operation_status').filter(school__level=level, gender=1).annotate(total_boys=Count('school__parish__district__region'))
+	# students_by_class = TransferedStudent.objects.filter(school__level=level, 
+		# year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+
+	context = {
+	'title': 'Teachers',
+	'sub_title': 'Region',
+	'schtypes': schtypes,
+	'regions': regions,
+	'f_teachers': f_teachers,
+	'm_teachers': m_teachers,
+	'level':level,
+	}
+	return render(request, 'ministry/teachers.html', context)
+
+@login_required
 def deos(request):
 	return render(request, 'ministry/deos.html', {'title': 'DEOs'})
 
@@ -1968,6 +1991,15 @@ class SecondarySchoolUploadView(FormView):
 	template_name = 'ministry/upload_record.html'
 	form_class = UploadSecondarySchool
 	success_url = '/ministry/upload_secondary_school/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)
+
+class TertiarySchoolUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadTertiarySchool
+	success_url = '/ministry/upload_tertiary_school/'
 
 	def form_valid(self, form):
 		form.process_data()
