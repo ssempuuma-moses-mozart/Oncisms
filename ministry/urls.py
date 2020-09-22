@@ -82,7 +82,9 @@ urlpatterns = [
     
     # Teacher related urls-----------------------------------------------------------------------------
 
+    path('teachers/<int:pk>/qualification', views.qualification_teachers, name='qualification-teachers'),
     path('teachers/<int:pk>/region', views.region_teachers, name='region-teachers'),
+    path('teachers/<int:pk>/education', views.education_teachers, name='education-teachers'),
     path('teachers/', views.teachers, name='strack-teachers'),
     path('teachers/new/', TeacherCreateView.as_view(), name='new-teacher'),
     path('teachers/view/', TeacherListView.as_view(), name='view-teachers'),

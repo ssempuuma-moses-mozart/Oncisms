@@ -1864,8 +1864,15 @@ def region_teachers(request, pk):
 		'school__operation_status').filter(school__level=level, gender=2).annotate(total_girls=Count('school__parish__district__region'))
 	m_teachers = Teacher.objects.values('school__parish__district__region',
 		'school__operation_status').filter(school__level=level, gender=1).annotate(total_boys=Count('school__parish__district__region'))
-	# students_by_class = TransferedStudent.objects.filter(school__level=level, 
-		# year=year).aggregate(total_girls=Sum('girls'), total_boys=Sum('boys'))
+	f_teachers_region = Teacher.objects.values('school__parish__district__region',
+		).filter(school__level=level, gender=2).annotate(total_girls=Count('school__parish__district__region'))
+	m_teachers_region = Teacher.objects.values('school__parish__district__region',
+		).filter(school__level=level, gender=1).annotate(total_boys=Count('school__parish__district__region'))
+	f_teachers_status = Teacher.objects.values('school__operation_status').filter(school__level=level, 
+		gender=2).annotate(total_girls=Count('school__operation_status'))
+	m_teachers_status = Teacher.objects.values('school__operation_status').filter(school__level=level, 
+		gender=1).annotate(total_boys=Count('school__operation_status'))
+	teachers_total = Teacher.objects.values('gender').filter(school__level=level).annotate(total_teachers=Count('gender'))
 
 	context = {
 	'title': 'Teachers',
@@ -1874,6 +1881,81 @@ def region_teachers(request, pk):
 	'regions': regions,
 	'f_teachers': f_teachers,
 	'm_teachers': m_teachers,
+	'f_teachers_region': f_teachers_region,
+	'm_teachers_region': m_teachers_region,
+	'f_teachers_status': f_teachers_status,
+	'm_teachers_status': m_teachers_status,
+	'teachers_total': teachers_total,
+	'level':level,
+	}
+	return render(request, 'ministry/teachers.html', context)
+
+@login_required
+def qualification_teachers(request, pk):
+	level = Level.objects.get(pk=pk)
+	schtypes = Schtype.objects.all()
+	professions = TeacherProfession.objects.all()
+	f_teachers = Teacher.objects.values('profession',
+		'school__operation_status').filter(school__level=level, gender=2).annotate(total_girls=Count('profession'))
+	m_teachers = Teacher.objects.values('profession',
+		'school__operation_status').filter(school__level=level, gender=1).annotate(total_boys=Count('profession'))
+	f_teachers_professions = Teacher.objects.values('profession',
+		).filter(school__level=level, gender=2).annotate(total_girls=Count('profession'))
+	m_teachers_professions = Teacher.objects.values('profession',
+		).filter(school__level=level, gender=1).annotate(total_boys=Count('profession'))
+	f_teachers_status = Teacher.objects.values('school__operation_status').filter(school__level=level, 
+		gender=2).annotate(total_girls=Count('school__operation_status'))
+	m_teachers_status = Teacher.objects.values('school__operation_status').filter(school__level=level, 
+		gender=1).annotate(total_boys=Count('school__operation_status'))
+	teachers_total = Teacher.objects.values('gender').filter(school__level=level).annotate(total_teachers=Count('gender'))
+
+	context = {
+	'title': 'Teachers',
+	'sub_title': 'Qualification',
+	'schtypes': schtypes,
+	'regions': professions,
+	'f_teachers': f_teachers,
+	'm_teachers': m_teachers,
+	'f_teachers_region': f_teachers_professions,
+	'm_teachers_region': m_teachers_professions,
+	'f_teachers_status': f_teachers_status,
+	'm_teachers_status': m_teachers_status,
+	'teachers_total': teachers_total,
+	'level':level,
+	}
+	return render(request, 'ministry/teachers.html', context)
+
+@login_required
+def education_teachers(request, pk):
+	level = Level.objects.get(pk=pk)
+	schtypes = Schtype.objects.all()
+	educations = TeacherEducation.objects.all()
+	f_teachers = Teacher.objects.values('education',
+		'school__operation_status').filter(school__level=level, gender=2).annotate(total_girls=Count('profession'))
+	m_teachers = Teacher.objects.values('education',
+		'school__operation_status').filter(school__level=level, gender=1).annotate(total_boys=Count('profession'))
+	f_teachers_professions = Teacher.objects.values('education',
+		).filter(school__level=level, gender=2).annotate(total_girls=Count('education'))
+	m_teachers_professions = Teacher.objects.values('education',
+		).filter(school__level=level, gender=1).annotate(total_boys=Count('education'))
+	f_teachers_status = Teacher.objects.values('school__operation_status').filter(school__level=level, 
+		gender=2).annotate(total_girls=Count('school__operation_status'))
+	m_teachers_status = Teacher.objects.values('school__operation_status').filter(school__level=level, 
+		gender=1).annotate(total_boys=Count('school__operation_status'))
+	teachers_total = Teacher.objects.values('gender').filter(school__level=level).annotate(total_teachers=Count('gender'))
+
+	context = {
+	'title': 'Teachers',
+	'sub_title': 'Education',
+	'schtypes': schtypes,
+	'regions': educations,
+	'f_teachers': f_teachers,
+	'm_teachers': m_teachers,
+	'f_teachers_region': f_teachers_professions,
+	'm_teachers_region': m_teachers_professions,
+	'f_teachers_status': f_teachers_status,
+	'm_teachers_status': m_teachers_status,
+	'teachers_total': teachers_total,
 	'level':level,
 	}
 	return render(request, 'ministry/teachers.html', context)
