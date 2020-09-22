@@ -1961,6 +1961,66 @@ def education_teachers(request, pk):
 	return render(request, 'ministry/teachers.html', context)
 
 @login_required
+def left_teachers(request, pk):
+	level = Level.objects.get(pk=pk)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	teachers = LeftTeacher.objects.values('school__level','year','school__operation_status','reason').filter(school__level=level, year=year).annotate(total_girls=Sum('female'), total_boys=Sum('male'))
+	teachers_by_reason = LeftTeacher.objects.values('reason').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('female'), total_boys=Sum('male'))
+	teachers_by_status = LeftTeacher.objects.values('school__operation_status').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('female'), total_boys=Sum('male'))
+	total_teachers = LeftTeacher.objects.filter(school__level=level, 
+		year=year).aggregate(total_girls=Sum('female'), total_boys=Sum('male'))
+	statuses = Schtype.objects.all()
+	reasons = Reason.objects.all()
+
+	context = {
+	'title': 'Teachers',
+	'sub_title': 'Teachers Leaving',
+	'teachers': teachers,
+	'statuses': statuses,
+	'reasons': reasons,
+	'teachers_by_reason': teachers_by_reason,
+	'teachers_by_status': teachers_by_status,
+	'total_teachers':total_teachers,
+	'year':year,
+	'level':level,
+	}
+	return render(request, 'ministry/teachers.html', context)
+
+@login_required
+def non_teaching_staff(request, pk):
+	level = Level.objects.get(pk=pk)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	teachers = NonTeachingStaff.objects.values('school__level','year','school__operation_status','staff_type').filter(school__level=level, year=year).annotate(total_girls=Sum('female'), total_boys=Sum('male'))
+	teachers_by_type = NonTeachingStaff.objects.values('staff_type').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('female'), total_boys=Sum('male'))
+	teachers_by_status = NonTeachingStaff.objects.values('school__operation_status').filter(school__level=level, 
+		year=year).annotate(total_girls=Sum('female'), total_boys=Sum('male'))
+	total_teachers = NonTeachingStaff.objects.filter(school__level=level, 
+		year=year).aggregate(total_girls=Sum('female'), total_boys=Sum('male'))
+	statuses = Schtype.objects.all()
+	types = StaffType.objects.all()
+
+	context = {
+	'title': 'Teachers',
+	'sub_title': 'Non-Teaching Staff',
+	'teachers': teachers,
+	'statuses': statuses,
+	'types': types,
+	'teachers_by_type': teachers_by_type,
+	'teachers_by_status': teachers_by_status,
+	'total_teachers':total_teachers,
+	'year':year,
+	'level':level,
+	}
+	return render(request, 'ministry/teachers.html', context)
+
+@login_required
 def deos(request):
 	return render(request, 'ministry/deos.html', {'title': 'DEOs'})
 
