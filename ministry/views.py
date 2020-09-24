@@ -2059,12 +2059,13 @@ def building_rooms(request, pk):
 	rooms = Building.objects.values('school__level','year','school__operation_status','room_state',
 		'room_state','room_type','room_status').filter(school__level=level, 
 		year=year).annotate(total_permanent=Sum('permanent'), total_temporary=Sum('temporary'))
-	teachers_by_type = NonTeachingStaff.objects.values('staff_type').filter(school__level=level, 
-		year=year).annotate(total_girls=Sum('female'), total_boys=Sum('male'))
-	teachers_by_status = NonTeachingStaff.objects.values('school__operation_status').filter(school__level=level, 
-		year=year).annotate(total_girls=Sum('female'), total_boys=Sum('male'))
-	total_teachers = NonTeachingStaff.objects.filter(school__level=level, 
-		year=year).aggregate(total_girls=Sum('female'), total_boys=Sum('male'))
+	rooms_by_type = Building.objects.values('school__level','year','room_type',).filter(school__level=level, 
+		year=year).annotate(total_permanent=Sum('permanent'), total_temporary=Sum('temporary'))
+	rooms_by_status = Building.objects.values('school__level','year','school__operation_status','room_state',
+		'room_state','room_status').filter(school__level=level, 
+		year=year).annotate(total_permanent=Sum('permanent'), total_temporary=Sum('temporary'))
+	rooms_total = Building.objects.filter(school__level=level,year=year).aggregate(total_permanent=Sum('permanent'), 
+		total_temporary=Sum('temporary'))
 	operation_statuses = Schtype.objects.all()
 	types = RoomType.objects.all()
 	states = RoomState.objects.all()
@@ -2077,6 +2078,69 @@ def building_rooms(request, pk):
 	'statuses': statuses,
 	'level': level,
 	'rooms': rooms,
+	'rooms_by_type': rooms_by_type,
+	'rooms_by_status': rooms_by_status,
+	'rooms_total': rooms_total,
+	'year': year,
+	'operation_statuses': operation_statuses,
+	}
+	return render(request, 'ministry/infrastructure.html', context)
+
+@login_required
+def rooms_under_construction(request, pk):
+	level = Level.objects.get(pk=pk)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	rooms = UnderConstructionBuilding.objects.values('school__level','year','school__operation_status',
+		'room_completion','room_type').filter(school__level=level, year=year).annotate(total_rooms=Sum('rooms'))
+	rooms_by_type = UnderConstructionBuilding.objects.values('school__level','year','room_type',).filter(school__level=level, 
+		year=year).annotate(total_rooms=Sum('rooms'))
+	rooms_by_completion = UnderConstructionBuilding.objects.values('school__level','year','school__operation_status',
+		'room_completion').filter(school__level=level, year=year).annotate(total_rooms=Sum('rooms'))
+	rooms_total = UnderConstructionBuilding.objects.filter(school__level=level,year=year).aggregate(total_rooms=Sum('rooms'))
+	operation_statuses = Schtype.objects.all()
+	types = RoomType.objects.all()
+	states = RoomCompletion.objects.all()
+	context = {
+	'title': 'Infrastructure',
+	'sub_title': 'Rooms Under Construction',
+	'types': types,
+	'states': states,
+	'level': level,
+	'rooms': rooms,
+	'rooms_by_type': rooms_by_type,
+	'rooms_by_completion': rooms_by_completion,
+	'rooms_total': rooms_total,
+	'year': year,
+	'operation_statuses': operation_statuses,
+	}
+	return render(request, 'ministry/infrastructure.html', context)
+
+@login_required
+def rooms_needed(request, pk):
+	level = Level.objects.get(pk=pk)
+	year=datetime.datetime.now().year
+	if request.GET.get('year', None):
+		year=request.GET.get('year', None)
+	rooms = NeededBuilding.objects.values('school__level','year','school__operation_status',
+		'room_type').filter(school__level=level, year=year).annotate(total_rooms=Sum('rooms'))
+	rooms_by_type = NeededBuilding.objects.values('school__level','year','room_type',).filter(school__level=level, 
+		year=year).annotate(total_rooms=Sum('rooms'))
+	rooms_by_status = NeededBuilding.objects.values('school__level','year','school__operation_status',
+		).filter(school__level=level, year=year).annotate(total_rooms=Sum('rooms'))
+	rooms_total = NeededBuilding.objects.filter(school__level=level,year=year).aggregate(total_rooms=Sum('rooms'))
+	operation_statuses = Schtype.objects.all()
+	types = RoomType.objects.all()
+	context = {
+	'title': 'Infrastructure',
+	'sub_title': 'Rooms Needed',
+	'types': types,
+	'level': level,
+	'rooms': rooms,
+	'rooms_by_type': rooms_by_type,
+	'rooms_by_status': rooms_by_status,
+	'rooms_total': rooms_total,
 	'year': year,
 	'operation_statuses': operation_statuses,
 	}

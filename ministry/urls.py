@@ -111,6 +111,8 @@ urlpatterns = [
     path('DEOs/transfer/<int:pk>/update/', TransferDeoUpdateView.as_view(), name='update-deo-transfer'),
     # Resource related urls-----------------------------------------------------------------------------
     path('infrastructure/<int:pk>/rooms', views.building_rooms, name='building-rooms'),
+    path('infrastructure/<int:pk>/rooms_needed', views.rooms_needed, name='rooms-needed'),
+    path('infrastructure/<int:pk>/rooms_under_construction', views.rooms_under_construction, name='rooms-under-construction'),
     path('resources/', views.resources, name='strack-resources'),
     path('resources/type/', ResourceTypeCreateView.as_view(), name='resource-type'),
     path('resources/type/<int:pk>/update/', ResourceTypeUpdateView.as_view(), name='update-resource-type'),
