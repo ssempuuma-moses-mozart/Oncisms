@@ -5,27 +5,27 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="user-profile-wrap shadow-reset mg-b-40">
-                <a href="{% url 'schools' level.id %}" {% if sub_title == "District" %} class="btn" style="background: skyblue; color: white;" {% endif %}> District </a> | 
+                <a href="{% url 'schools' level.id %}" {% if sub_title == "District" %} class="btn" style="background: red; color: white;" {% endif %}> District </a> | 
 
-                <a href="{% url 'operation-status' level.id %}" {% if sub_title == "Operation Status" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Operation Status </a> | 
+                <a href="{% url 'operation-status' level.id %}" {% if sub_title == "Operation Status" %} class="btn" style="background: red; color: white;" {% endif %}> Operation Status </a> | 
 
-                <a href="{% url 'founder' level.id %}" {% if sub_title == "Founding Body" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Founders </a> | 
+                <a href="{% url 'founder' level.id %}" {% if sub_title == "Founding Body" %} class="btn" style="background: red; color: white;" {% endif %}> Founders </a> | 
 
-                <a href="{% url 'funder' level.id %}" {% if sub_title == "Funders" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Funders </a> | 
+                <a href="{% url 'funder' level.id %}" {% if sub_title == "Funders" %} class="btn" style="background: red; color: white;" {% endif %}> Funders </a> | 
 
-                <a href="{% url 'categories' level.id %}" {% if sub_title == "Category" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Boy/Girls </a> | 
+                <a href="{% url 'categories' level.id %}" {% if sub_title == "Category" %} class="btn" style="background: red; color: white;" {% endif %}> Boy/Girls </a> | 
 
-                <a href="{% url 'sections' level.id %}" {% if sub_title == "Section" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Day/Boarding </a> | 
+                <a href="{% url 'sections' level.id %}" {% if sub_title == "Section" %} class="btn" style="background: red; color: white;" {% endif %}> Day/Boarding </a> | 
 
-                <a href="{% url 'registration-status' level.id %}" {% if sub_title == "Registration Status" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Registry Status </a> | 
+                <a href="{% url 'registration-status' level.id %}" {% if sub_title == "Registration Status" %} class="btn" style="background: red; color: white;" {% endif %}> Registry Status </a> | 
 
-                <a href="{% url 'rural-urban' level.id %}" {% if sub_title == "Rural/Urban" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Rural/Urban </a>  | 
+                <a href="{% url 'rural-urban' level.id %}" {% if sub_title == "Rural/Urban" %} class="btn" style="background: red; color: white;" {% endif %}> Rural/Urban </a>  | 
 
-                <a href="{% url 'accesses' level.id %}" {% if sub_title == "Access" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Access Level </a>  | 
+                <a href="{% url 'accesses' level.id %}" {% if sub_title == "Access" %} class="btn" style="background: red; color: white;" {% endif %}> Access Level </a>  | 
 
-                <a href="{% url 'nearest-school' level.id %}" {% if sub_title == "Nearest School" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Nearest School </a> | 
+                <a href="{% url 'nearest-school' level.id %}" {% if sub_title == "Nearest School" %} class="btn" style="background: red; color: white;" {% endif %}> Nearest School </a> | 
 
-                <a href="{% url 'nearest-deo' level.id %}" {% if sub_title == "Nearest DEO" %} class="btn" style="background: skyblue; color: white;" {% endif %}> Main DEO Office </a>
+                <a href="{% url 'nearest-deo' level.id %}" {% if sub_title == "Nearest DEO" %} class="btn" style="background: red; color: white;" {% endif %}> Main DEO Office </a>
                 </div>
             </div>
             </div>
@@ -64,7 +64,7 @@
                                     {% for school in schools %}
                                         <tr>
                                             <td></td>
-                                            <td><a href="{% url 'school-details' school.id %}" style="color: skyblue;">{{school.name}}</a></td>
+                                            <td><a href="{% url 'school-details' school.id %}" style="color: blue;">{{school.name}}</a></td>
                                             <td>{{school.cen_no}}</td>
                                             <td>{{school.reg_no}}</td>
                                             <td>{{school.yr_est}}</td>
@@ -182,7 +182,7 @@
                                     <tbody>
                                     {% for record in records %}
                                         <tr>
-                                            <td><a href="?{{link}}={{record.id}}" style="color: skyblue;">{{record}}({{record.total_schools}})</a></td>
+                                            <td><a href="?{{link}}={{record.id}}" style="color: blue;">{{record}}({{record.total_schools}})</a></td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

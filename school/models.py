@@ -395,8 +395,8 @@ class Latrine(models.Model):
 class WaterAndEnergySource(models.Model):
 	user = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL)
 	school = models.ForeignKey(School, on_delete=models.CASCADE)
-	water_sources = models.ManyToManyField(WaterSource,)
-	energy_sources = models.ManyToManyField(EnergySource,)
+	water_source = models.ForeignKey(WaterSource, null=True, blank=True, on_delete = models.SET_NULL)
+	energy_source = models.ForeignKey(EnergySource, null=True, blank=True, on_delete = models.SET_NULL)
 	distance_to_water_source = models.ForeignKey(DistanceToMainWaterSource, null=True, blank=True, on_delete = models.SET_NULL)
 	year = models.IntegerField()
 	date_created = models.DateTimeField(default=timezone.now)

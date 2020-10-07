@@ -100,7 +100,7 @@ class NeededBuildingCreateForm(forms.ModelForm):
 class WaterAndEnergySourceCreateForm(forms.ModelForm):
 	class Meta:
 		model = WaterAndEnergySource
-		fields =('water_sources','distance_to_water_source','energy_sources','year')
+		fields =('water_source','distance_to_water_source','energy_source','year')
 
 class LatrineCreateForm(forms.ModelForm):
 	class Meta:

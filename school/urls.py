@@ -51,6 +51,7 @@ urlpatterns = [
         name='add-buildings-under-construction'),
     path('add_buildings_needed/', views.add_rooms_needed, name='add-buildings-needed'),
     path('add_latrines/', views.add_latrines, name='add-latrines'),
+    path('add_water_and_energy/', views.add_water_and_energy_sources, name='add-water-and-energy-sources'),
     path('request_teacher/', RequestTeacherCreateView.as_view(), name='request-teacher'),
     path('request_teacher/<int:pk>/update/', RequestTeacherUpdateView.as_view(), name='update-teacher-request'),
     path('request_teacher/view/', RequestTeacherListView.as_view(), name='teacher-requests'),

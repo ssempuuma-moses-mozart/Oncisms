@@ -1691,25 +1691,22 @@ def add_water_and_energy_sources(request):
 			source_form = WaterAndEnergySourceCreateForm(request.POST, request.FILES)
 			if source_form.is_valid():
 				source_form.instance.user = request.user
-				source_form.instance.school = request.user
+				source_form.instance.school = request.user.schoolprofile.school
 				source_form.save(commit=False)
-				if 'save_source' in request.POST:
-					try:
-						source_form.save()
-						messages.success(request, f'Energy and Water Sources have been recorded.')
-						return HttpResponseRedirect(reverse('add-students'))
-					except Exception:
-						messages.warning(request, f'Error! May be Contact admin')
+				try:
+					source_form.save()
+					messages.success(request, f'Energy and Water Sources have been recorded.')
+					return HttpResponseRedirect(reverse('add-water-and-energy-sources'))
+				except Exception:
+					messages.warning(request, f'Error! May be Contact admin')
 	else:
 		source_form = WaterAndEnergySourceCreateForm()
 	context = {
 	'title': 'Facilities',
 	'sub_title': 'Energy and Water Source',
 	'source_form': source_form,
-	'uses': uses,
-	'states': states,
 	}
-	return render(request, 'school/add_latrines.html', context)
+	return render(request, 'school/add_water_and_energy_sources.html', context)
 
 class RequestTeacherCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 	model = RequestTeacher

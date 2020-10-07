@@ -2299,3 +2299,12 @@ class ParishUploadView(FormView):
 	def form_valid(self, form):
 		form.process_data()
 		return super().form_valid(form)
+
+class ServiceProviderUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadServiceProvider
+	success_url = '/ministry/upload_service_provider/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)

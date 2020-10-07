@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import *
 from users.models import *
+from public.models import *
 import datetime
 import csv
 def current_year():
@@ -95,6 +96,33 @@ class UploadParish(forms.Form):
 			else:
 				subcounty = SubCounty.objects.get(pk = 1)
 			Parish.objects.create(parish_name=record['parish'], district=district, county=county, subcounty=subcounty )
+
+class UploadServiceProvider(forms.Form):
+	data_file = forms.FileField()
+
+	def process_data(self):
+		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+		reader = csv.DictReader(f)
+
+		for record in reader:
+			district = None
+			status = None
+			service = None
+			if record['district'] != '':
+				district = District.objects.get(dis_name = (record['district']))
+			else:
+				district = None
+			if record['service'] != '':
+				service = Service.objects.get(name = (record['service']))
+			else:
+				service = None
+
+			if record['status'] != '':
+				status = Status.objects.get(name = (record['status']))
+			else:
+				status = Status.objects.get(pk = 1)
+			ServiceProvider.objects.create(name=record['name'], description=record['description'], 
+				address=record['address'], district=district, status=status, service=service )
 
 # class UploadSchool(forms.Form):
 # 	data_file = forms.FileField()
