@@ -1076,7 +1076,7 @@ def ministry_add_students(request, pk):
 	'ages': ages,
 	'school': school,
 	}
-	return render(request, 'school/add_students.html', context)
+	return render(request, 'ministry/ministry_add_students.html', context)
 
 @login_required
 def enrolments(request, pk):
