@@ -217,7 +217,7 @@ class UploadSecondarySchool(forms.Form):
 			funder = None
 			if record['parish'] != '':
 				parish = Parish.objects.get(parish_name = (record['parish']),
-					district__dis_name = record.get('district'),)
+					subcounty__subcounty_name = record.get('subcounty'), district__dis_name = record.get('district'),)
 			else:
 				parish = Parish.objects.get(pk = 1)
 
@@ -285,7 +285,7 @@ class UploadTertiarySchool(forms.Form):
 			funder = None
 			if record['parish'] != '':
 				parish = Parish.objects.get(parish_name = (record['parish']),
-					district__dis_name = record.get('district'),)
+					subcounty__subcounty_name = record.get('subcounty'), district__dis_name = record.get('district'),)
 			else:
 				parish = Parish.objects.get(pk = 1)
 
