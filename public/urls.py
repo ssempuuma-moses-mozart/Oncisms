@@ -25,6 +25,7 @@ urlpatterns = [
     path('service_providers/<int:pk>/', views.service_providers, name='service-providers'),
     path('apply/', views.apply, name='apply'),
     path('covid19/', views.covid19, name='covid19'),
+    path('report/', views.report, name='report'),
     path('covid19_downloads/<int:pk>/', views.covid19_downloads, name='covid19-downloads'),
     path('communication/', views.communication, name='website-communication'),
     path('resources/', views.resources, name='website-resources'),

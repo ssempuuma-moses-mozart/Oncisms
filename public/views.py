@@ -331,8 +331,27 @@ def apply(request):
 	'title': 'Service Providers',
 	'apply_form': apply_form,
 	}
-
 	return render(request, 'public/apply_form.html', context)
+
+def report(request):
+	if request.method == 'POST':
+		form = ReportCreateForm(request.POST, request.FILES,)
+		if form.is_valid():
+			try:
+				form.save()
+				messages.success(request, f'Thank you! You have reported your case successifully.')
+				return HttpResponseRedirect(reverse('report'))
+			except Exception:
+				messages.warning(request, f'Error! Your case is not reported, Try again!')		
+	else:
+		form = ReportCreateForm()
+
+	context = {
+	'title': 'Report',
+	'form': form,
+	'groups': Group.objects.filter(pk__lte=4),
+	}
+	return render(request, 'public/report.html', context)
 
 def covid19(request):
 	classes = Classe.objects.annotate(uploads=Count('lockdownpackage')).order_by('id')

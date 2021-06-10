@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Group, User
 from django.urls import reverse
 from ministry.models import *
+from django.core.validators import MinLengthValidator
 
 class Service(models.Model):
 	name = models.CharField(max_length=45, unique=True, verbose_name="Service Name")
@@ -18,6 +19,20 @@ class Classe(models.Model):
 	name = models.CharField(max_length=45, unique=True,)
 	def __str__(self):
 		return self.name
+
+class Report(models.Model):
+	name = models.CharField(max_length=250, blank=True, null=True,)
+	school = models.CharField(max_length=250, blank=True, null=True,)
+	address = models.CharField(max_length=250, blank=True, null=True,)
+	phone = models.CharField(max_length=13, validators=[MinLengthValidator(4)], blank=True, null=True,)
+	email = models.CharField(max_length=30,blank=True, null=True,)
+	case = models.TextField(blank=True, null=True,)
+	covid = models.BooleanField(default=True,)
+	to = models.ForeignKey(Group, blank=True, null=True, on_delete = models.SET_NULL)
+	date = models.DateField(default=timezone.now)
+	date_created = models.DateTimeField(default=timezone.now)
+	def __str__(self):
+		return f'{self.name} {self.case}'
 
 class ServiceProvider(models.Model):
 	name = models.CharField(max_length=250, verbose_name="Service Provider Name")
