@@ -204,8 +204,8 @@
         </div>
     </div>
     <div class="header-top-area">
-        <div class="" style="margin-left: 5%; margin-right: 5%;">
-            <div class="row">
+        <div class="">
+            <div class="row main-menu-area">
                 <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
                     <div class="header-top-menu">
                         <ul role="menu" class="nav navbar-nav mai-top-nav">
@@ -250,9 +250,8 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                    <div class="header-right-info">
-                        <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                       
+                    <div class="header-right-info">    
+                        <ul class="nav navbar-nav mai-top-nav header-right-menu"> 
                             <li class="nav-item">
                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                     <span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>
@@ -277,6 +276,105 @@
                             </li>
                         </ul>
                     </div>
+                </div>
+            </div>
+            <div class="row mobile-menu-area">
+                <div class="header-right-info" style="display: flex; background-color: #313131;">
+                    <div class="col-sm-8 col-xs-8" style="background-color: #313131;">
+                        <ul class="nav navbar-nav mai-top-nav header-right-menu">           
+                            <li class="nav-item">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">MENU</a>
+                                <ul role="menu" class="dropdown-header-top author-log dropdown-menu">
+                                    <li class="nav-item"><a href="{% url 'website-home'%}" class="nav-link">Home</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a data-toggle="collapse" data-target="#School" href="#">Schools <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                        <ul id="School" class="collapse dropdown-header-top" style="margin-left: 15px;">
+                                            <li class="active">
+                                                <a href="{% url 'website-schools' 4 %}" class="dropdown-item">Tertiary Institutions</a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="{% url 'website-schools' 3 %}" class="dropdown-item">Secondary</a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="{% url 'website-schools' 2 %}" class="dropdown-item">Primary Schools</a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="{% url 'website-schools' 1 %}" class="dropdown-item">Nursery Schools</a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="{% url 'register-school' %}" class="dropdown-item" style="background-color: red;">Apply to be listed</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item"><a href="{% url 'website-deos' %}" class="nav-link">D.E.Os</a>
+                                    </li>
+                                    <li class="nav-item"><a href="{% url 'website-teachers' %}" class="nav-link">Teachers</a>
+                                    </li>
+                                    <li class="nav-item"><a href="{% url 'website-resources' %}" class="nav-link">Resources</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a data-toggle="collapse" data-target="#Providers" href="#">Service Providers <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                        <ul id="Providers" class="collapse dropdown-header-top" style="margin-left: 15px;">
+                                            <li class="active">
+                                                <a href="{% url 'service-providers' 1 %}" class="dropdown-item">Lab Chemicals</a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="{% url 'service-providers' 2 %}" class="dropdown-item">Lab Equipment</a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="{% url 'service-providers' 3 %}" class="dropdown-item">Funiture & Fitting</a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="{% url 'service-providers' 4 %}" class="dropdown-item">Food</a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="{% url 'service-providers' 5 %}" class="dropdown-item">Stationary</a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="{% url 'service-providers' 6 %}" class="dropdown-item">Groceries</a>
+                                            </li>
+                                            <li class="active">
+                                                <a href="{% url 'apply' %}" class="dropdown-item" style="background-color: red;">Apply to be listed</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item"><a href="{% url 'website-communication' %}" class="nav-link">Communication</a>
+                                    </li>
+                                    <li class="nav-item"><a href="{% url 'covid19' %}" class="nav-link">COVID-19</a>
+                                    </li>
+                                    <li class="nav-item"><a href="{% url 'report' %}" class="nav-link">Report</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>                    
+                    <div class="col-sm-4 col-xs-4">
+                        <ul class="nav navbar-nav mai-top-nav header-right-menu">              
+                            <li class="nav-item">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                    <span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>
+                                    <span class="admin-name">{% if user.is_authenticated %}{{ user.first_name}}{% else %} Get Started{% endif %}</span>
+                                    <span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>
+                                </a>
+                                <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX">
+                                {% if user.is_authenticated %}
+                                    <li><a href="{% url 'profile' %}"><span class="adminpro-icon adminpro-home-admin author-log-ic"></span>My Account</a>
+                                    </li>
+                                    <li><a href="{% url 'update-profile' %}"><span class="adminpro-icon adminpro-user-rounded author-log-ic"></span>Update Profile</a>
+                                    </li>
+                                    <li><a href="{% url 'logout' %}"><span class="adminpro-icon adminpro-locked author-log-ic"></span>Log Out</a>
+                                    </li>
+                                    {% else %}
+                                    <li><a href="{% url 'register' %}"><span class="adminpro-icon adminpro-locked author-log-ic"></span>Register</a>
+                                    </li>
+                                    <li><a href="{% url 'login' %}"><span class="adminpro-icon adminpro-locked author-log-ic"></span>Login</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>                    
                 </div>
             </div>
         </div>

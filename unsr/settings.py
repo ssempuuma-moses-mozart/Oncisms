@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'c+sr%xq#=(ix^4^pny=n(%mo(sqhpz(#0cj_xl31ww#3460#!k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['www.unser.co.ug','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -142,3 +142,5 @@ PUBLIC_GROUP_ID = 3
 SCHOOL_GROUP_ID = 4
 TEACHER_GROUP_ID = 5
 MARKETING_GROUP_ID = 6
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
