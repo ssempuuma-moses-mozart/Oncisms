@@ -151,4 +151,3 @@ migrations/*
 __pycache__/*
 .idea/*
 settings.py
-mps/settings.py
