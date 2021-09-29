@@ -36,6 +36,16 @@ class TeacherTransferForm(forms.ModelForm):
 		model = TransferTeacher
 		fields =('teacher','school','date_transfered','date_valid','designation')
 
+class CommunicationCreateForm(forms.ModelForm):
+	class Meta:
+		model = Communication
+		fields =('topic','message','date','upload',)
+
+class DownloadResourceCreateForm(forms.ModelForm):
+	class Meta:
+		model = DownloadResource
+		fields =('topic','upload','date',)
+
 class UploadDistrict(forms.Form):
 	data_file = forms.FileField()
 

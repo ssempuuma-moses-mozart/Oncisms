@@ -2237,6 +2237,81 @@ def pie_chart(request):
         'data': data,
     })
 
+def communication(request):
+	if request.method == 'POST':
+		form = CommunicationCreateForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.instance.user = request.user
+			form.save()
+			messages.success(request, f'New communication has been published.')
+			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+	else:
+		form = CommunicationCreateForm()
+	context = {
+		'form':form,
+		'title':'Communication',
+		'submenu':'Communication',
+		'communications':Communication.objects.all()
+	}
+	return render(request, 'ministry/communication.html', context)
+
+def update_communication(request, pk):
+	com = Communication.objects.get(pk=pk)
+	if request.method == 'POST':
+		form = CommunicationCreateForm(request.POST, request.FILES, instance=com)
+		if form.is_valid():
+			form.instance.user = request.user
+			form.save()
+			messages.success(request, f'The communication has been updated.')
+			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+	else:
+		form = CommunicationCreateForm(instance=com)
+	context = {
+		'form':form,
+		'com':com,
+		'title':'Communication',
+		'submenu':'Communication',
+		'communications':Communication.objects.all()
+	}
+	return render(request, 'ministry/communication.html', context)
+
+def download_resource(request):
+	if request.method == 'POST':
+		form = DownloadResourceCreateForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.instance.user = request.user
+			form.save()
+			messages.success(request, f'New resource has been published.')
+			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+	else:
+		form = DownloadResourceCreateForm()
+	context = {
+		'form':form,
+		'title':'Communication',
+		'submenu':'Resources',
+		'resources':DownloadResource.objects.all()
+	}
+	return render(request, 'ministry/resources.html', context)
+
+def update_download_resource(request, pk):
+	resource = DownloadResource.objects.get(pk=pk)
+	if request.method == 'POST':
+		form = DownloadResourceCreateForm(request.POST, request.FILES, instance=resource)
+		if form.is_valid():
+			form.instance.user = request.user
+			form.save()
+			messages.success(request, f'The resource has been updated.')
+			return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+	else:
+		form = DownloadResourceCreateForm(instance=resource)
+	context = {
+		'form':form,
+		'title':'Communication',
+		'submenu':'Resources',
+		'resources':DownloadResource.objects.all()
+	}
+	return render(request, 'ministry/resources.html', context)
+
 class DistrictUploadView(FormView):
 	template_name = 'ministry/upload_record.html'
 	form_class = UploadDistrict

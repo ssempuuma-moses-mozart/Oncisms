@@ -60,3 +60,22 @@ class LockdownPackage(models.Model):
 	home_work = models.FileField(upload_to="lockdown_package")	
 	def __str__(self):
 		return f'{self.home_class} {self.subject} {self.topic}'
+
+class DownloadResource(models.Model):
+	topic = models.CharField(max_length = 200,)
+	date_created = models.DateTimeField(default=timezone.now)
+	date = models.DateField(default=timezone.now)
+	user = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True, )
+	upload = models.FileField(upload_to="resources")	
+	def __str__(self):
+		return self.topic
+
+class Communication(models.Model):
+	topic = models.CharField(max_length = 200,)
+	message = models.TextField(blank=True, null=True,)
+	date_created = models.DateTimeField(default=timezone.now)
+	date = models.DateField(default=timezone.now)
+	user = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True, )
+	upload = models.FileField(upload_to="resources", blank=True, null=True,)	
+	def __str__(self):
+		return self.topic

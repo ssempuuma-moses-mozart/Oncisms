@@ -377,10 +377,18 @@ def marketing(request):
 	return render(request, 'public/marketing.html', {'title': 'Marketing'})
 
 def communication(request):
-	return render(request, 'public/communication.html', {'title': 'Communication'})
+	context = {
+		'title': 'Communication',
+		'communications':Communication.objects.all().order_by('-id')[:500]
+		}
+	return render(request, 'public/communication.html', context)
 
 def resources(request):
-	return render(request, 'public/resources.html', {'title': 'Resources'})
+	context = {
+		'title':'Resources',
+		'resources':DownloadResource.objects.all().order_by('-id')[:500]
+	}
+	return render(request, 'public/resources.html', context)
 
 def settings(request):
 	return render(request, 'public/settings.html', {'title': 'Settings'})

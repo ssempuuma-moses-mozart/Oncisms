@@ -205,7 +205,7 @@
                         </li>
                         <li class="{% if title == 'Results'  %} active {% endif %}"><a data-toggle="tab" href="#results"><i class="fa fa-pencil"></i> Results</a>
                         </li>
-                        <li class="{% if title == 'Inbox'  %} active {% endif %}"><a data-toggle="tab" href="#inbox"><i class="fa fa-envelope"></i> Inbox</a>
+                        <li class="{% if title == 'Communication'  %} active {% endif %}"><a data-toggle="tab" href="#inbox"><i class="fa fa-envelope"></i> Communication</a>
                         </li>
                         <li class="{% if title == 'Settings'  %} active {% endif %}"><a data-toggle="tab" href="#settings"><i class="fa fa-gear"></i></a>
                         </li>
@@ -337,13 +337,11 @@
                                 </li>
                             </ul>
                         </div>
-                        <div id="inbox" class="tab-pane {% if title == 'Inbox'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
+                        <div id="inbox" class="tab-pane {% if title == 'Communication'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
-                                <li><a href="{% url 'ministry-home' %}">Compose</a>
+                                <li><a href="{% url 'communication' %}" {% if submenu == 'Communication' %}  style="background: red; color: white;" {% endif %}>Communication</a>
                                 </li>
-                                <li><a href="{% url 'ministry-home' %}">Inbox</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home' %}">Send</a>
+                                <li><a href="{% url 'download-resource' %}" {% if submenu == 'Resources' %}  style="background: red; color: white;" {% endif %}>Resources</a>
                                 </li>
                             </ul>
                         </div>

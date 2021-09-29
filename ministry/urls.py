@@ -136,9 +136,11 @@ urlpatterns = [
     path('marketing/product-status/<int:pk>/update/', ProductStatusUpdateView.as_view(), name='update-product-status'),
 
     # Communication related urls-----------------------------------------------------------------------------
-    path('communication/', views.communication, name='strack-communication'),
+    path('communication/', views.communication, name='communication'),
+    path('resource/', views.download_resource, name='download-resource'),
     # Settings related urls-----------------------------------------------------------------------------
     path('settings/', views.settings, name='strack-settings'),
     path('subjects/', SubjectCreateView.as_view(), name='subject'),
     path('subjects/<int:pk>/update/', SubjectUpdateView.as_view(), name='update-subject'),
+
 ]
