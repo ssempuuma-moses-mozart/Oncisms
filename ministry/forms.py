@@ -70,7 +70,7 @@ class UploadUACE(forms.Form):
 		for record in reader:
 			school = None
 			if record['school'] != '':
-				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['school']))
+				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['district']))
 			if school:
 				SchoolRankUACE.objects.create(rank=record['rank'], school=school, number=record['number'], year=record['year'],)
 

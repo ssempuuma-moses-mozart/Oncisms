@@ -367,16 +367,16 @@
                                     <li class="nav-item"><a href="{% url 'report' %}" class="nav-link">Report Case</a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a data-toggle="collapse" data-target="#Communication" href="#">UNEB Results <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
-                                        <ul id="Communication" class="collapse dropdown-header-top" style="margin-left: 15px;">
+                                        <a data-toggle="collapse" data-target="#theresults" href="#">UNEB Results <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
+                                        <ul id="theresults" class="collapse dropdown-header-top" style="margin-left: 15px;">
                                             <li class="active">
-                                                <a href="{% url 'website-resources' %}" class="dropdown-item">UACE</a>
+                                                <a href="{% url 'results-uace' %}" class="dropdown-item">UACE</a>
                                             </li>
                                             <li class="active">
-                                                <a href="{% url 'website-communication' %}" class="dropdown-item">UCE</a>
+                                                <a href="{% url 'results-uce' %}" class="dropdown-item">UCE</a>
                                             </li>
                                             <li class="active">
-                                                <a href="" class="dropdown-item">PLE</a>
+                                                <a href="{% url 'results-ple' %}" class="dropdown-item">PLE</a>
                                             </li>
                                         </ul>
                                     </li>
