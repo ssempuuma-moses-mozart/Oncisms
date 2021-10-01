@@ -48,10 +48,10 @@
                                 </thead>
                                 <tbody>
                                 {% for result in results %}
-                                    <tr class='clickable-row' data-href='{% url 'school' result.school.id %}'>
+                                    <tr>
                                         <td></td>
                                         <td>{{result.rank}}</td>
-                                        <td><a href="{% url 'school' result.school.id %}" >{{result.school}}</a></td>
+                                        <td><a href="{% url 'school' result.school.id %}" style="color: #0b76f8; font-weight: bold;">{{result.school}}</a></td>
                                         <td>{{result.div1}}</td>
                                         <td>{{result.div2}}</td>
                                         <td>{{result.div3}}</td>

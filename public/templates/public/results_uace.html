@@ -13,11 +13,8 @@
                                     <div class="row">
                                     <div class="col-lg-6">
                                     <select name="year" id="" class="form-control">
-                                        {% if year == 2020 %}
-                                        <option value="2020" selected>2020</option>
-                                        {% else %}
-                                        <option value="2019" selected>2019</option>
-                                        {% endif %}
+                                        <option value="2020">2020</option>
+                                        <option value="2019">2019</option>
                                     </select>
                                     </div>
                                     <div class="col-lg-3">
@@ -52,7 +49,7 @@
                                     <tr>
                                         <td></td>
                                         <td>{{result.rank}}</td>
-                                        <td><a href="{% url 'school' result.school.id %}" style="color: blue; font-weight: bold;">{{result.school}}</a></td>
+                                        <td><a href="{% url 'school' result.school.id %}" style="color: #0b76f8; font-weight: bold;">{{result.school}}</a></td>
                                         <td>{{result.number}}</td>
                                     </tr>
                                 {% endfor %}
