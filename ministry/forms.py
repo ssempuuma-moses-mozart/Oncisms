@@ -83,7 +83,7 @@ class UploadUCE(forms.Form):
 		for record in reader:
 			school = None
 			if record['school'] != '':
-				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['school']))
+				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['district']))
 			if school:
 				SchoolRankUCE.objects.create(rank=record['rank'], school=school, div1=record['div1'], div2=record['div2'], div3=record['div3'], div4=record['div4'], year=record['year'],)
 
@@ -96,7 +96,7 @@ class UploadUPE(forms.Form):
 		for record in reader:
 			school = None
 			if record['school'] != '':
-				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['school']))
+				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['district']))
 			if school:
 				SchoolRankUPE.objects.create(rank=record['rank'], school=school, div1=record['div1'], div2=record['div2'], div3=record['div3'], div4=record['div4'], year=record['year'],)
 
