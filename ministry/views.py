@@ -2383,3 +2383,30 @@ class ServiceProviderUploadView(FormView):
 	def form_valid(self, form):
 		form.process_data()
 		return super().form_valid(form)
+
+class UACEUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadUACE
+	success_url = '/ministry/upload_uace/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)
+
+class UCEUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadUCE
+	success_url = '/ministry/upload_uce/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)
+
+class UPEUploadView(FormView):
+	template_name = 'ministry/upload_record.html'
+	form_class = UploadUPE
+	success_url = '/ministry/upload_upe/'
+
+	def form_valid(self, form):
+		form.process_data()
+		return super().form_valid(form)

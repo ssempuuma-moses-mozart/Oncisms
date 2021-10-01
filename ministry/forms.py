@@ -61,6 +61,45 @@ class UploadDistrict(forms.Form):
 				region = Region.objects.get(pk = 1)
 			District.objects.create(dis_name=record['dis_name'], region=region )
 
+class UploadUACE(forms.Form):
+	data_file = forms.FileField()
+	def process_data(self):
+		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+		reader = csv.DictReader(f)
+
+		for record in reader:
+			school = None
+			if record['school'] != '':
+				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['school']))
+			if school:
+				SchoolRankUACE.objects.create(rank=record['rank'], school=school, number=record['number'], year=record['year'],)
+
+class UploadUCE(forms.Form):
+	data_file = forms.FileField()
+	def process_data(self):
+		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+		reader = csv.DictReader(f)
+
+		for record in reader:
+			school = None
+			if record['school'] != '':
+				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['school']))
+			if school:
+				SchoolRankUCE.objects.create(rank=record['rank'], school=school, div1=record['div1'], div2=record['div2'], div3=record['div3'], div4=record['div4'], year=record['year'],)
+
+class UploadUPE(forms.Form):
+	data_file = forms.FileField()
+	def process_data(self):
+		f = io.TextIOWrapper(self.cleaned_data['data_file'].file)
+		reader = csv.DictReader(f)
+
+		for record in reader:
+			school = None
+			if record['school'] != '':
+				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['school']))
+			if school:
+				SchoolRankUPE.objects.create(rank=record['rank'], school=school, div1=record['div1'], div2=record['div2'], div3=record['div3'], div4=record['div4'], year=record['year'],)
+
 class UploadCounty(forms.Form):
 	data_file = forms.FileField()
 

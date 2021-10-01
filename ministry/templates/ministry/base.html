@@ -331,9 +331,9 @@
                             <ul class="main-menu-dropdown">
                                 <li><a href="{% url 'ministry-home' %}">Add Product</a>
                                 </li>
-                                <li><a href="{% url 'ministry-home' %}">My Peoducts</a>
+                                <li><a href="{% url 'ministry-home' %}">My Products</a>
                                 </li>
-                                <li><a href="{% url 'ministry-home' %}">Peoducts On Sale</a>
+                                <li><a href="{% url 'ministry-home' %}">Products On Sale</a>
                                 </li>
                             </ul>
                         </div>
@@ -487,90 +487,19 @@
                     <ul class="mobile-menu-nav">
                     {% if request.user|has_group:"Ministry" %}
                         <li><a data-toggle="collapse" data-target="#Home" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-
                             <ul id="Home" class="collapse dropdown-header-top">
-                                <li class="active" ><a href="">Home</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a data-toggle="collapse" data-target="#acades" href="#">Acades <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                            <ul id="acades" class="collapse dropdown-header-top">
-                                <li><a href="{% url 'ministry-home'  %}">Add Acade</a></li>
-                                <li><a href="{% url 'ministry-home'  %}">View Acades</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a data-toggle="collapse" data-target="#rooms" href="#">Rooms <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul id="rooms" class="collapse dropdown-header-top">
-                                <li><a href="{% url 'ministry-home'  %}">Add Room</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">All Rooms</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">Free Rooms</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">Occupied Rooms</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">Unavailable Rooms</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">Booking Requests</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li><a data-toggle="collapse" data-target="#owners" href="#">Owner <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                        <ul id="owners" class="collapse dropdown-header-top">
-                                <li><a href="{% url 'ministry-home'  %}">Add Owner</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">All Owners</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">Current Owners</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">Previous Owners</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a data-toggle="collapse" data-target="#tenants" href="#">Tenants <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                            <ul id="tenants" class="collapse dropdown-header-top">
-                                <li><a href="{% url 'ministry-home'  %}">Booking Requests</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">Pending Bookings</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">Rejected Bookings</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">All Tenants</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">Current Tenants</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home'  %}">Previous Tenants</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li><a data-toggle="collapse" data-target="#rents" href="#">Rent <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                            <ul id="rents" class="collapse dropdown-header-top">
-                                <li><a href="{% url 'ministry-home' %}">Add Rent</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home' %}">View Rent</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a data-toggle="collapse" data-target="#employees" href="#">Employees <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                            <ul id="employees" class="collapse dropdown-header-top">
-                                <li><a href="{% url 'ministry-home' %}">Add Employee</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home' %}">All Employees</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a data-toggle="collapse" data-target="#bills" href="#">Bills <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
-                            <ul id="bills" class="collapse dropdown-header-top">
-                                <li><a href="{% url 'ministry-home' %}">Add Bill</a>
-                                </li>
-                                <li><a href="{% url 'ministry-home' %}">All Bills</a>
+                                <li class="active" ><a href="{% url 'ministry-home'  %}">Home</a>
                                 </li>
                             </ul>
                         </li>
                     {% elif request.user|has_group:"School" %}
+                    <li><a data-toggle="collapse" data-target="#Home" href="#">Home <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+
+                        <ul id="Home" class="collapse dropdown-header-top">
+                            <li class="active" ><a href="{% url 'school-home'  %}">Home</a>
+                            </li>
+                        </ul>
+                    </li>
                     {% endif %}
 
 
@@ -710,20 +639,8 @@
                     </div>
                     <div class="chat-content chat-scrollbar">
                         <div class="author-chat">
-                            <h3>Monica <span class="chat-date">10:15 am</span></h3>
-                            <p>Hi, what you are doing and where are you gay?</p>
-                        </div>
-                        <div class="client-chat">
-                            <h3>Mamun <span class="chat-date">10:10 am</span></h3>
-                            <p>Now working in graphic design with coding and you?</p>
-                        </div>
-                        <div class="author-chat">
-                            <h3>Monica <span class="chat-date">10:05 am</span></h3>
-                            <p>Practice in programming</p>
-                        </div>
-                        <div class="client-chat">
-                            <h3>Mamun <span class="chat-date">10:02 am</span></h3>
-                            <p>That's good man! carry on...</p>
+                            <h3>UNSER <span class="chat-date">Now</span></h3>
+                            <p>Hello.....</p>
                         </div>
                     </div>
                     <div class="chat-send">

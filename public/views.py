@@ -50,6 +50,28 @@ def schools(request, pk):
 	}
 	return render(request, 'public/schools.html', context)
 
+def university(request, pk):
+	item = District.objects.first()
+	if request.GET.get('dist', None):
+		dis_id=request.GET.get('dist', None)
+		item = District.objects.get(pk=dis_id)
+	level = Level.objects.get(pk=pk)
+	schools = School.objects.filter(level=level, parish__district=item)
+	records = District.objects.annotate(total_schools=Count('parish__school'))
+	context = {
+	'title': 'Schools',
+	'head': 'in',
+	'sub_title': 'District',
+	'link': 'dist',
+	'side_title': 'Districts',
+	'schools':schools,
+	'records':records,
+	'level':level,
+	'item':item,
+
+	}
+	return render(request, 'public/schools.html', context)
+
 def operation_status(request, pk):
 	item = Schtype.objects.first()
 	if request.GET.get('status', None):
@@ -372,6 +394,45 @@ def covid19_downloads(request, pk):
 
 def results(request):
 	return render(request, 'public/results.html', {'title': 'UNEB Results'})
+
+def uace_results(request):
+	year = 2020
+	if request.GET.get('year', None):
+		year = request.GET.get('year', None)
+	the_results = SchoolRankUACE.objects.filter(year=year).order_by('rank')[:500]
+	context = {
+		'title': 'UNEB Results',
+		'results':the_results,
+		'year':year,
+	}
+	return render(request, 'public/results_uace.html', context)
+
+def uce_results(request):
+	year = 2020
+	if request.GET.get('year', None):
+		year = request.GET.get('year', None)
+	the_results = SchoolRankUCE.objects.filter(year=year).order_by('rank')[:500]
+
+	context = {
+		'title': 'UNEB Results',
+		'head': 'UCE',
+		'results':the_results,
+		'year':year
+	}
+	return render(request, 'public/results_uce.html', context)
+
+def ple_results(request):
+	year = 2020
+	if request.GET.get('year', None):
+		year = request.GET.get('year', None)
+	the_results = SchoolRankPLE.objects.filter(year=2020).order_by('rank')[:500]
+	context = {
+		'title': 'UNEB Results',
+		'head': 'PLE',
+		'results':the_results,
+		'year':year
+	}
+	return render(request, 'public/results_uce.html', context)
 
 def marketing(request):
 	return render(request, 'public/marketing.html', {'title': 'Marketing'})
