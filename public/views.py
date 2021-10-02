@@ -425,7 +425,7 @@ def ple_results(request):
 	year = 2020
 	if request.GET.get('year', None):
 		year = request.GET.get('year', None)
-	the_results = SchoolRankPLE.objects.filter(year=2020).order_by('rank')[:500]
+	the_results = SchoolRankPLE.objects.filter(year=year).order_by('rank')[:500]
 	context = {
 		'title': 'UNEB Results',
 		'head': 'PLE',
