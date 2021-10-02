@@ -68,11 +68,7 @@ class UploadUACE(forms.Form):
 		reader = csv.DictReader(f)
 
 		for record in reader:
-			school = None
-			if record['school'] != '':
-				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['district']))
-			if school:
-				SchoolRankUACE.objects.create(rank=record['rank'], school=school, number=record['number'], year=record['year'],)
+			SchoolRankUACE.objects.create(rank=record['rank'], school=record['school'], number=record['number'], year=record['year'],)
 
 class UploadUCE(forms.Form):
 	data_file = forms.FileField()
@@ -81,11 +77,7 @@ class UploadUCE(forms.Form):
 		reader = csv.DictReader(f)
 
 		for record in reader:
-			school = None
-			if record['school'] != '':
-				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['district']))
-			if school:
-				SchoolRankUCE.objects.create(rank=record['rank'], school=school, div1=record['div1'], div2=record['div2'], div3=record['div3'], div4=record['div4'], year=record['year'],)
+			SchoolRankUCE.objects.create(rank=record['rank'], school=record['school'], div1=record['div1'], div2=record['div2'], div3=record['div3'], div4=record['div4'], year=record['year'],)
 
 class UploadUPE(forms.Form):
 	data_file = forms.FileField()
@@ -94,11 +86,7 @@ class UploadUPE(forms.Form):
 		reader = csv.DictReader(f)
 
 		for record in reader:
-			school = None
-			if record['school'] != '':
-				school = School.objects.get(name = (record['school']), parish__district__dis_name = (record['district']))
-			if school:
-				SchoolRankUPE.objects.create(rank=record['rank'], school=school, div1=record['div1'], div2=record['div2'], div3=record['div3'], div4=record['div4'], year=record['year'],)
+			SchoolRankPLE.objects.create(rank=record['rank'], school=record['school'], div1=record['div1'], div2=record['div2'], div3=record['div3'], div4=record['div4'], year=record['year'],)
 
 class UploadCounty(forms.Form):
 	data_file = forms.FileField()

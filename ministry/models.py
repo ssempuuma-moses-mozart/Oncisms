@@ -370,7 +370,7 @@ class SchoolRankPLE(models.Model):
 	div3 = models.IntegerField()
 	div4 = models.IntegerField()
 	year = models.IntegerField()
-	school = models.ForeignKey(School, on_delete = models.CASCADE)
+	school = models.CharField(max_length=200)
 	def __str__(self):
 		return f'{self.school}'
 
@@ -381,7 +381,7 @@ class SchoolRankUCE(models.Model):
 	div3 = models.IntegerField()
 	div4 = models.IntegerField()
 	year = models.IntegerField()
-	school = models.ForeignKey(School, on_delete = models.CASCADE)
+	school = models.CharField(max_length=200)
 	def __str__(self):
 		return f'{self.school}'
 
@@ -389,7 +389,7 @@ class SchoolRankUACE(models.Model):
 	rank = models.IntegerField()
 	number = models.IntegerField()
 	year = models.IntegerField()
-	school = models.ForeignKey(School, on_delete = models.CASCADE)
+	school = models.CharField(max_length=200)
 	def __str__(self):
 		return f'{self.school}'
 
