@@ -64,6 +64,12 @@
     <!-- modernizr JS
         ============================================ -->
     <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+ <!-- MegaMenu Css Files
+        ============================================ -->
+   <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
     <!-- Color Css Files
         ============================================ -->
     <link rel="alternate stylesheet" type="text/css" href="{% static 'css/switcher/color-one.css' %}" title="color-one" media="screen" />
@@ -183,80 +189,424 @@
     ::-webkit-scrollbar-thumb:hover {
         background: darkslategray;
     }
+
+
+
 </style>
 
 <body id="body">
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-    <!-- Header top area start-->
-    <div class="header-top-area">
-        <div style="width:100%;">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <a href="#" class=""><img src="{% static 'img/ug.png' %}" alt="" 
-                    style="width:100%;"></a>
-                    <a href="#" class=""><img src="{% static 'img/81.png' %}" alt="" 
-                    style="width:100%;"></a>
-                    
-                </div>
-            </div>
-        </div>
+
+ <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top" style="background-color: green;">
+    <div class="container d-flex justify-content-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope" style="color: black;"></i>info@globalautosystems.co.ug</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="bi bi-phone"></i>+256 755 582 279
+      </div>
+      <div class="d-none d-lg-flex social-links align-items-center">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div>
     </div>
+  </div>
+
+
     <div class="header-top-area">
         <div class="">
-            <div class="row main-menu-area">
+            <div class="row main-menu-area" style="margin-left: 100px;">
                 <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
                     <div class="header-top-menu">
+                    
                         <ul role="menu" class="nav navbar-nav mai-top-nav">
+                       
+                          <li class="nav-item"><a href="#" class="nav-link" style="color: blue; font-size: 21px;">ONCIMS</a>
+                          </li>
+                
+                    
                             <li class="nav-item"><a href="{% url 'website-home'%}" class="nav-link">Home</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Schools <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
-                                <div role="menu" class="dropdown-menu">
-                                    <a href="{% url 'website-schools' 5 %}" class="dropdown-item">Universities</a>
-                                    <a href="{% url 'website-schools' 4 %}" class="dropdown-item">Tertiary Institutions</a>
-                                    <a href="{% url 'website-schools' 3 %}" class="dropdown-item">Secondary</a>
-                                    <a href="{% url 'website-schools' 2 %}" class="dropdown-item">Primary Schools</a>
-                                    <a href="{% url 'website-schools' 1 %}" class="dropdown-item">Nursery Schools</a>
-                                    <a href="{% url 'register-school' %}" class="dropdown-item" style="background-color: red;">Apply to be listed</a>
-                                </div>
-                            </li>
-                            <li class="nav-item"><a href="{% url 'website-deos' %}" class="nav-link">D.E.Os</a>
-                            </li>
+                            <ul class="nav navbar-nav">
+
+                                <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Service </a>
+                                    <ul class="dropdown-menu megamenu" style="width: 16cm; background-color: green; margin-top: 8px;">
+                                      <div class="container">
+                                        <div class="row flex-grow-1">
+                                          <li class="col-md-2 dropdown-item">
+                                            <ul>
+                                              <li class="dropdown-header">Glyphicons</li>
+                                              <li><a href="#">Available glyphs</a>
+                                              </li>
+                                              <li class="disabled"><a href="#">How to use</a>
+                                              </li>
+                                              <li><a href="#">Examples</a>
+                                              </li>
+                                              <li class="divider" style="width: 5cm;"></li>
+                                              <li class="dropdown-header">Dropdowns</li>
+                                              <li><a href="#">Aligninment options</a>
+                                              </li>
+                                              <li><a href="#">Headers</a>
+                                              </li>
+                                              <li><a href="#">Disabled menu items</a>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                          <li class="col-md-2 dropdown-item">
+                                            <ul>
+                                              <li class="dropdown-header">Button groups</li>
+                                              <li><a href="#">Basic example</a>
+                                              </li>
+                                              <li><a href="#">Button toolbar</a>
+                                              </li>
+                                              <li><a href="#">Sizing</a>
+                                              </li>
+                                              <li><a href="#">Nesting</a>
+                                              </li>
+                                              <li><a href="#">Vertical variation</a>
+                                              </li>
+                                              <li class="divider" style="width: 5cm;"></li>
+                                              <li class="dropdown-header">Button dropdowns</li>
+                                              <li><a href="#">Single</a>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                          <li class="col-md-2 dropdown-item">
+                                            <ul>
+                                              <li class="dropdown-header">Input groups</li>
+                                              <li><a href="#">Basic example</a>
+                                              </li>
+                                              <li><a href="#">Sizing</a>
+                                              </li>
+                                              <li><a href="#">Checkboxes</a>
+                                              </li>
+                                              <li class="divider" style="width: 5cm;"></li>
+                                              <li class="dropdown-header">Navs</li>
+                                              <li><a href="#">Tabs</a>
+                                              </li>
+                                              <li><a href="#">Pills</a>
+                                              </li>
+                                              <li><a href="#">Justified</a>
+                                              </li>
+                                            </ul>
+                                          </li>
+                                     
+                                        </div>
+                                      </div>
+                                    </ul>
+                                  </li>
+                           
+                            </ul>
+
+                            <ul class="nav navbar-nav">
+                                   
+                              <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">D.E.os </a>
+                                <ul class="dropdown-menu megamenu" style="width: 16cm; background-color: green; margin-top: 8px;">
+                                  <div class="container">
+                                    <div class="row flex-grow-1">
+                                      <li class="col-md-2 dropdown-item">
+                                        <ul>
+                                          <li class="dropdown-header">Glyphicons</li>
+                                          <li><a href="#">Available glyphs</a>
+                                          </li>
+                                          <li class="disabled"><a href="#">How to use</a>
+                                          </li>
+                                          <li><a href="#">Examples</a>
+                                          </li>
+                                          <li class="divider" style="width: 5cm;"></li>
+                                          <li class="dropdown-header">Dropdowns</li>
+                                          <li><a href="#">Aligninment options</a>
+                                          </li>
+                                        
+                                        </ul>
+                                      </li>
+                                      <li class="col-md-2 dropdown-item">
+                                        <ul>
+                                          <li class="dropdown-header">Button groups</li>
+                                          <li><a href="#">Basic example</a>
+                                          </li>
+                                          <li><a href="#">Button toolbar</a>
+                                          </li>
+                                          <li><a href="#">Vertical variation</a>
+                                          </li>
+                                          <li class="divider" style="width: 5cm"></li>
+                                          <li class="dropdown-header">Button dropdowns</li>
+                                          <li><a href="#">Single</a>
+                                          </li>
+                                        </ul>
+                                      </li>
+                                      <li class="col-md-2 dropdown-item">
+                                        <ul>
+                                          <li class="dropdown-header">Button groups</li>
+                                          <li><a href="#">Basic example</a>
+                                          </li>
+                                          <li><a href="#">Button toolbar</a>
+                                          </li>
+                                          <li><a href="#">Vertical variation</a>
+                                          </li>
+                                          <li class="divider" style="width: 5cm"></li>
+                                          <li class="dropdown-header">Button dropdowns</li>
+                                          <li><a href="#">Single</a>
+                                          </li>
+                                        </ul>
+                                      </li>
+                                     
+                                 
+                                    </div>
+                                  </div>
+                                </ul>
+                              </li>
+                            </ul>
+
                             <li class="nav-item"><a href="{% url 'website-teachers' %}" class="nav-link">Teachers</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Service Providers <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
-                                <div role="menu" class="dropdown-menu">
-                                    <a href="{% url 'service-providers' 1 %}" class="dropdown-item">Lab Chemicals</a>
-                                    <a href="{% url 'service-providers' 2 %}" class="dropdown-item">Lab Equipment</a>
-                                    <a href="{% url 'service-providers' 3 %}" class="dropdown-item">Furniture & Fitting</a>
-                                    <a href="{% url 'service-providers' 4 %}" class="dropdown-item">Food</a>
-                                    <a href="{% url 'service-providers' 5 %}" class="dropdown-item">Stationery</a>
-                                    <a href="{% url 'apply' %}" class="dropdown-item" style="background-color: red;">Apply to be listed</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Communication <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
-                                <div role="menu" class="dropdown-menu">
-                                    <a href="{% url 'website-resources' %}" class="dropdown-item">Resources</a>
-                                    <a href="{% url 'website-communication' %}" class="dropdown-item">Messages</a>
-                                    <a href="" class="dropdown-item">News and Events</a>
-                                </div>
-                            </li>
-                            <li class="nav-item"><a href="{% url 'covid19' %}" class="nav-link">Learning Materials</a>
-                            </li>
-                            <li class="nav-item"><a href="{% url 'report' %}" class="nav-link">Report Case</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">UNEB Results <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
-                                <div role="menu" class="dropdown-menu">
-                                    <a href="{% url 'results-uace' %}" class="dropdown-item">UACE</a>
-                                    <a href="{% url 'results-uce' %}" class="dropdown-item">UCE</a>
-                                    <a href="{% url 'results-ple' %}" class="dropdown-item">PLE</a>
-                                </div>
-                            </li>
+                        
+
+                                <ul class="nav navbar-nav">
+                                   
+                                    <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Service Providers </a>
+                                      <ul class="dropdown-menu megamenu" style="width: 16cm; background-color: green; margin-top: 8px;">
+                                        <div class="container">
+                                          <div class="row flex-grow-1">
+                                            <li class="col-md-2 dropdown-item">
+                                              <ul>
+                                                <li class="dropdown-header">Glyphicons</li>
+                                                <li><a href="#">Available glyphs</a>
+                                                </li>
+                                                <li class="disabled"><a href="#">How to use</a>
+                                                </li>
+                                                <li><a href="#">Examples</a>
+                                                </li>
+                                                <li class="divider" style="width: 5cm;"></li>
+                                                <li class="dropdown-header">Dropdowns</li>
+                                                <li><a href="#">Aligninment options</a>
+                                                </li>
+                                                <li><a href="#">Headers</a>
+                                                </li>
+                                                <li><a href="#">Disabled menu items</a>
+                                                </li>
+                                              </ul>
+                                            </li>
+                                            <li class="col-md-2 dropdown-item">
+                                              <ul>
+                                                <li class="dropdown-header">Button groups</li>
+                                                <li><a href="#">Basic example</a>
+                                                </li>
+                                                <li><a href="#">Button toolbar</a>
+                                                </li>
+                                                <li><a href="#">Sizing</a>
+                                                </li>
+                                                <li><a href="#">Nesting</a>
+                                                </li>
+                                                <li><a href="#">Vertical variation</a>
+                                                </li>
+                                                <li class="divider" style="width: 5cm;"></li>
+                                                <li class="dropdown-header">Button dropdowns</li>
+                                                <li><a href="#">Single</a>
+                                                </li>
+                                              </ul>
+                                            </li>
+                                            <li class="col-md-2 dropdown-item">
+                                              <ul>
+                                                <li class="dropdown-header">Input groups</li>
+                                                <li><a href="#">Basic example</a>
+                                                </li>
+                                                <li><a href="#">Sizing</a>
+                                                </li>
+                                                <li><a href="#">Checkboxes</a>
+                                                </li>
+                                                <li class="divider" style="width: 5cm;"></li>
+                                                <li class="dropdown-header">Navs</li>
+                                                <li><a href="#">Tabs</a>
+                                                </li>
+                                                <li><a href="#">Pills</a>
+                                                </li>
+                                                <li><a href="#">Justified</a>
+                                                </li>
+                                              </ul>
+                                            </li>
+                                       
+                                          </div>
+                                        </div>
+                                      </ul>
+                                    </li>
+                                  </ul>
+
+
+                       
+                            <!-- <ul class="nav navbar-nav">
+                                   
+                                <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Communications </a>
+                                  <ul class="dropdown-menu megamenu" style="width: 11cm; background-color: green; margin-top: 8px;">
+                                    <div class="container">
+                                      <div class="row flex-grow-1">
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header">Glyphicons</li>
+                                            <li><a href="#">Available glyphs</a>
+                                            </li>
+                                            <li class="disabled"><a href="#">How to use</a>
+                                            </li>
+                                            <li><a href="#">Examples</a>
+                                            </li>
+                                            <li class="divider" style="width: 5cm;"></li>
+                                            <li class="dropdown-header">Dropdowns</li>
+                                            <li><a href="#">Aligninment options</a>
+                                            </li>
+                                          
+                                          </ul>
+                                        </li>
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header">Button groups</li>
+                                            <li><a href="#">Basic example</a>
+                                            </li>
+                                            <li><a href="#">Button toolbar</a>
+                                            </li>
+                                            <li><a href="#">Vertical variation</a>
+                                            </li>
+                                            <li class="divider" style="width: 5cm"></li>
+                                            <li class="dropdown-header">Button dropdowns</li>
+                                            <li><a href="#">Single</a>
+                                            </li>
+                                          </ul>
+                                        </li>
+                                       
+                                   
+                                      </div>
+                                    </div>
+                                  </ul>
+                                </li>
+                              </ul>
+ -->
+
+
+                              <ul class="nav navbar-nav">
+                                   
+                                <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Learning Materials </a>
+                                  <ul class="dropdown-menu megamenu" style="width: 11cm; background-color: green; margin-top: 8px;">
+                                    <div class="container">
+                                      <div class="row flex-grow-1">
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header">Glyphicons</li>
+                                            <li><a href="#">Available glyphs</a>
+                                            </li>
+                                            <li class="disabled"><a href="#">How to use</a>
+                                            </li>
+                                            <li><a href="#">Examples</a>
+                                            </li>
+                                            <li class="divider" style="width: 5cm;"></li>
+                                            <li class="dropdown-header">Dropdowns</li>
+                                            <li><a href="#">Aligninment options</a>
+                                            </li>
+                                          
+                                          </ul>
+                                        </li>
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header">Button groups</li>
+                                            <li><a href="#">Basic example</a>
+                                            </li>
+                                            <li><a href="#">Button toolbar</a>
+                                            </li>
+                                            <li><a href="#">Vertical variation</a>
+                                            </li>
+                                            <li class="divider" style="width: 5cm"></li>
+                                            <li class="dropdown-header">Button dropdowns</li>
+                                            <li><a href="#">Single</a>
+                                            </li>
+                                          </ul>
+                                        </li>
+                                       
+                                   
+                                      </div>
+                                    </div>
+                                  </ul>
+                                </li>
+                              </ul>
+                                         
+                            <ul class="nav navbar-nav">
+                                   
+                              <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Report Case </a>
+                                <ul class="dropdown-menu megamenu" style="width: 11cm; background-color: green; margin-top: 8px;">
+                                  <div class="container">
+                                    <div class="row flex-grow-1">
+                                      <li class="col-md-2 dropdown-item">
+                                        <ul>
+                                          <li class="dropdown-header">Glyphicons</li>
+                                          <li><a href="#">Available glyphs</a>
+                                          </li>
+                                          <li class="disabled"><a href="#">How to use</a>
+                                          </li>
+                                          <li><a href="#">Examples</a>
+                                          </li>
+                                          <li class="divider" style="width: 5cm;"></li>
+                                         
+                                        </ul>
+                                      </li>
+                                      <li class="col-md-2 dropdown-item">
+                                        <ul>
+                                          <li class="dropdown-header">Button groups</li>
+                                          <li><a href="#">Basic example</a>
+                                          </li>
+                                          <li><a href="#">Button toolbar</a>
+                                          </li>
+                                          <li><a href="#">Vertical variation</a>
+                                          </li>
+                                          <li class="divider" style="width: 5cm;"></li>
+                                        </ul>
+                                      </li>
+                                     
+                                 
+                                    </div>
+                                  </div>
+                                </ul>
+                              </li>
+                            </ul>
+                          
+                            
+                            <ul class="nav navbar-nav">
+                                   
+                              <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">UNEBU Results </a>
+                                <ul class="dropdown-menu megamenu" style="width: 11cm; background-color: green; margin-top: 8px;">
+                                  <div class="container">
+                                    <div class="row flex-grow-1">
+                                      <li class="col-md-2 dropdown-item">
+                                        <ul>
+                                          <li class="dropdown-header">Glyphicons</li>
+                                          <li><a href="#">Available glyphs</a>
+                                          </li>
+                                          <li class="disabled"><a href="#">How to use</a>
+                                          </li>
+                                          <li><a href="#">Examples</a>
+                                          </li>
+                                          <li class="divider" style="width: 5cm;"></li>
+                                         
+                                        </ul>
+                                      </li>
+                                      <li class="col-md-2 dropdown-item">
+                                        <ul>
+                                          <li class="dropdown-header">Button groups</li>
+                                          <li><a href="#">Basic example</a>
+                                          </li>
+                                          <li><a href="#">Button toolbar</a>
+                                          </li>
+                                          <li><a href="#">Vertical variation</a>
+                                          </li>
+                                          <li class="divider" style="width: 5cm;"></li>
+                                        </ul>
+                                      </li>
+                                     
+                                 
+                                    </div>
+                                  </div>
+                                </ul>
+                              </li>
+                            </ul>
                         </ul>
                     </div>
                 </div>
@@ -413,8 +763,28 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     <!-- Header top area end-->
+
+
+      
+    <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top" style="background-color: green;">
+    <div class="container d-flex justify-content-between">
+      <div class="contact-info d-flex align-items-center">
+        
+        <i class="bi bi-phone"></i>&nbsp;
+      </div>
+      <div class="d-none d-lg-flex social-links align-items-center">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div>
+    </div>
+  </div>
+
+
     <div class="container">
     <div class="row">
     <div class="col-lg-12">
@@ -570,6 +940,11 @@
         }
       });
     });
+
+
+    jQuery(document).on('click', '.mega-dropdown', function(e) {
+  e.stopPropagation()
+});
     </script>
 </body>
 

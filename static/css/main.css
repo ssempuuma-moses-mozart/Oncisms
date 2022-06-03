@@ -278,3 +278,173 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+
+/* Submenu */
+.site-header .main-navigation ul li ul {
+	left: 0;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transform: scaleY(0);
+	transform: scaleY(0);
+	position: absolute;
+	top: 100%;
+	-webkit-transform-origin: 0 0 0;
+	transform-origin: 0 0 0;
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	z-index: 99 !important;
+	width: 210px;
+	text-align: left;
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.site-header .main-navigation ul li ul.sub-menu li.menu-item-has-children:after {
+	color: #fff;
+	content: "\f105";
+	font-family: FontAwesome;
+	font-size: 16px;
+	position: absolute;
+	right: 6px;
+	top: 10px;
+}
+
+.site-header .main-navigation ul li ul li {
+	display: block;
+	border-bottom: 1px solid #ffffff;
+	border-left: none;
+	-webkit-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	background-color: #002147;
+}
+
+.site-header .main-navigation ul li ul li:hover>a {
+	color: #071041;
+}
+
+.site-header .main-navigation ul li ul li:last-child {
+	border-bottom: none;
+}
+
+.site-header .main-navigation ul li ul li a {
+	display: block;
+	color: #ffffff;
+	text-transform: inherit;
+	padding: 10px 15px !important;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.site-header .main-navigation ul>li:hover>ul {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transform: scaleY(1);
+	transform: scaleY(1);
+}
+
+/* 3rd Level Menu */
+.site-header .main-navigation ul li ul li ul {
+	left: 211px;
+	top: 0;
+	width: 210px;
+}
+
+.site-header .main-navigation ul>li>ul>li:hover>ul {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transform: scaleY(1);
+	transform: scaleY(1);
+}
+
+/* Multi Column Menu */
+.site-header .main-navigation ul li.mega-menu:hover ul {
+	opacity: 1;
+	visibility: visible;
+	-webkit-transform: scaleY(1);
+	transform: scaleY(1);
+}
+
+.site-header .main-navigation ul li.mega-menu ul.sub-menu li {
+	background-color: inherit;
+}
+
+.site-header .main-navigation ul li.mega-menu ul.sub-menu li a {
+	color: #ffffff;
+}
+
+.site-header .main-navigation ul li.mega-menu ul.sub-menu li a::hover {
+	background-color: #002147;
+	color: #071041;
+}
+
+.site-header .main-navigation ul li.mega-menu>ul.sub-menu {
+	background-color: #002147;
+	padding: 10px 0;
+	width: 460px;
+}
+
+.site-header .main-navigation ul li.mega-menu>ul.sub-menu>li {
+	display: block;
+	float: left;
+	margin: 0 5px;
+	width: 210px;
+	border: none;
+}
+
+.site-header .main-navigation ul li.mega-menu>ul.sub-menu>li ul {
+	position: relative;
+	width: inherit;
+	left: inherit;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.site-header .main-navigation ul li.mega-menu>ul.sub-menu>li>a {
+	font-weight: 600;
+	margin-bottom: 1px;
+}
+
+.site-header .main-navigation ul li.mega-menu>ul.sub-menu li:after {
+	content: '';
+}
+
+.site-header .main-navigation ul li.mega-menu.hide-header>ul.sub-menu>li>a {
+	display: none;
+}
+
+/* Mobile Multi Column Menu */
+.mean-container .mega-menu.hide-header>ul>li {
+	border-top: none;
+}
+
+.mean-container .mega-menu.hide-header>ul>li>a {
+	display: none;
+}
+
+.mean-container .mega-menu.hide-header>ul>li>ul {
+	display: block !important;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
