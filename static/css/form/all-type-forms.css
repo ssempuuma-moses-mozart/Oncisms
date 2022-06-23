@@ -280,7 +280,7 @@ text-shadow:#ccc 0 1px 0, #c9c9c9 0 2px 0, #bbb 0 3px 0, #b9b9b9 0 4px 0, #aaa 0
 .ts-forms .checkbox-toggle i:before,
 .ts-forms .radio-toggle i:before {
 	border:none;
-	background-color:#03a9f4;
+	background-color:#42B54A;
 	content:"";
 	display:block;
 	height:14px;
@@ -317,7 +317,7 @@ text-shadow:#ccc 0 1px 0, #c9c9c9 0 2px 0, #bbb 0 3px 0, #b9b9b9 0 4px 0, #aaa 0
 .ts-forms .radio input:checked + i,
 .ts-forms .checkbox input:checked + i,
 .ts-forms .radio-toggle input:checked + i,
-.ts-forms .checkbox-toggle input:checked + i { border:2px solid #03a9f4; }
+.ts-forms .checkbox-toggle input:checked + i { border:2px solid #42B54A; }
 
 .ts-forms .radio input:checked + i,
 .ts-forms .checkbox input:checked + i { color:rgba(48,63,159,.9); }

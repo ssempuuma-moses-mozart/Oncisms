@@ -9,9 +9,9 @@
     
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     {% if title %}
-        <title>UNSER - {{ title }}</title>
+        <title>ONCIMS - {{ title }}</title>
         {% else %}
-        <title>UNSER</title>
+        <title>ONCIMS</title>
         {% endif %}
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -191,7 +191,343 @@
     }
 
 
+    @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+body {
+  font-family: 'Open Sans', 'sans-serif';
+  background:#f0f0f0;
+}
+.navbar-nav>li>.dropdown-menu {
+    margin-top:20px;
+    border-top-left-radius:4px;
+    border-top-right-radius:4px;
+}
+.navbar-default .navbar-nav>li>a {
+    width:50px;
+    font-weight:bold;
+}
+.mega-dropdown {
+  position: static !important;
+  width:50%;
+}
+.mega-dropdown-menu {
+    padding: 20px 0px;
+    width: 50%;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.mega-dropdown-menu:before {
+    content: "";
+    border-bottom: 15px solid #fff;
+    border-right: 17px solid transparent;
+    border-left: 17px solid transparent;
+    position: absolute;
+    top: -15px;
+    left: 285px;
+    z-index: 10;
+}
+.mega-dropdown-menu:after {
+    content: "";
+    border-bottom: 17px solid #ccc;
+    border-right: 19px solid transparent;
+    border-left: 19px solid transparent;
+    position: absolute;
+    top: -17px;
+    left: 283px;
+    z-index: 8;
+}
+.mega-dropdown-menu > li > ul {
+  padding: 0;
+  margin: 0;
+}
+.mega-dropdown-menu > li > ul > li {
+  list-style: none;
+}
+.mega-dropdown-menu > li > ul > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #999;
+  white-space: normal;
+}
+.mega-dropdown-menu > li ul > li > a:hover,
+.mega-dropdown-menu > li ul > li > a:focus {
+  text-decoration: none;
+  color: #444;
+  background-color: #f5f5f5;
+}
+.mega-dropdown-menu .dropdown-header {
+  color: #428bca;
+  font-size: 18px;
+  font-weight:bold;
+}
+.mega-dropdown-menu form {
+    margin:2px 20px;
+}
+.mega-dropdown-menu .form-group {
+    margin-bottom: 3px;
+} 
 
+/* .mega-dropdown:hover .mega-dropdown-menu {
+    opacity: 1;
+    transform: translateY(0px);
+    pointer-events: auto;
+    } */
+
+
+
+
+
+    /* .navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 100%;
+  left: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content .header {
+  background: red;
+  padding: 16px;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  background-color: #ccc;
+  height: 250px;
+}
+
+.column a {
+  float: none;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.column a:hover {
+  background-color: #ddd;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    height: auto;
+  }
+} */
+
+
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+.dropdown > .dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+    display: block;
+}
+header>nav:hover {
+        display: block;
+ }
+
+
+
+ 
+/*** 
+=============================================
+    Top Bar Style2 style
+=============================================
+***/
+.top-bar-style2{
+    position: relative;
+    display: block;
+    background: #26272b;
+    padding: 15px 50px;
+}
+.top-style2 {
+    display: flow-root;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.top-style2-left{
+    position: relative;
+    display: block;    
+}
+.top-style2-left p{
+    position: relative;
+    display: inline-block;
+    float: left;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 30px;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.top-style2-left p span:before{
+    position: relative;
+    top: 3px;
+    color: #e9212e;
+    font-size: 20px;
+    line-height: 20px;
+    display: inline-block;
+    padding-right: 9px;
+}
+.top-style2-left ul{
+    position: relative;
+    display: inline-block;
+    float: left;
+    padding-left: 20px;
+}
+.top-style2-left ul li{
+    position: relative;
+    display: inline-block;
+    float: left;
+    padding-right: 16px;
+    margin-right: 15px;
+    color: #7c7e84;
+    font-size: 15px;
+    line-height: 30px;
+}
+.top-style2-left ul li:last-child{
+    padding-right: 0;
+    margin-right: 0;
+}
+.top-style2-left ul li:before{
+    position: absolute;
+    top: 7px;
+    right: 0;
+    width: 1px;
+    height: 15px;
+    background: #404043;
+    content: "";
+}
+.top-style2-left ul li:last-child:before{
+    display: none;
+}
+.top-style2-right {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    float: right;
+}
+.top-style2-right .top-right-menu {
+    position: relative;
+    display: inline-block;
+    float: left;
+    padding-right: 20px;
+    margin-right: 20px;
+}
+.top-style2-right .top-right-menu:before{
+    position: absolute;
+    top: 7px;
+    right: 0;
+    width: 1px;
+    height: 15px;
+    background: #404043;
+    content: "";    
+}
+.top-style2-right .top-right-menu li{
+    position: relative;
+    display: inline-block;
+    float: left;
+    line-height: 30px;
+    padding-right: 30px;
+}
+.top-style2-right .top-right-menu li:last-child{
+    padding-right: 0;
+}
+.top-style2-right .top-right-menu li a{
+    color: #7c7e84;
+    font-size: 15px; 
+    transition: all 500ms ease;
+}
+.top-style2-right .top-right-menu li a:hover{
+    color: #e9212e;
+}
+
+.top-style2-right .topbar-social-links{
+    position: relative;
+    display: inline-block;
+    float: right;    
+}
+.top-style2-right .topbar-social-links li{
+    position: relative;
+    display: inline-block;
+    float: left;
+    line-height: 30px;
+    padding-right: 30px;    
+}
+.top-style2-right .topbar-social-links li:last-child{
+    padding-right: 0;
+}
+.top-style2-right .topbar-social-links li a i{
+    color: #7c7e84;
+    font-size: 14px;
+    transition: all 500ms ease;
+}
+.top-style2-right .topbar-social-links li a:hover i{
+    color: #e9212e;
+}
+
+
+ 
 </style>
 
 <body id="body">
@@ -200,10 +536,10 @@
         <![endif]-->
 
  <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-flex align-items-center fixed-top" style="background-color: green;">
+  <!-- <div id="topbar" class="d-flex align-items-center" style="background-color: rgb(6, 175, 82);">
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope" style="color: black;"></i>info@globalautosystems.co.ug</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="bi bi-envelope" style="color: white; margin-right: 760px;"></i>info@globalautosystems.co.ug</a>&nbsp;&nbsp;&nbsp;&nbsp;
         <i class="bi bi-phone"></i>+256 755 582 279
       </div>
       <div class="d-none d-lg-flex social-links align-items-center">
@@ -213,26 +549,54 @@
         <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
       </div>
     </div>
-  </div>
+  </div> -->
 
+  <!-- Color -->
+  <!-- #555; -->
 
-    <div class="header-top-area">
+    <!-- Start Top Bar style2 -->
+    <!-- <section class="top-bar-style2" style="background-color: white;">
+      <div class="top-style2 clearfix">
+          <div class="top-style2-left">
+              <p style="color: black;"><span class="icon-music"></span>Find us </p>
+              <ul>
+                  <li style="color: black;">Tel:+256 755 582 279 / +256 755 856-420</li>
+                  <li style="color: black;">Email: info@globalautosystems.co.ug</li>
+                  
+              </ul>
+          </div>
+          <div class="top-style2-right">
+              <ul class="top-right-menu">
+                 
+                  <li><a href="#" style="color: black;">Located on 3rd Floor,</a></li>
+                  <li><a href="#" style="color: black;">Plot 3, Bananuka Drive.</a></li>
+                  <li><a href="#" style="color: black;"> Mbarara Uganda. </a></li>
+              </ul>
+                
+          </div>
+      </div>
+  </section> -->
+  <!-- End Top Bar style2 -->
+
+    <div class="header-top-area  stricky"  style="background-color: #333; width: 100%; z-index:999; top: 0; position: fixed;">
         <div class="">
-            <div class="row main-menu-area" style="margin-left: 100px;">
+            <div class="row main-menu-area" style="margin-left: 150px;">
                 <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
                     <div class="header-top-menu">
                     
                         <ul role="menu" class="nav navbar-nav mai-top-nav">
                        
-                          <li class="nav-item"><a href="#" class="nav-link" style="color: blue; font-size: 21px;">ONCIMS</a>
+                          <!-- <li class="nav-item"><a href="#" class="nav-link" style="margin-right: 100px; font-size: 21px; font-style: italic; font-family: 'Courier New', Courier, monospace;"> ONCIMS</a>
+                          </li> -->
+                          <li class="nav-item"><a href="#" class="nav-link" style="margin-right: 100px; margin-left: -80px; height: 65px; font-size: 21px; padding-bottom: 5px; padding-top: 0px;">  <img src="{% static 'img/LOG.png' %}" width="120px;" alt="" class="px-3"></a>
                           </li>
-                
-                    
-                            <li class="nav-item"><a href="{% url 'website-home'%}" class="nav-link">Home</a>
-                            </li>
-                            <ul class="nav navbar-nav">
 
-                                <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Service </a>
+                    
+                            <li class="nav-item"><a href="{% url 'website-home'%}" class="nav-link">HOME</a>
+                            </li>
+                            <!-- <ul class="nav navbar-nav">
+
+                                <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">About </a>
                                     <ul class="dropdown-menu megamenu" style="width: 16cm; background-color: green; margin-top: 8px;">
                                       <div class="container">
                                         <div class="row flex-grow-1">
@@ -299,58 +663,67 @@
                                     </ul>
                                   </li>
                            
-                            </ul>
+                            </ul> -->
+
+                            <li class="nav-item"><a href="{% url 'website-teachers' %}" class="nav-link">ABOUT US</a>
+                            </li>
 
                             <ul class="nav navbar-nav">
                                    
-                              <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">D.E.os </a>
-                                <ul class="dropdown-menu megamenu" style="width: 16cm; background-color: green; margin-top: 8px;">
+                              <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">ONCIMS </a>
+                                <ul class="dropdown-menu megamenu" style="width: 16cm; background-color: #333; margin-top: 2px; margin-left: -200px;">
                                   <div class="container">
                                     <div class="row flex-grow-1">
                                       <li class="col-md-2 dropdown-item">
                                         <ul>
-                                          <li class="dropdown-header">Glyphicons</li>
-                                          <li><a href="#">Available glyphs</a>
+                                          <li class="dropdown-header" style="font-weight: bold; color: white;">ABOUT ONCIMS</li>
+                                          <li><a href="#">Background</a>
                                           </li>
-                                          <li class="disabled"><a href="#">How to use</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li class="disabled"><a href="#">Problem</a>
                                           </li>
-                                          <li><a href="#">Examples</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li><a href="#">Solution</a>
                                           </li>
-                                          <li class="divider" style="width: 5cm;"></li>
-                                          <li class="dropdown-header">Dropdowns</li>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <!-- <li class="dropdown-header">Solution</li>
                                           <li><a href="#">Aligninment options</a>
-                                          </li>
+                                          </li> -->
                                         
                                         </ul>
                                       </li>
                                       <li class="col-md-2 dropdown-item">
                                         <ul>
-                                          <li class="dropdown-header">Button groups</li>
-                                          <li><a href="#">Basic example</a>
+                                          <li class="dropdown-header" style="font-weight: bold; color: white;">OWN ONCIMS</li>
+                                          <li><a href="#">Demo</a>
                                           </li>
-                                          <li><a href="#">Button toolbar</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li><a href="#">Pricing</a>
                                           </li>
-                                          <li><a href="#">Vertical variation</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li><a href="#">Contact Us</a>
                                           </li>
-                                          <li class="divider" style="width: 5cm"></li>
-                                          <li class="dropdown-header">Button dropdowns</li>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <!-- <li class="dropdown-header">Button dropdowns</li>
                                           <li><a href="#">Single</a>
-                                          </li>
+                                          </li> -->
                                         </ul>
                                       </li>
                                       <li class="col-md-2 dropdown-item">
                                         <ul>
-                                          <li class="dropdown-header">Button groups</li>
-                                          <li><a href="#">Basic example</a>
+                                          <li class="dropdown-header" style="font-weight: bold; color: white;">MY ACCOUNT</li>
+                                          <li><a href="#">Register</a>
                                           </li>
-                                          <li><a href="#">Button toolbar</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li><a href="#">Login</a>
                                           </li>
-                                          <li><a href="#">Vertical variation</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li><a href="#">Appointment</a>
                                           </li>
-                                          <li class="divider" style="width: 5cm"></li>
-                                          <li class="dropdown-header">Button dropdowns</li>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <!-- <li class="dropdown-header">Button dropdowns</li>
                                           <li><a href="#">Single</a>
-                                          </li>
+                                          </li> -->
                                         </ul>
                                       </li>
                                      
@@ -361,44 +734,43 @@
                               </li>
                             </ul>
 
-                            <li class="nav-item"><a href="{% url 'website-teachers' %}" class="nav-link">Teachers</a>
-                            </li>
+                            <!-- <li class="nav-item"><a href="{% url 'website-teachers' %}" class="nav-link">PapsAI</a>
+                            </li> -->
                         
 
-                                <ul class="nav navbar-nav">
+                                <!-- <ul class="nav navbar-nav">
                                    
-                                    <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Service Providers </a>
+                                    <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">PapsAI </a>
                                       <ul class="dropdown-menu megamenu" style="width: 16cm; background-color: green; margin-top: 8px;">
                                         <div class="container">
                                           <div class="row flex-grow-1">
                                             <li class="col-md-2 dropdown-item">
                                               <ul>
-                                                <li class="dropdown-header">Glyphicons</li>
-                                                <li><a href="#">Available glyphs</a>
+                                                <li class="dropdown-header" style="font-weight: bold; color: rgba(0, 0, 0, 0.9);">ABOUT PAPSAI</li>
+                                                <li><a href="#">Background</a>
                                                 </li>
-                                                <li class="disabled"><a href="#">How to use</a>
+                                                <li class="divider" style="width: 4.3cm"></li>
+                                                <li class="disabled"><a href="#">Problem</a>
                                                 </li>
-                                                <li><a href="#">Examples</a>
+                                                <li class="divider" style="width: 4.3cm"></li>
+                                                <li><a href="#">Solution</a>
                                                 </li>
-                                                <li class="divider" style="width: 5cm;"></li>
-                                                <li class="dropdown-header">Dropdowns</li>
-                                                <li><a href="#">Aligninment options</a>
-                                                </li>
-                                                <li><a href="#">Headers</a>
-                                                </li>
-                                                <li><a href="#">Disabled menu items</a>
-                                                </li>
+                                                <li class="divider" style="width: 4.3cm"></li>
+                                                
                                               </ul>
                                             </li>
                                             <li class="col-md-2 dropdown-item">
                                               <ul>
-                                                <li class="dropdown-header">Button groups</li>
-                                                <li><a href="#">Basic example</a>
+                                                <li class="dropdown-header" style="font-weight: bold; color: rgba(0, 0, 0, 0.9);">OWN PAPSAI</li>
+                                                <li><a href="#">Demo</a>
                                                 </li>
-                                                <li><a href="#">Button toolbar</a>
+                                                <li class="divider" style="width: 4.3cm"></li>
+                                                <li><a href="#">Pricing</a>
                                                 </li>
-                                                <li><a href="#">Sizing</a>
+                                                <li class="divider" style="width: 4.3cm"></li>
+                                                <li><a href="#">Contact Us/a>
                                                 </li>
+                                                <li class="divider" style="width: 4.3cm"></li>
                                                 <li><a href="#">Nesting</a>
                                                 </li>
                                                 <li><a href="#">Vertical variation</a>
@@ -411,7 +783,7 @@
                                             </li>
                                             <li class="col-md-2 dropdown-item">
                                               <ul>
-                                                <li class="dropdown-header">Input groups</li>
+                                                <li class="dropdown-header" style="font-weight: bold; color: rgba(0, 0, 0, 0.9);">Input groups</li>
                                                 <li><a href="#">Basic example</a>
                                                 </li>
                                                 <li><a href="#">Sizing</a>
@@ -433,131 +805,43 @@
                                         </div>
                                       </ul>
                                     </li>
-                                  </ul>
+                                  </ul> -->
 
 
-                       
-                            <!-- <ul class="nav navbar-nav">
                                    
-                                <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Communications </a>
-                                  <ul class="dropdown-menu megamenu" style="width: 11cm; background-color: green; margin-top: 8px;">
-                                    <div class="container">
-                                      <div class="row flex-grow-1">
-                                        <li class="col-md-2 dropdown-item">
-                                          <ul>
-                                            <li class="dropdown-header">Glyphicons</li>
-                                            <li><a href="#">Available glyphs</a>
-                                            </li>
-                                            <li class="disabled"><a href="#">How to use</a>
-                                            </li>
-                                            <li><a href="#">Examples</a>
-                                            </li>
-                                            <li class="divider" style="width: 5cm;"></li>
-                                            <li class="dropdown-header">Dropdowns</li>
-                                            <li><a href="#">Aligninment options</a>
-                                            </li>
-                                          
-                                          </ul>
-                                        </li>
-                                        <li class="col-md-2 dropdown-item">
-                                          <ul>
-                                            <li class="dropdown-header">Button groups</li>
-                                            <li><a href="#">Basic example</a>
-                                            </li>
-                                            <li><a href="#">Button toolbar</a>
-                                            </li>
-                                            <li><a href="#">Vertical variation</a>
-                                            </li>
-                                            <li class="divider" style="width: 5cm"></li>
-                                            <li class="dropdown-header">Button dropdowns</li>
-                                            <li><a href="#">Single</a>
-                                            </li>
-                                          </ul>
-                                        </li>
-                                       
-                                   
-                                      </div>
-                                    </div>
-                                  </ul>
-                                </li>
-                              </ul>
- -->
-
-
-                              <ul class="nav navbar-nav">
-                                   
-                                <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Learning Materials </a>
-                                  <ul class="dropdown-menu megamenu" style="width: 11cm; background-color: green; margin-top: 8px;">
-                                    <div class="container">
-                                      <div class="row flex-grow-1">
-                                        <li class="col-md-2 dropdown-item">
-                                          <ul>
-                                            <li class="dropdown-header">Glyphicons</li>
-                                            <li><a href="#">Available glyphs</a>
-                                            </li>
-                                            <li class="disabled"><a href="#">How to use</a>
-                                            </li>
-                                            <li><a href="#">Examples</a>
-                                            </li>
-                                            <li class="divider" style="width: 5cm;"></li>
-                                            <li class="dropdown-header">Dropdowns</li>
-                                            <li><a href="#">Aligninment options</a>
-                                            </li>
-                                          
-                                          </ul>
-                                        </li>
-                                        <li class="col-md-2 dropdown-item">
-                                          <ul>
-                                            <li class="dropdown-header">Button groups</li>
-                                            <li><a href="#">Basic example</a>
-                                            </li>
-                                            <li><a href="#">Button toolbar</a>
-                                            </li>
-                                            <li><a href="#">Vertical variation</a>
-                                            </li>
-                                            <li class="divider" style="width: 5cm"></li>
-                                            <li class="dropdown-header">Button dropdowns</li>
-                                            <li><a href="#">Single</a>
-                                            </li>
-                                          </ul>
-                                        </li>
-                                       
-                                   
-                                      </div>
-                                    </div>
-                                  </ul>
-                                </li>
-                              </ul>
-                                         
                             <ul class="nav navbar-nav">
                                    
-                              <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Report Case </a>
-                                <ul class="dropdown-menu megamenu" style="width: 11cm; background-color: green; margin-top: 8px;">
+                              <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">PAPSAI </a>
+                                <ul class="dropdown-menu megamenu" style="width: 10cm; background-color: #333; margin-top: 2px; margin-left: -140px;">
                                   <div class="container">
                                     <div class="row flex-grow-1">
                                       <li class="col-md-2 dropdown-item">
                                         <ul>
-                                          <li class="dropdown-header">Glyphicons</li>
-                                          <li><a href="#">Available glyphs</a>
+                                          <li class="dropdown-header" style="font-weight: bold;  color: white;">ABOUT PAPSAI</li>
+                                          <li><a href="#">Background</a>
                                           </li>
-                                          <li class="disabled"><a href="#">How to use</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li class="disabled"><a href="#">Problem</a>
                                           </li>
-                                          <li><a href="#">Examples</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li><a href="#">Solution</a>
                                           </li>
-                                          <li class="divider" style="width: 5cm;"></li>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
                                          
                                         </ul>
                                       </li>
                                       <li class="col-md-2 dropdown-item">
                                         <ul>
-                                          <li class="dropdown-header">Button groups</li>
-                                          <li><a href="#">Basic example</a>
+                                          <li class="dropdown-header" style="font-weight: bold;  color: white;">OWN PAPSAI</li>
+                                          <li><a href="#">Demo</a>
                                           </li>
-                                          <li><a href="#">Button toolbar</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li><a href="#">Pricing</a>
                                           </li>
-                                          <li><a href="#">Vertical variation</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li><a href="#">Contact Us</a>
                                           </li>
-                                          <li class="divider" style="width: 5cm;"></li>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
                                         </ul>
                                       </li>
                                      
@@ -567,37 +851,217 @@
                                 </ul>
                               </li>
                             </ul>
-                          
+                      
+
+                              <!-- <ul class="nav navbar-nav">
+                                   
+                                <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">CancerHub </a>
+                                  <ul class="dropdown-menu megamenu" style="width: 11cm; background-color: green; margin-top: 8px;">
+                                    <div class="container">
+                                      <div class="row flex-grow-1">
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header" style="font-weight: bold; color: rgba(0, 0, 0, 0.9);">ABOUT CANCERHUB</li>
+                                            <li><a href="#">Problem</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm;"></li>
+                                            <li class="disabled"><a href="#">Solution</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm;"></li>
+                                          
+                                          </ul>
+                                        </li>
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header" style="font-weight: bold; color: rgba(0, 0, 0, 0.9);">Button groups</li>
+                                            <li><a href="#">Basic example</a>
+                                            </li>
+                                            <li><a href="#">Button toolbar</a>
+                                            </li>
+                                            <li><a href="#">Vertical variation</a>
+                                            </li>
+                                            <li class="divider" style="width: 5cm"></li>
+                                            <li class="dropdown-header">Button dropdowns</li>
+                                            <li><a href="#">Single</a>
+                                            </li>
+                                          </ul>
+                                        </li>
+                                        
+                                       
+                                      </div>
+                                    </div>
+                                  </ul>
+                                </li>
+                              </ul> -->
+                                         
+
+                              <ul class="nav navbar-nav">
+                                   
+                                <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">CANCERHUB </a>
+                                  <ul class="dropdown-menu megamenu" style="width: 16cm; background-color: #333; margin-top: 2px; margin-left: -200px;">
+                                    <div class="container">
+                                      <div class="row flex-grow-1">
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header" style="font-weight: bold;  color: white;">ABOUT CANCERHUB</li>
+                                            <li><a href="#">Problem</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <li class="disabled"><a href="#">Solutin</a>
+                                            </li>
+                                          
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <!-- <li class="dropdown-header">Solution</li>
+                                            <li><a href="#">Aligninment options</a>
+                                            </li> -->
+                                          
+                                          </ul>
+                                        </li>
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header" style="font-weight: bold;  color: white;">RISK FACTOR</li>
+                                            <li><a href="#">Assessment Tool</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <li><a href="#">Information</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <!-- <li><a href="#">Contact Us</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm"></li> -->
+                                            <!-- <li class="dropdown-header">Button dropdowns</li>
+                                            <li><a href="#">Single</a>
+                                            </li> -->
+                                          </ul>
+                                        </li>
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header" style="font-weight: bold; color: white;"> CONSULTANCY SERVICES</li>
+                                            <li><a href="#">Get Exparts</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <li><a href="#">Infographics</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <!-- <li class="divider" style="width: 4.3cm;"></li>
+                                            <li><a href="#">Appointment</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm"></li> -->
+                                            <!-- <li class="dropdown-header">Button dropdowns</li>
+                                            <li><a href="#">Single</a>
+                                            </li> -->
+                                          </ul>
+                                        </li>
+                                       
+                                   
+                                      </div>
+                                    </div>
+                                  </ul>
+                                </li>
+                              </ul>  
+
+                              <ul class="nav navbar-nav">
+                                   
+                                <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">CANCERFUND </a>
+                                  <ul class="dropdown-menu megamenu" style="width: 16cm; background-color: #333; margin-top: 2px; margin-left: -200px;">
+                                    <div class="container">
+                                      <div class="row flex-grow-1">
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header" style="font-weight: bold; color: white;">ABOUT CANCERFUND</li>
+                                            <li><a href="#">Background</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <li class="disabled"><a href="#">Problem</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <li class="disabled"><a href="#">Solution</a>
+                                            </li>
+                                          
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <!-- <li class="dropdown-header">Solution</li>
+                                            <li><a href="#">Aligninment options</a>
+                                            </li> -->
+                                          
+                                          </ul>
+                                        </li>
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header" style="font-weight: bold; color: white;">CAMPAIGN</li>
+                                            <li><a href="#">Open campaign </a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <li><a href="#">Closed campaign </a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <li><a href="#">Start campaign </a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <!-- <li><a href="#">Contact Us</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm"></li> -->
+                                            <!-- <li class="dropdown-header">Button dropdowns</li>
+                                            <li><a href="#">Single</a>
+                                            </li> -->
+                                          </ul>
+                                        </li>
+                                        <li class="col-md-2 dropdown-item">
+                                          <ul>
+                                            <li class="dropdown-header" style="font-weight: bold; color: white;">PARTNER</li>
+                                            <li><a href="#">Sign Up</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <li><a href="#">Login</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <li><a href="#">Contact Us</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                            <!-- <li class="divider" style="width: 4.3cm;"></li>
+                                            <li><a href="#">Appointment</a>
+                                            </li>
+                                            <li class="divider" style="width: 4.3cm"></li> -->
+                                            <!-- <li class="dropdown-header">Button dropdowns</li>
+                                            <li><a href="#">Single</a>
+                                            </li> -->
+                                          </ul>
+                                        </li>
+                                       
+                                   
+                                      </div>
+                                    </div>
+                                  </ul>
+                                </li>
+                              </ul> 
+                            
                             
                             <ul class="nav navbar-nav">
                                    
-                              <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">UNEBU Results </a>
-                                <ul class="dropdown-menu megamenu" style="width: 11cm; background-color: green; margin-top: 8px;">
+                              <li class="dropdown menu-large nav-item"> <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">CANCERMOBI </a>
+                                <ul class="dropdown-menu megamenu" style="width: 10cm; background-color: #333; margin-top: 2px; margin-left: -95px;">
                                   <div class="container">
                                     <div class="row flex-grow-1">
                                       <li class="col-md-2 dropdown-item">
                                         <ul>
-                                          <li class="dropdown-header">Glyphicons</li>
-                                          <li><a href="#">Available glyphs</a>
+                                          <li class="dropdown-header" style="font-weight: bold; color: white;">ABOUT CANCERMOBI</li>
+                                          <li><a href="#">About Us</a>
                                           </li>
-                                          <li class="disabled"><a href="#">How to use</a>
-                                          </li>
-                                          <li><a href="#">Examples</a>
-                                          </li>
-                                          <li class="divider" style="width: 5cm;"></li>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li class="disabled"><a href="#">Solution</a>
+                                          </li>           
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
                                          
                                         </ul>
                                       </li>
                                       <li class="col-md-2 dropdown-item">
                                         <ul>
-                                          <li class="dropdown-header">Button groups</li>
-                                          <li><a href="#">Basic example</a>
+                                          <li class="dropdown-header" style="font-weight: bold; color: white;">GET CANCERMOBI</li>
+                                          <li><a href="#">Download</a>
                                           </li>
-                                          <li><a href="#">Button toolbar</a>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
+                                          <li><a href="#">Contact Us</a>
                                           </li>
-                                          <li><a href="#">Vertical variation</a>
-                                          </li>
-                                          <li class="divider" style="width: 5cm;"></li>
+                                          <li class="divider" style="width: 4.3cm; padding: 0px; margin: 0px;"></li>
                                         </ul>
                                       </li>
                                      
@@ -611,7 +1075,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                    <div class="header-right-info">    
+                    <div class="header-right-info" style="margin-right: 15px;">    
                         <ul class="nav navbar-nav mai-top-nav header-right-menu"> 
                             <li class="nav-item">
                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
@@ -645,7 +1109,7 @@
                         <ul class="nav navbar-nav mai-top-nav header-right-menu">           
                             <li class="nav-item">
                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">MENU</a>
-                                <ul role="menu" class="dropdown-header-top author-log dropdown-menu">
+                                <!-- <ul role="menu" class="dropdown-header-top author-log dropdown-menu">
                                     <li class="nav-item"><a href="{% url 'website-home'%}" class="nav-link">Home</a>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -730,7 +1194,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                         </ul>
                     </div>                    
@@ -769,7 +1233,7 @@
 
       
     <!-- ======= Top Bar ======= -->
-  <div id="topbar" class="d-flex align-items-center fixed-top" style="background-color: green;">
+  <div id="topbar" class="d-flex align-items-center fixed-top" style="background-color: white; margin-top: 65px;">
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
         
@@ -809,7 +1273,8 @@
         <h3 style="text-align: center;"><b>Our Partners</b></h3>
         <div class="row px-3 py-3" style="text-align: center;">
         <img src="{% static 'img/GASLogo.png' %}" width="150px;" alt="" class="px-3">
-        <img src="{% static 'img/mong.png' %}" width="300px;" alt="" class="px-3">
+        <!-- <img src="{% static 'img/mong.png' %}" width="300px;" alt="" class="px-3"> -->
+        <!-- <img src="{% static 'img/LOG.png' %}" width="300px;" alt="" class="px-3"> -->
         </div>
     </div>
     <!-- Chat Box Start-->
@@ -821,11 +1286,11 @@
             <div id="chat" class="collapse chat-box-wrap shadow-reset animated zoomInLeft">
                 <div class="chat-main-list">
                     <div class="chat-heading">
-                        <h2>School Buzz</h2>
+                        <h2>Chat Buzz</h2>
                     </div>
                     <div class="chat-content chat-scrollbar">
                         <div class="author-chat">
-                            <h3>UNSER <span class="chat-date">Now</span></h3>
+                            <h3>ONCIMS <span class="chat-date">Now</span></h3>
                             <p>Hello... </p>
                         </div>
                     </div>
@@ -945,6 +1410,59 @@
     jQuery(document).on('click', '.mega-dropdown', function(e) {
   e.stopPropagation()
 });
+
+
+
+//===Header Sticky===
+function stickyHeader() {
+    if ($('.stricky').length) {
+        var strickyScrollPos = 100;
+        if ($(window).scrollTop() > strickyScrollPos) {
+            $('.stricky').addClass('stricky-fixed');
+            $('.scroll-to-top').fadeIn(1500);
+        } else if ($(this).scrollTop() <= strickyScrollPos) {
+            $('.stricky').removeClass('stricky-fixed');
+            $('.scroll-to-top').fadeOut(1500);
+        }
+    };
+}
+
+
+//Update Header Style and Scroll to Top
+function headerStyle() {
+    if($('.header-upper-style1').length){
+        var windowpos = $(window).scrollTop();
+        var siteHeader = $('.header-upper-style1');
+        var sticky_header = $('.fixed-header .sticky-header');
+        var scrollLink = $('.scroll-to-top-style2');
+        if (windowpos > 50) {
+            siteHeader.addClass('fixed-header');
+            sticky_header.addClass("animated slideInDown");
+            scrollLink.fadeIn(300);
+        } else {
+            siteHeader.removeClass('fixed-header');
+            sticky_header.removeClass("animated slideInDown");
+            scrollLink.fadeOut(300);
+        }
+    }
+}
+
+
+// Scoll To Top
+function scrollToTop() {
+    if ($('.scroll-to-target').length) {
+        $(".scroll-to-target").on('click', function() {
+            var target = $(this).attr('data-target');
+            // animate
+            $('html, body').animate({
+                scrollTop: $(target).offset().top
+            }, 1000);
+
+        });
+    }
+}
+
+
     </script>
 </body>
 

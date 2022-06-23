@@ -41,7 +41,7 @@
                     label: " Payments",
                     data: data2,
                     yaxis: 2,
-                    color: "#03a9f4",
+                    color: "#42B54A",
                     lines: {
                         lineWidth:1,
                             show: true,

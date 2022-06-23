@@ -17,7 +17,7 @@
                 backgroundColor: "transparent",
                 regionStyle: {
                     initial: {
-                        fill: '#03a9f4',
+                        fill: '#42B54A',
                         "fill-opacity": 0.9,
                         stroke: 'none',
                         "stroke-width": 0,
@@ -28,7 +28,7 @@
                 series: {
                     regions: [{
                         values: mapData,
-                        scale: ["#ccc", "#03a9f4"],
+                        scale: ["#ccc", "#42B54A"],
                         normalizeFunction: 'polynomial'
                     }]
                 },

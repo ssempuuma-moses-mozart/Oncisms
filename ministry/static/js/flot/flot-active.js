@@ -35,7 +35,7 @@
                             borderWidth: 1,
                             color: '#d5d5d5'
                         },
-                        colors: ["#03a9f4", "#303030"],
+                        colors: ["#42B54A", "#303030"],
                         xaxis:{
                         },
                         yaxis: {

@@ -228,7 +228,7 @@
 	color:#303030;
 }
 .social-btn-icon-cl .adminpro-icon, .social-btn-icon-cl i{
-	color:#03a9f4;
+	color:#42B54A;
 }
 .social-btn-icon-cl-df .adminpro-facebook{
 	color:#5d82d1;
@@ -273,8 +273,8 @@
 	background:#303030;
 }
 .btn-default.btn-bg-cl-social:hover{
-	background:#03a9f4;
-	border-color: #03a9f4;
+	background:#42B54A;
+	border-color: #42B54A;
 }
 .btn-default.btn-bg-cl-social-tw .adminpro-icon, .btn-default.btn-bg-cl-social-tw i{
 	color:#fff;

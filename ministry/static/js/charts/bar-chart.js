@@ -261,7 +261,7 @@
 				data: [12, 19, 3, -5, -2, 3, 9]
             }, {
                 label: 'Dataset 2',
-                backgroundColor: '#03a9f4',
+                backgroundColor: '#42B54A',
 				data: [-10, 15, -7, 7, -2, 4, 9]
 				
             }, {
