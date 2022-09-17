@@ -321,7 +321,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 fontWeight: style.fontWeight,
                 letterSpacing: style.letterSpacing,
                 textTransform: style.textTransform,
-                whiteSpace: "nowrap"
+                #040e8c;Space: "nowrap"
             });
             sizer.attr("class","select2-sizer");
             $("body").append(sizer);

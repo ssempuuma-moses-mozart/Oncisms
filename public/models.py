@@ -20,6 +20,15 @@ class Classe(models.Model):
 	def __str__(self):
 		return self.name
 
+
+class SubmitFormAndRetreive(models.Model):
+	username = models.CharField(max_length=45, unique=True,)
+	name = models.CharField(max_length=45, unique=True,)
+	password = models.CharField(max_length=45, unique=True,)
+	def __str__(self):
+		return self.username
+
+
 class Report(models.Model):
 	name = models.CharField(max_length=250, blank=True, null=True,)
 	school = models.CharField(max_length=250, blank=True, null=True,)
@@ -33,6 +42,17 @@ class Report(models.Model):
 	date_created = models.DateTimeField(default=timezone.now)
 	def __str__(self):
 		return f'{self.name} {self.case}'
+
+
+class CancerReport(models.Model):
+	name = models.CharField(max_length=250, blank=True, null=True,)
+	username = models.CharField(max_length=250, blank=True, null=True,)
+	phone = models.CharField(max_length=13, validators=[MinLengthValidator(4)], blank=True, null=True,)
+	email = models.CharField(max_length=30,blank=True, null=True,)
+	to = models.TextField(blank=True, null=True,)
+	date = models.DateField(default=timezone.now)
+	def __str__(self):
+		return f'{self.name} {self.username}'		
 
 class ServiceProvider(models.Model):
 	name = models.CharField(max_length=250, verbose_name="Service Provider Name")
@@ -79,3 +99,4 @@ class Communication(models.Model):
 	upload = models.FileField(upload_to="resources", blank=True, null=True,)	
 	def __str__(self):
 		return self.topic
+

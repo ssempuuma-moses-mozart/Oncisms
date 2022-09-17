@@ -1,6 +1,7 @@
 {% extends 'public/base.html' %}
 {% load static %}
 {% block content %}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-9 shadow">
@@ -10,10 +11,12 @@
             <!-- <img src="{% static 'img/ch1.jpg' %}" alt="" 
                     style="width: 50%; padding-top: 10px;"> -->
 
-            <iframe class="profile-details-name-nn" src="{% url 'slider' %}" width="100%" scrolling="no" height="400px" frameborder="0" style="padding-top: 10px;"></iframe>
-            <iframe src="{% url 'slider-main' %}" width="100%" scrolling="no" height="400px" frameborder="0" style="padding-top: 10px;"></iframe>
+            <iframe style="margin-left: 0px;" class="profile-details-name-nn" src="{% url 'slider' %}" width="100%" height="520px" scrolling="no" height="400px" frameborder="0" style="padding-top: 10px; padding-bottom: 0px; margin-bottom: 0px;"></iframe>
+            <!-- <iframe src="{% url 'slider-main' %}" width="100%" scrolling="no" height="400px" frameborder="0" style="padding-top: 10px;"></iframe> -->
+            
             </div>
-            <div style="padding-top: 5px;">
+
+            <div style="padding-top: 5px; margin-top: 75px;">
                 <div class="row px-3">
                     <div class="px-3">
                         <hr>
@@ -97,15 +100,13 @@
 
         <div class="col-md-3">
             <div class="container-fluid row center py-3">
-                <img src="{% static 'img/flag.gif' %}" alt="">
+                <img src="{% static 'img/cg.gif' %}" alt="">
             </div>
             <div class="py-3">
-                <h4><b>What is ONCIMS ?</b></h4>
+                <h4><b>Oncology Reimagined ?</b></h4>
                 <hr>
                 <p>
-                    <i>ONCIMS</i> makes accurate and authentic information about schools available to all citizens
-                    and stakeholders in the education system in Uganda in an efficient, timely and cost effective
-                    manner.
+                    <i>ONCIMS</i>ONCIMS is a series of next generation integrated Digital Cancer Data Management Suite for resource constrained areas.
                 </p>
                 <hr>
             </div>

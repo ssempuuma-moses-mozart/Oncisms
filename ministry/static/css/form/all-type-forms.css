@@ -68,7 +68,7 @@ padding: 30px 25px;
 text-align: center;
 text-transform: uppercase;
 
-color:#FFF;
+color:#fff;
 text-shadow:#ccc 0 1px 0, #c9c9c9 0 2px 0, #bbb 0 3px 0, #b9b9b9 0 4px 0, #aaa 0 5px 0,rgba(0,0,0,.1) 0 6px 1px, rgba(0,0,0,.1) 0 0 5px, rgba(0,0,0,.3) 0 1px 3px, rgba(0,0,0,.15) 0 3px 5px, rgba(0,0,0,.2) 0 5px 10px, rgba(0,0,0,.2) 0 10px 10px, rgba(0,0,0,.1) 0 20px 20px;
 
 
@@ -129,7 +129,7 @@ text-shadow:#ccc 0 1px 0, #c9c9c9 0 2px 0, #bbb 0 3px 0, #b9b9b9 0 4px 0, #aaa 0
 	padding:2px 15px;
 	position:relative;
 	top:-9px;
-	white-space:nowrap;
+	#040e8c;-space:nowrap;
 }
 
 /* Gap-top / gap-bottom classes
@@ -613,7 +613,7 @@ margin: 10px auto;
 outline: medium none;
 padding: 0 60px;
 text-align: center;
-white-space: nowrap;
+#040e8c;-space: nowrap;
 }
 .ts-forms .primary-btn { position:relative; }
 
@@ -781,7 +781,7 @@ white-space: nowrap;
 .ts-forms .input textarea:focus + .tooltip-right-bottom,
 .ts-forms .select select:focus + .tooltip-right-bottom { left:auto; right:0; }
 
-.ts-forms .tooltip-right-side { margin-left:8px; top:8px; white-space:nowrap; }
+.ts-forms .tooltip-right-side { margin-left:8px; top:8px; #040e8c;-space:nowrap; }
 
 .ts-forms .tooltip-right-side:before {
 	border-color:transparent #1a237e;
@@ -796,7 +796,7 @@ white-space: nowrap;
 .ts-forms .input textarea:focus + .tooltip-right-side,
 .ts-forms .select select:focus + .tooltip-right-side { left:100%; }
 
-.ts-forms .tooltip-left-side { margin-right:8px; top:8px; white-space:nowrap; }
+.ts-forms .tooltip-left-side { margin-right:8px; top:8px; #040e8c;-space:nowrap; }
 
 .ts-forms .tooltip-left-side:before {
 	border-color:transparent #1a237e;
@@ -1081,7 +1081,7 @@ white-space: nowrap;
 	outline:none;
 	overflow:hidden;
 	height:48px;
-	white-space:nowrap;
+	#040e8c;-space:nowrap;
 	-webkit-transition:background.2s;
 	-moz-transition:background.2s;
 	-ms-transition:background.2s;
@@ -1300,7 +1300,7 @@ white-space: nowrap;
 	width:28px;
 }
 .ui-datepicker-calendar a:hover,
-.ui-datepicker-calendar .ui-state-active { background-color:#FF0000; color:#FFF; font-weight:bold; }
+.ui-datepicker-calendar .ui-state-active { background-color:#FF0000; color:#fff; font-weight:bold; }
 
 .ui-datepicker-today a { outline:1px solid #FF0000; }
 
@@ -1433,7 +1433,7 @@ white-space: nowrap;
 	line-height:48px;
 	padding:0 2px;
 	margin-bottom:5px;
-	white-space:nowrap;
+	#040e8c;-space:nowrap;
 }
 .ts-forms .slider-group label { display:inline-block; color:rgba(0,0,0,.87); padding:0 4px; }
 
@@ -1492,11 +1492,11 @@ white-space: nowrap;
 
 .ts-forms .steps p { color:rgba(0,0,0,.56); font-size:16px; height:36px; line-height:36px; margin:0; padding:0; }
 
-.ts-forms .active-step span {font-size:13px; height:13px; line-height:13px; color:#FFF !important; }
+.ts-forms .active-step span {font-size:13px; height:13px; line-height:13px; color:#fff !important; }
 
 .ts-forms .steps span { color:rgba(0,0,0,.56); font-size:13px; height:13px; line-height:13px; }
 
-.ts-forms .active-step .steps p {color:#FFF; }
+.ts-forms .active-step .steps p {color:#fff; }
 
 .ts-forms .active-step .steps { background-color:#f00; border:1px solid #e8eaf6;  }
 
@@ -1760,7 +1760,7 @@ white-space: nowrap;
 	-ms-transition:opacity.4s ease-in-out.05s;
 	-o-transition:opacity.4s ease-in-out.05s;
 	transition:opacity.4s ease-in-out.05s;
-	white-space:nowrap;
+	#040e8c;-space:nowrap;
 	z-index: 9999;
 }
 .popup-btm-400 .popup-btm-close,

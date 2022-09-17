@@ -3,7 +3,7 @@
 {% load has_group %}
 {% load humanize %}
 <!doctype html>
-<html class="no-js" lang="en" style="background-color: white;">
+<html class="no-js" lang="en" style="background-color: #040e8c;;">
 
 <head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     
@@ -88,7 +88,7 @@
 </head>
 <style> 
 #body {
-    background-color: white;
+    background-color: #040e8c;;
   /*background-image: url("{% static 'img/bgac.jpg' %}");*/
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
@@ -248,21 +248,21 @@
                         <div id="schools" class="tab-pane {% if title == 'Schools'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
                                 <li><a href="{% url 'new-school' %}">Add School</a></li>
-                                <li><a href="{% url 'schools' 1 %}" {% if level.id == 1 %} style="background: red; color: white;" {% endif %}>Nursery</a></li>
-                                <li><a href="{% url 'schools' 2  %}" {% if level.id == 2 %} style="background: red; color: white;" {% endif %}>Primary</a></li>
-                                <li><a href="{% url 'schools' 3  %}" {% if level.id == 3 %} style="background: red; color: white;" {% endif %}>Secondary</a></li>
-                                <li><a href="{% url 'schools' 4  %}" {% if level.id == 4 %} style="background: red; color: white;" {% endif %}>Tertiary</a></li>
-                                <li><a href="{% url 'schools' 5  %}" {% if level.id == 5 %} style="background: red; color: white;" {% endif %}>University</a></li>
+                                <li><a href="{% url 'schools' 1 %}" {% if level.id == 1 %} style="background: red; color: #040e8c;;" {% endif %}>Nursery</a></li>
+                                <li><a href="{% url 'schools' 2  %}" {% if level.id == 2 %} style="background: red; color: #040e8c;;" {% endif %}>Primary</a></li>
+                                <li><a href="{% url 'schools' 3  %}" {% if level.id == 3 %} style="background: red; color: #040e8c;;" {% endif %}>Secondary</a></li>
+                                <li><a href="{% url 'schools' 4  %}" {% if level.id == 4 %} style="background: red; color: #040e8c;;" {% endif %}>Tertiary</a></li>
+                                <li><a href="{% url 'schools' 5  %}" {% if level.id == 5 %} style="background: red; color: #040e8c;;" {% endif %}>University</a></li>
                                 </li>
                             </ul>
                         </div>
                         <div id="students" class="tab-pane {% if title == 'Students'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
-                                <li><a href="{% url 'enrolments' 1 %}" {% if level.id == 1 %} style="background: red; color: white;" {% endif %}>Nursery</a></li>
-                                <li><a href="{% url 'enrolments' 2  %}" {% if level.id == 2 %} style="background: red; color: white;" {% endif %}>Primary</a></li>
-                                <li><a href="{% url 'enrolments' 3  %}" {% if level.id == 3 %} style="background: red; color: white;" {% endif %}>Secondary</a></li>
-                                <li><a href="{% url 'enrolments' 4  %}" {% if level.id == 4 %} style="background: red; color: white;" {% endif %}>Tertiary</a></li>
-                                <li><a href="{% url 'enrolments' 5  %}" {% if level.id == 5 %} style="background: red; color: white;" {% endif %}>University</a></li>
+                                <li><a href="{% url 'enrolments' 1 %}" {% if level.id == 1 %} style="background: red; color: #040e8c;;" {% endif %}>Nursery</a></li>
+                                <li><a href="{% url 'enrolments' 2  %}" {% if level.id == 2 %} style="background: red; color: #040e8c;;" {% endif %}>Primary</a></li>
+                                <li><a href="{% url 'enrolments' 3  %}" {% if level.id == 3 %} style="background: red; color: #040e8c;;" {% endif %}>Secondary</a></li>
+                                <li><a href="{% url 'enrolments' 4  %}" {% if level.id == 4 %} style="background: red; color: #040e8c;;" {% endif %}>Tertiary</a></li>
+                                <li><a href="{% url 'enrolments' 5  %}" {% if level.id == 5 %} style="background: red; color: #040e8c;;" {% endif %}>University</a></li>
                             </ul>
                         </div>
                         <div id="results" class="tab-pane {% if title == 'Results'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
@@ -284,11 +284,11 @@
                                 </li>
                                 <li><a href="{% url 'view-teacher-transfers'  %}">View Transfers</a>
                                 </li> -->
-                                <li><a href="{% url 'region-teachers' 1 %}" {% if level.id == 1 %} style="background: red; color: white;" {% endif %}>Nursery</a></li>
-                                <li><a href="{% url 'region-teachers' 2  %}" {% if level.id == 2 %} style="background: red; color: white;" {% endif %}>Primary</a></li>
-                                <li><a href="{% url 'region-teachers' 3  %}" {% if level.id == 3 %} style="background: red; color: white;" {% endif %}>Secondary</a></li>
-                                <li><a href="{% url 'region-teachers' 4  %}" {% if level.id == 4 %} style="background: red; color: white;" {% endif %}>Tertiary</a></li>
-                                <li><a href="{% url 'region-teachers' 5  %}" {% if level.id == 5 %}  style="background: red; color: white;" {% endif %}>University</a></li>
+                                <li><a href="{% url 'region-teachers' 1 %}" {% if level.id == 1 %} style="background: red; color: #040e8c;;" {% endif %}>Nursery</a></li>
+                                <li><a href="{% url 'region-teachers' 2  %}" {% if level.id == 2 %} style="background: red; color: #040e8c;;" {% endif %}>Primary</a></li>
+                                <li><a href="{% url 'region-teachers' 3  %}" {% if level.id == 3 %} style="background: red; color: #040e8c;;" {% endif %}>Secondary</a></li>
+                                <li><a href="{% url 'region-teachers' 4  %}" {% if level.id == 4 %} style="background: red; color: #040e8c;;" {% endif %}>Tertiary</a></li>
+                                <li><a href="{% url 'region-teachers' 5  %}" {% if level.id == 5 %}  style="background: red; color: #040e8c;;" {% endif %}>University</a></li>
                             </ul>
                         </div>
                         <div id="resources" class="tab-pane {% if title == 'Infrastructure'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
@@ -301,11 +301,11 @@
                                 </li>
                                 <li><a href="{% url 'allocated-resources'  %}">View Allocated Resources</a>
                                 </li> -->
-                                <li><a href="{% url 'building-rooms' 1 %}" {% if level.id == 1 %}  style="background: red; color: white;" {% endif %}>Nursery</a></li>
-                                <li><a href="{% url 'building-rooms' 2  %}" {% if level.id == 2 %} style="background: red; color: white;" {% endif %}>Primary</a></li>
-                                <li><a href="{% url 'building-rooms' 3  %}" {% if level.id == 3 %} style="background: red; color: white;" {% endif %}>Secondary</a></li>
-                                <li><a href="{% url 'building-rooms' 4  %}" {% if level.id == 4 %} style="background: red; color: white;" {% endif %}>Tertiary</a></li>
-                                <li><a href="{% url 'building-rooms' 5  %}" {% if level.id == 5 %} style="background: red; color: white;" {% endif %}>University</a></li>
+                                <li><a href="{% url 'building-rooms' 1 %}" {% if level.id == 1 %}  style="background: red; color: #040e8c;;" {% endif %}>Nursery</a></li>
+                                <li><a href="{% url 'building-rooms' 2  %}" {% if level.id == 2 %} style="background: red; color: #040e8c;;" {% endif %}>Primary</a></li>
+                                <li><a href="{% url 'building-rooms' 3  %}" {% if level.id == 3 %} style="background: red; color: #040e8c;;" {% endif %}>Secondary</a></li>
+                                <li><a href="{% url 'building-rooms' 4  %}" {% if level.id == 4 %} style="background: red; color: #040e8c;;" {% endif %}>Tertiary</a></li>
+                                <li><a href="{% url 'building-rooms' 5  %}" {% if level.id == 5 %} style="background: red; color: #040e8c;;" {% endif %}>University</a></li>
 
                             </ul>
                         </div>
@@ -341,9 +341,9 @@
                         </div>
                         <div id="inbox" class="tab-pane {% if title == 'Communication'  %} in active {% endif %} tab-custon-menu-bg animated flipInX">
                             <ul class="main-menu-dropdown">
-                                <li><a href="{% url 'communication' %}" {% if submenu == 'Communication' %}  style="background: red; color: white;" {% endif %}>Communication</a>
+                                <li><a href="{% url 'communication' %}" {% if submenu == 'Communication' %}  style="background: red; color: #040e8c;;" {% endif %}>Communication</a>
                                 </li>
-                                <li><a href="{% url 'download-resource' %}" {% if submenu == 'Resources' %}  style="background: red; color: white;" {% endif %}>Resources</a>
+                                <li><a href="{% url 'download-resource' %}" {% if submenu == 'Resources' %}  style="background: red; color: #040e8c;;" {% endif %}>Resources</a>
                                 </li>
                             </ul>
                         </div>

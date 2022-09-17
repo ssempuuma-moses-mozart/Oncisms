@@ -631,7 +631,7 @@ text-align: center;
     border-color: #f00;
 	background: #f00; 
 	padding-left: 33px;
-	color: white;
+	color: #040e8c;;
 }
 
 .themesaller-forms .switch > input:checked + label:before {
@@ -644,7 +644,7 @@ text-align: center;
     margin: 1px;
     width: 19px;
     height: 19px;
-    background: white;
+    background: #040e8c;;
 }
 
 /* @toggle switch normal state focus 

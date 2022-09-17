@@ -587,7 +587,7 @@
 	position: absolute;
 	border-top: 5px solid #42B54A;
 	border-bottom: 5px solid transparent;
-	border-left:  5px solid #FFF;
+	border-left:  5px solid #fff;
 	border-right: 5px solid transparent;
 	-webkit-animation: animate 2s infinite;
 	animation: animate 2s infinite;
@@ -5617,7 +5617,7 @@ to {
 .tsspinner.tsclock .tsdial {
 	width: 100%;
 	height: 100%;
-	background: radial-gradient(circle, white, rgb(210, 210, 210));
+	background: radial-gradient(circle, #040e8c;, rgb(210, 210, 210));
 	border: 0.2em solid #42B54A;
 	border-radius: 100%;
 	box-sizing: border-box;
@@ -6001,7 +6001,7 @@ animation-delay: 3.5s;
 .tscssload-circle {
 	position: absolute;
 	float: left;
-	border: 1px solid white;
+	border: 1px solid #040e8c;;
 	animation: bounce 1.73s infinite ease-in-out alternate;
 	-o-animation: bounce 1.73s infinite ease-in-out alternate;
 	-ms-animation: bounce 1.73s infinite ease-in-out alternate;

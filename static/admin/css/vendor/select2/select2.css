@@ -17,7 +17,7 @@
       padding-right: 20px;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap; }
+      #040e8c;-space: nowrap; }
     .select2-container .select2-selection--single .select2-selection__clear {
       position: relative; }
   .select2-container[dir="rtl"] .select2-selection--single .select2-selection__rendered {
@@ -35,7 +35,7 @@
       overflow: hidden;
       padding-left: 8px;
       text-overflow: ellipsis;
-      white-space: nowrap; }
+      #040e8c;-space: nowrap; }
   .select2-container .select2-search--inline {
     float: left; }
     .select2-container .select2-search--inline .select2-search__field {
@@ -48,7 +48,7 @@
         -webkit-appearance: none; }
 
 .select2-dropdown {
-  background-color: white;
+  background-color: #040e8c;;
   border: 1px solid #aaa;
   border-radius: 4px;
   box-sizing: border-box;
@@ -125,7 +125,7 @@
   padding: 0 !important;
   position: absolute !important;
   width: 1px !important;
-  white-space: nowrap !important; }
+  #040e8c;-space: nowrap !important; }
 
 .select2-container--default .select2-selection--single {
   background-color: #fff;
@@ -176,7 +176,7 @@
   border-width: 0 4px 5px 4px; }
 
 .select2-container--default .select2-selection--multiple {
-  background-color: white;
+  background-color: #040e8c;;
   border: 1px solid #aaa;
   border-radius: 4px;
   cursor: text; }
@@ -291,7 +291,7 @@
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
   background-color: #5897fb;
-  color: white; }
+  color: #040e8c;; }
 
 .select2-container--default .select2-results__group {
   cursor: default;
@@ -303,11 +303,11 @@
   border: 1px solid #aaa;
   border-radius: 4px;
   outline: 0;
-  background-image: -webkit-linear-gradient(top, white 50%, #eeeeee 100%);
-  background-image: -o-linear-gradient(top, white 50%, #eeeeee 100%);
-  background-image: linear-gradient(to bottom, white 50%, #eeeeee 100%);
+  background-image: -webkit-linear-gradient(top, #040e8c; 50%, #eeeeee 100%);
+  background-image: -o-linear-gradient(top, #040e8c; 50%, #eeeeee 100%);
+  background-image: linear-gradient(to bottom, #040e8c; 50%, #eeeeee 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0); }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffFFFFF', endColorstr='#FFEEEEEE', GradientType=0); }
   .select2-container--classic .select2-selection--single:focus {
     border: 1px solid #5897fb; }
   .select2-container--classic .select2-selection--single .select2-selection__rendered {
@@ -373,24 +373,24 @@
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  background-image: -webkit-linear-gradient(top, white 0%, #eeeeee 50%);
-  background-image: -o-linear-gradient(top, white 0%, #eeeeee 50%);
-  background-image: linear-gradient(to bottom, white 0%, #eeeeee 50%);
+  background-image: -webkit-linear-gradient(top, #040e8c; 0%, #eeeeee 50%);
+  background-image: -o-linear-gradient(top, #040e8c; 0%, #eeeeee 50%);
+  background-image: linear-gradient(to bottom, #040e8c; 0%, #eeeeee 50%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0); }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffFFFFF', endColorstr='#FFEEEEEE', GradientType=0); }
 
 .select2-container--classic.select2-container--open.select2-container--below .select2-selection--single {
   border-bottom: none;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  background-image: -webkit-linear-gradient(top, #eeeeee 50%, white 100%);
-  background-image: -o-linear-gradient(top, #eeeeee 50%, white 100%);
-  background-image: linear-gradient(to bottom, #eeeeee 50%, white 100%);
+  background-image: -webkit-linear-gradient(top, #eeeeee 50%, #040e8c; 100%);
+  background-image: -o-linear-gradient(top, #eeeeee 50%, #040e8c; 100%);
+  background-image: linear-gradient(to bottom, #eeeeee 50%, #040e8c; 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFFFFFFF', GradientType=0); }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#fffFFFFF', GradientType=0); }
 
 .select2-container--classic .select2-selection--multiple {
-  background-color: white;
+  background-color: #040e8c;;
   border: 1px solid #aaa;
   border-radius: 4px;
   cursor: text;
@@ -452,7 +452,7 @@
   box-shadow: none; }
 
 .select2-container--classic .select2-dropdown {
-  background-color: white;
+  background-color: #040e8c;;
   border: 1px solid transparent; }
 
 .select2-container--classic .select2-dropdown--above {
@@ -473,7 +473,7 @@
 
 .select2-container--classic .select2-results__option--highlighted[aria-selected] {
   background-color: #3875d7;
-  color: white; }
+  color: #040e8c;; }
 
 .select2-container--classic .select2-results__group {
   cursor: default;

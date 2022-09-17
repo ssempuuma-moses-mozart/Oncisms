@@ -558,12 +558,12 @@ ul.setting-panel-list li{
     content: "ON";
     padding-left: 7px;
     background-color: #42B54A;
-    color: #FFFFFF;
+    color: #fffFFF;
 }
 .onoffswitch-inner:after {
     content: "OFF";
     padding-right: 7px;
-    background-color: #FFFFFF;
+    background-color: #fffFFF;
     color: #919191;
     text-align: right;
 }
@@ -585,7 +585,7 @@ ul.setting-panel-list li{
     display: block;
     width: 18px;
     margin: 0;
-    background: #FFFFFF;
+    background: #fffFFF;
     border: 2px solid #42B54A;
     border-radius: 3px;
     position: absolute;
@@ -1469,7 +1469,7 @@ ul.comment-action-st li a{
     border: 1px solid #c9c9c9;
     line-height: 22px;
 }
-.daily-feed-content .btn-white-like{
+.daily-feed-content .btn-#040e8c;-like{
 	padding: 2px 10px;
     background: #f5f5f5;
     border: 1px solid #ccc;
@@ -1549,7 +1549,7 @@ ul.comment-action-st li a{
     border-radius: 3px;
     background: #42B54A;
     padding: 3px;
-    color: white;
+    color: #040e8c;;
     cursor: pointer;
     line-height: 10px;
     text-align: center;
@@ -1935,7 +1935,7 @@ ul.comment-action-st li a{
      width:100%;
      height: 75px;
      overflow: auto;
-     background-color: white;
+     background-color: #040e8c;;
    border-radius:0px;
 }
  
@@ -2048,7 +2048,7 @@ li.multipleInput-email {
 .author-per-content p{
 	font-size:14px;
 	color:#303030;
-	white-space: nowrap;
+	#040e8c;-space: nowrap;
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2358,7 +2358,7 @@ li.multipleInput-email {
 	background-color: #42B54A;
     border-color: #42B54A;
 }
-.like-love-list .btn-white{
+.like-love-list .btn-#040e8c;{
 	color: #42B54A;
 }
 /*Weather Css*/
@@ -2681,7 +2681,7 @@ ul.profile-contact-menu {
 .profile-comment-mg, .replay-user-comment-pro{
 	margin-top:20px;
 }
-.comment-replay-profile .btn-white{
+.comment-replay-profile .btn-#040e8c;{
 	background: #42B54A;
 	color:#fff;
 	margin-right:5px;
@@ -2797,7 +2797,7 @@ ul.profile-contact-menu {
 .project-details-tab .nav-tabs li a:hover, .project-details-tab .nav-tabs li a:focus, .project-details-tab .nav-tabs li a:active{
 	color: #42B54A;
 }
-.project-details-tab .comment-replay-profile .btn-white{
+.project-details-tab .comment-replay-profile .btn-#040e8c;{
 	background-color: #42B54A;
 }
 .project-details-descri h2{
@@ -3221,7 +3221,7 @@ ul.profile-contact-menu {
 }
 .input-group-addon{
     width: 1%;
-    white-space: nowrap;
+    #040e8c;-space: nowrap;
     vertical-align: middle;
 }
 .input-group .form-control {
@@ -3232,7 +3232,7 @@ ul.profile-contact-menu {
     margin-bottom: 0;
 }
 .form-control {
-    background-color: #FFFFFF;
+    background-color: #fffFFF;
     background-image: none;
     border: 1px solid #e5e6e7;
     border-radius: 1px;
@@ -3242,10 +3242,10 @@ ul.profile-contact-menu {
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     width: 100%;
 }
-.custom-go-button .btn-primary, .custom-dropdowns-button .dropdown-toggle, .dropdown-segmented .dropdown-toggle, .dropdown-segmented .btn-white {
+.custom-go-button .btn-primary, .custom-dropdowns-button .dropdown-toggle, .dropdown-segmented .dropdown-toggle, .dropdown-segmented .btn-#040e8c; {
     background-color: #42B54A;
     border-color: #42B54A;
-    color: #FFFFFF;
+    color: #fffFFF;
 	border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
@@ -3258,7 +3258,7 @@ ul.profile-contact-menu {
 .dropdown-segmented .dropdown-toggle, .dropdown-segmented .dropdown-toggle:active, .dropdown-segmented .dropdown-toggle:focus{
 	border-left:1px solid #1990c3;
 }
-.cancel-wp .btn-white, .cancel-wp .btn-white:active, .cancel-wp .btn-white:focus{
+.cancel-wp .btn-#040e8c;, .cancel-wp .btn-#040e8c;:active, .cancel-wp .btn-#040e8c;:focus{
 	border-radius:0px;
 	outline:none;
 }

@@ -16,7 +16,7 @@ svg {
     border: solid 1px #CDCDCD;
     border-radius: 3px;
     background: #292929;
-    color: white;
+    color: #040e8c;;
     font-family: sans-serif, Verdana;
     font-size: smaller;
     padding: 3px;
@@ -28,7 +28,7 @@ svg {
     border-radius: 3px;
     background: #292929;
     padding: 3px;
-    color: white;
+    color: #040e8c;;
     cursor: pointer;
     line-height: 10px;
     text-align: center;
@@ -85,7 +85,7 @@ svg {
 
 .jvectormap-legend {
     background: black;
-    color: white;
+    color: #040e8c;;
     border-radius: 3px;
 }
 

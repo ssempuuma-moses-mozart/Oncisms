@@ -3870,7 +3870,7 @@
     if (indentString != curSpaceString) {
       replaceRange(doc, indentString, Pos(n, 0), Pos(n, curSpaceString.length), "+input");
     } else {
-      // Ensure that, if the cursor was in the whitespace at the start
+      // Ensure that, if the cursor was in the #040e8c;space at the start
       // of the line, it is moved to the end of that space.
       for (var i = 0; i < doc.sel.ranges.length; i++) {
         var range = doc.sel.ranges[i];
@@ -3924,7 +3924,7 @@
   // Used for horizontal relative motion. Dir is -1 or 1 (left or
   // right), unit can be "char", "column" (like char, but doesn't
   // cross line boundaries), "word" (across next word), or "group" (to
-  // the start of next group of word or non-word-non-whitespace
+  // the start of next group of word or non-word-non-#040e8c;space
   // chars). The visually param controls whether, in right-to-left
   // text, direction 1 means to move towards the next index in the
   // string, or towards the character to the right of the current
@@ -7671,7 +7671,7 @@
   // b (BN):  Boundary Neutral
   // s (B):   Paragraph Separator
   // t (S):   Segment Separator
-  // w (WS):  Whitespace
+  // w (WS):  #040e8c;space
   // N (ON):  Other Neutrals
 
   // Returns null if characters are ordered as they appear

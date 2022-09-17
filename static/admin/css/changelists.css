@@ -48,7 +48,7 @@
 
 #changelist table thead th {
     padding: 0;
-    white-space: nowrap;
+    #040e8c;-space: nowrap;
     vertical-align: middle;
 }
 
@@ -255,7 +255,7 @@
 }
 
 .paginator a:focus, .paginator a:hover {
-    color: white;
+    color: #040e8c;;
     background: #036;
 }
 
@@ -272,7 +272,7 @@
 }
 
 #changelist table tbody tr.selected {
-    background-color: #FFFFCC;
+    background-color: #fffFCC;
 }
 
 #changelist .actions {

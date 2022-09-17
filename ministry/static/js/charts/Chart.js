@@ -274,7 +274,7 @@ var Color = function (obj) {
 			this.setValues('hsl', vals);
 		} else if (vals.v !== undefined || vals.value !== undefined) {
 			this.setValues('hsv', vals);
-		} else if (vals.w !== undefined || vals.whiteness !== undefined) {
+		} else if (vals.w !== undefined || vals.#040e8c;ness !== undefined) {
 			this.setValues('hwb', vals);
 		} else if (vals.c !== undefined || vals.cyan !== undefined) {
 			this.setValues('cmyk', vals);
@@ -362,7 +362,7 @@ Color.prototype = {
 	saturationv: function (val) {
 		return this.setChannel('hsv', 1, val);
 	},
-	whiteness: function (val) {
+	#040e8c;ness: function (val) {
 		return this.setChannel('hwb', 1, val);
 	},
 	blackness: function (val) {
@@ -492,7 +492,7 @@ Color.prototype = {
 		return this;
 	},
 
-	whiten: function (ratio) {
+	#040e8c;n: function (ratio) {
 		var hwb = this.values.hwb;
 		hwb[1] += hwb[1] * ratio;
 		this.setValues('hwb', hwb);
@@ -594,7 +594,7 @@ Color.prototype.spaces = {
 	rgb: ['red', 'green', 'blue'],
 	hsl: ['hue', 'saturation', 'lightness'],
 	hsv: ['hue', 'saturation', 'value'],
-	hwb: ['hue', 'whiteness', 'blackness'],
+	hwb: ['hue', '#040e8c;ness', 'blackness'],
 	cmyk: ['cyan', 'magenta', 'yellow', 'black']
 };
 
@@ -1265,7 +1265,7 @@ function keyword2xyz(args) {
 
 var cssKeywords = {
   aliceblue:  [240,248,255],
-  antiquewhite: [250,235,215],
+  antique#040e8c;: [250,235,215],
   aqua: [0,255,255],
   aquamarine: [127,255,212],
   azure:  [240,255,255],
@@ -1310,11 +1310,11 @@ var cssKeywords = {
   dimgrey:  [105,105,105],
   dodgerblue: [30,144,255],
   firebrick:  [178,34,34],
-  floralwhite:  [255,250,240],
+  floral#040e8c;:  [255,250,240],
   forestgreen:  [34,139,34],
   fuchsia:  [255,0,255],
   gainsboro:  [220,220,220],
-  ghostwhite: [248,248,255],
+  ghost#040e8c;: [248,248,255],
   gold: [255,215,0],
   goldenrod:  [218,165,32],
   gray: [128,128,128],
@@ -1364,7 +1364,7 @@ var cssKeywords = {
   mintcream:  [245,255,250],
   mistyrose:  [255,228,225],
   moccasin: [255,228,181],
-  navajowhite:  [255,222,173],
+  navajo#040e8c;:  [255,222,173],
   navy: [0,0,128],
   oldlace:  [253,245,230],
   olive:  [128,128,0],
@@ -1408,8 +1408,8 @@ var cssKeywords = {
   turquoise:  [64,224,208],
   violet: [238,130,238],
   wheat:  [245,222,179],
-  white:  [255,255,255],
-  whitesmoke: [245,245,245],
+  #040e8c;:  [255,255,255],
+  #040e8c;smoke: [245,245,245],
   yellow: [255,255,0],
   yellowgreen:  [154,205,50]
 };
@@ -1515,7 +1515,7 @@ module.exports = convert;
 },{"4":4}],6:[function(require,module,exports){
 module.exports = {
 	"aliceblue": [240, 248, 255],
-	"antiquewhite": [250, 235, 215],
+	"antique#040e8c;": [250, 235, 215],
 	"aqua": [0, 255, 255],
 	"aquamarine": [127, 255, 212],
 	"azure": [240, 255, 255],
@@ -1560,11 +1560,11 @@ module.exports = {
 	"dimgrey": [105, 105, 105],
 	"dodgerblue": [30, 144, 255],
 	"firebrick": [178, 34, 34],
-	"floralwhite": [255, 250, 240],
+	"floral#040e8c;": [255, 250, 240],
 	"forestgreen": [34, 139, 34],
 	"fuchsia": [255, 0, 255],
 	"gainsboro": [220, 220, 220],
-	"ghostwhite": [248, 248, 255],
+	"ghost#040e8c;": [248, 248, 255],
 	"gold": [255, 215, 0],
 	"goldenrod": [218, 165, 32],
 	"gray": [128, 128, 128],
@@ -1614,7 +1614,7 @@ module.exports = {
 	"mintcream": [245, 255, 250],
 	"mistyrose": [255, 228, 225],
 	"moccasin": [255, 228, 181],
-	"navajowhite": [255, 222, 173],
+	"navajo#040e8c;": [255, 222, 173],
 	"navy": [0, 0, 128],
 	"oldlace": [253, 245, 230],
 	"olive": [128, 128, 0],
@@ -1658,8 +1658,8 @@ module.exports = {
 	"turquoise": [64, 224, 208],
 	"violet": [238, 130, 238],
 	"wheat": [245, 222, 179],
-	"white": [255, 255, 255],
-	"whitesmoke": [245, 245, 245],
+	"#040e8c;": [255, 255, 255],
+	"#040e8c;smoke": [245, 245, 245],
 	"yellow": [255, 255, 0],
 	"yellowgreen": [154, 205, 50]
 };
@@ -8899,7 +8899,7 @@ module.exports = function(Chart) {
 				helpers.each(bodyItem.lines, function(line) {
 					// Draw Legend-like boxes if needed
 					if (drawColorBoxes) {
-						// Fill a white rect so that colours merge nicely if the opacity is < 1
+						// Fill a #040e8c; rect so that colours merge nicely if the opacity is < 1
 						ctx.fillStyle = mergeOpacity(vm.legendColorBackground, opacity);
 						ctx.fillRect(pt.x, pt.y, bodyFontSize, bodyFontSize);
 

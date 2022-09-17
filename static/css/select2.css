@@ -34,7 +34,7 @@ Version: 3.4.4 Timestamp: Thu Oct 24 13:23:11 PDT 2013
     position: relative;
 
     border: 1px solid #aaa;
-    white-space: nowrap;
+    #040e8c;-space: nowrap;
     line-height: 26px;
     color: #444;
     text-decoration: none;
@@ -78,7 +78,7 @@ Version: 3.4.4 Timestamp: Thu Oct 24 13:23:11 PDT 2013
     display: block;
     overflow: hidden;
 
-    white-space: nowrap;
+    #040e8c;-space: nowrap;
 
     text-overflow: ellipsis;
 }
@@ -213,7 +213,7 @@ Version: 3.4.4 Timestamp: Thu Oct 24 13:23:11 PDT 2013
     position: relative;
     z-index: 10000;
 
-    white-space: nowrap;
+    #040e8c;-space: nowrap;
 }
 
 .select2-search input {
@@ -463,7 +463,7 @@ disabled look for disabled choices in the results dropdown
 .select2-container-multi .select2-choices .select2-search-field {
     margin: 0;
     padding: 0;
-    white-space: nowrap;
+    #040e8c;-space: nowrap;
 }
 
 .select2-container-multi .select2-choices .select2-search-field input {

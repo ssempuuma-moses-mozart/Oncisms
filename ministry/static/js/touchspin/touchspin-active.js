@@ -2,8 +2,8 @@
  "use strict";
  
 	 $(".touchspin1").TouchSpin({
-		buttondown_class: 'btn btn-white',
-		buttonup_class: 'btn btn-white'
+		buttondown_class: 'btn btn-#040e8c;',
+		buttonup_class: 'btn btn-#040e8c;'
 	});
 
 	$(".touchspin2").TouchSpin({
@@ -14,14 +14,14 @@
 		boostat: 5,
 		maxboostedstep: 10,
 		postfix: '%',
-		buttondown_class: 'btn btn-white',
-		buttonup_class: 'btn btn-white'
+		buttondown_class: 'btn btn-#040e8c;',
+		buttonup_class: 'btn btn-#040e8c;'
 	});
 
 	$(".touchspin3").TouchSpin({
 		verticalbuttons: true,
-		buttondown_class: 'btn btn-white',
-		buttonup_class: 'btn btn-white'
+		buttondown_class: 'btn btn-#040e8c;',
+		buttonup_class: 'btn btn-#040e8c;'
 	});
 
 

@@ -27,7 +27,7 @@ The plugin supports these options:
 				left: integer value to move the pie left or right, or 'auto'
 			},
 			stroke: {
-				color: any hexidecimal color value (other formats may or may not work, so best to stick with something like '#FFF')
+				color: any hexidecimal color value (other formats may or may not work, so best to stick with something like '#fff')
 				width: integer pixel width of the stroke
 			},
 			label: {

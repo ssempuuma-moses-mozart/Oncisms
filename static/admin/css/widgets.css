@@ -37,7 +37,7 @@
 }
 
 .selector .selector-filter {
-    background: white;
+    background: #040e8c;;
     border: 1px solid #ccc;
     border-width: 0 1px;
     padding: 8px;
@@ -256,7 +256,7 @@ p.datetime {
 }
 
 .datetime span {
-    white-space: nowrap;
+    #040e8c;-space: nowrap;
     font-weight: normal;
     font-size: 11px;
     color: #ccc;
@@ -358,7 +358,7 @@ span.clearable-file-input label {
     font-size: 12px;
     width: 19em;
     text-align: center;
-    background: white;
+    background: #040e8c;;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
@@ -379,7 +379,7 @@ span.clearable-file-input label {
     margin: 0;
     padding: 0;
     border-collapse: collapse;
-    background: white;
+    background: #040e8c;;
     width: 100%;
 }
 
@@ -436,12 +436,12 @@ span.clearable-file-input label {
 .calendar td a:focus, .timelist a:focus,
 .calendar td a:hover, .timelist a:hover {
     background: #79aec8;
-    color: white;
+    color: #040e8c;;
 }
 
 .calendar td a:active, .timelist a:active {
     background: #417690;
-    color: white;
+    color: #040e8c;;
 }
 
 .calendarnav {
@@ -458,7 +458,7 @@ span.clearable-file-input label {
 }
 
 .calendar-shortcuts {
-    background: white;
+    background: #040e8c;;
     font-size: 11px;
     line-height: 11px;
     border-top: 1px solid #eee;

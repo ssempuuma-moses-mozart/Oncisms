@@ -35,5 +35,18 @@ urlpatterns = [
     path('slider/', SliderTemplate.as_view(), name='slider'),
     path('slider_main/', SliderMainTemplate.as_view(), name='slider-main'),
     path('search_google/', views.search_google, name='search-google'),
+    
+    # Added Pages
+     path('about/', AboutView.as_view(), name='about' ),
+     path('about/', views.SubmitFormAndRetreive, name='about' ),
+     path('background_oncology/', BackgroundView.as_view(), name='background_oncology' ),
+     path('digital_oncology/', DigitalOncologyView.as_view(), name='digital_oncology' ),
+     path('background_hub/', BackgroundHubView.as_view(), name='background_hub' ),
+     path('cancer_information/', CancerInformationView.as_view(), name='cancer_information' ),
+     path('cancer_report/', CancerReportView.as_view(), name='cancer_report' ),
+     path('background_digital_oncology/', BackgroundDigitalOncologyView.as_view(), name='backgroundbackground_digital_oncology' ),
+
+    
+      
 
 ]

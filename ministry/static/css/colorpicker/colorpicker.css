@@ -78,7 +78,7 @@ License: MIT
 	left: 50%;
 	cursor: pointer;
 	border: 1px solid black;
-	background: white;
+	background: #040e8c;;
 	opacity: .8;
 }
 .sp-alpha {
@@ -132,14 +132,14 @@ License: MIT
 	display: none;
 }
 .sp-sat {
-	background-image: -webkit-gradient(linear,  0 0, 100% 0, from(#FFF), to(rgba(204, 154, 129, 0)));
-	background-image: -webkit-linear-gradient(left, #FFF, rgba(204, 154, 129, 0));
+	background-image: -webkit-gradient(linear,  0 0, 100% 0, from(#fff), to(rgba(204, 154, 129, 0)));
+	background-image: -webkit-linear-gradient(left, #fff, rgba(204, 154, 129, 0));
 	background-image: -moz-linear-gradient(left, #fff, rgba(204, 154, 129, 0));
 	background-image: -o-linear-gradient(left, #fff, rgba(204, 154, 129, 0));
 	background-image: -ms-linear-gradient(left, #fff, rgba(204, 154, 129, 0));
 	background-image: linear-gradient(to right, #fff, rgba(204, 154, 129, 0));
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startColorstr=#FFFFFFFF, endColorstr=#00CC9A81)";
-	filter : progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startColorstr='#FFFFFFFF', endColorstr='#00CC9A81');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startColorstr=#fffFFFFF, endColorstr=#00CC9A81)";
+	filter : progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startColorstr='#fffFFFFF', endColorstr='#00CC9A81');
 }
 .sp-val {
 	background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#000000), to(rgba(204, 154, 129, 0)));
@@ -213,7 +213,7 @@ License: MIT
 	left: -1px;
 	right: -1px;
 	border: 1px solid #000;
-	background: white;
+	background: #040e8c;;
 	opacity: .8;
 }
 .sp-container {

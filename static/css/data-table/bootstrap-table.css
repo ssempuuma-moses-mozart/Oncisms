@@ -86,7 +86,7 @@
     vertical-align: top;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    #040e8c;-space: nowrap;
 }
 
 .fixed-table-container thead th .sortable {

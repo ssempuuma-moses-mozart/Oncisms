@@ -375,6 +375,28 @@ def report(request):
 	}
 	return render(request, 'public/report.html', context)
 
+def cancer_report(request):
+	if request.method == 'POST':
+		form = CancerReportCreateForm(request.POST, request.FILES,)
+		if form.is_valid():
+			try:
+				form.save()
+				messages.success(request, f'Thank you! You have reported your case successifully.')
+				return HttpResponseRedirect(reverse('cancer_report'))
+			except Exception:
+				messages.warning(request, f'Error! Your case is not reported, Try again!')		
+	else:
+		form = CancerReportCreateForm()
+
+	context = {
+	'title': 'Report',
+	'form': form,
+	'groups': Group.objects.filter(pk__lte=4),
+	}
+	return render(request, 'public/cancer_report.html', context)
+
+
+
 def covid19(request):
 	classes = Classe.objects.annotate(uploads=Count('lockdownpackage')).order_by('id')
 	return render(request, 'public/covid19.html', {'title': 'COVID-19','classes': classes})
@@ -462,3 +484,39 @@ class SliderTemplate(TemplateView):
 
 class SliderMainTemplate(TemplateView):
 	template_name = 'public/slider_main.html'
+
+
+class BackgroundDigitalOncologyView(TemplateView):
+	template_name = 'public/background_digital_oncology.html'
+
+class BackgroundView(TemplateView):
+	template_name = 'public/background_oncology.html'
+
+class DigitalOncologyView(TemplateView):
+	template_name = 'public/digital_oncology.html'
+
+class BackgroundHubView(TemplateView):
+	template_name = 'public/background_hub.html'
+
+class CancerInformationView(TemplateView):
+	template_name = 'public/cancer_information.html'
+
+class CancerReportView(TemplateView):
+	template_name = 'public/cancer_report.html'			
+
+class AboutView(TemplateView):
+	template_name = 'public/about.html'
+
+def SubmitFormAndRetreive(request):
+
+    if request.method=='POST':
+	    sername = request.POST['username']
+	    name = request.POST['name']
+	    password = request.POST['password']
+
+	    newdata = SubmitFormAndRetreive(username=username, name=name, password=password)
+	    newdata.save()
+	    return HttpResponse("Data Saved")
+    else:
+        return render(request, 'public/about.html', {'name': 'about'})
+

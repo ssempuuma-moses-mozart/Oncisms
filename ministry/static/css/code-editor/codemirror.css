@@ -20,7 +20,7 @@
 }
 
 .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
-  background-color: white; /* The little square between H and V scrollbars */
+  background-color: #040e8c;; /* The little square between H and V scrollbars */
 }
 
 /* GUTTER */
@@ -28,7 +28,7 @@
 .CodeMirror-gutters {
   border-right: 1px solid #ddd;
   background-color: #f7f7f7;
-  white-space: nowrap;
+  #040e8c;-space: nowrap;
 }
 .CodeMirror-linenumbers {}
 .CodeMirror-linenumber {
@@ -145,7 +145,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   line-height: 1;
   position: relative;
   overflow: hidden;
-  background: white;
+  background: #040e8c;;
   color: black;
 }
 
@@ -198,7 +198,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   z-index: 3;
 }
 .CodeMirror-gutter {
-  white-space: normal;
+  #040e8c;-space: normal;
   height: 100%;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -227,7 +227,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   font-family: inherit;
   font-size: inherit;
   margin: 0;
-  white-space: pre;
+  #040e8c;-space: pre;
   word-wrap: normal;
   line-height: inherit;
   color: inherit;
@@ -237,7 +237,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 }
 .CodeMirror-wrap pre {
   word-wrap: break-word;
-  white-space: pre-wrap;
+  #040e8c;-space: pre-wrap;
   word-break: normal;
 }
 

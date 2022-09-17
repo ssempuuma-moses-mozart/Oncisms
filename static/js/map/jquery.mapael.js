@@ -5,7 +5,7 @@
  *
  * Version: 2.1.0
  *
- * Copyright (c) 2017 Vincent Brouté (https://www.vincentbroute.fr/mapael)
+ * Copyright (c) 2017 Vincent Broutï¿½ (https://www.vincentbroute.fr/mapael)
  * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php).
  *
  * Thanks to Indigo744
@@ -1216,12 +1216,12 @@
             // dist(c,d) = dist(a,b) (=abDist)
             var abDist = Math.sqrt((xb - xa) * (xb - xa) + (yb - ya) * (yb - ya));
 
-            // Solution for equation dist(cd) = sqrt((xd - xc)² + (yd - yc)²)
-            // dist(c,d)² = (xd - xc)² + (yd - yc)²
+            // Solution for equation dist(cd) = sqrt((xd - xc)ï¿½ + (yd - yc)ï¿½)
+            // dist(c,d)ï¿½ = (xd - xc)ï¿½ + (yd - yc)ï¿½
             // We assume that dist(c,d) = dist(a,b)
-            // so : (xd - xc)² + (yd - yc)² - dist(a,b)² = 0
-            // With the factor : (xd - xc)² + (yd - yc)² - (factor*dist(a,b))² = 0
-            // (xd - xc)² + (acd*xd + bcd - yc)² - (factor*dist(a,b))² = 0
+            // so : (xd - xc)ï¿½ + (yd - yc)ï¿½ - dist(a,b)ï¿½ = 0
+            // With the factor : (xd - xc)ï¿½ + (yd - yc)ï¿½ - (factor*dist(a,b))ï¿½ = 0
+            // (xd - xc)ï¿½ + (acd*xd + bcd - yc)ï¿½ - (factor*dist(a,b))ï¿½ = 0
             var a = 1 + acd * acd;
             var b = -2 * xc + 2 * acd * bcd - 2 * acd * yc;
             var c = xc * xc + bcd * bcd - bcd * yc - yc * bcd + yc * yc - ((elemOptions.factor * abDist) * (elemOptions.factor * abDist));

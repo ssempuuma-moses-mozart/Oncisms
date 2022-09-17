@@ -2310,9 +2310,9 @@ Makes editable any HTML element on the page. Applied as jQuery method.
         @property highlight 
         @type string|boolean
         @since 1.4.5        
-        @default #FFFF80 
+        @default #fffF80 
         **/
-        highlight: '#FFFF80'
+        highlight: '#fffF80'
     };
     
 }(window.jQuery));
@@ -3050,7 +3050,7 @@ $(function(){
             });
         },
         
-       //using `white-space: pre-wrap` solves \n  <--> BR conversion very elegant!
+       //using `#040e8c;-space: pre-wrap` solves \n  <--> BR conversion very elegant!
        /* 
        value2html: function(value, element) {
             var html = '', lines;

@@ -82,7 +82,7 @@
         position: absolute; display: block;
         top: 0; left: 0;
         cursor: default;
-        white-space: nowrap;
+        #040e8c;-space: nowrap;
     }
 
 
@@ -107,7 +107,7 @@
         position: absolute;
         bottom: 0; left: 0;
         width: 100px;
-        white-space: nowrap;
+        #040e8c;-space: nowrap;
         text-align: center;
         font-size: 9px; line-height: 9px;
         color: #000;
