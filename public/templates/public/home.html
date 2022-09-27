@@ -2,21 +2,194 @@
 {% load static %}
 {% block content %}
 
-<div class="container-fluid">
+<style>
+       @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    background: #f5f6fa;
+}
+
+.wrapper .sidebar{
+    background: #f8f9fa;     
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 50%;
+    padding: 20px 0;
+    transition: all 0.5s ease;
+}
+
+.wrapper .sidebar .profile{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.wrapper .sidebar .profile img{
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin-left: 50px;
+    border-radius: 50%;
+    margin-top: 120px;
+}
+
+.wrapper .sidebar .profile h3{
+    color: #ffffff;
+    margin: 10px 0 5px;
+}
+
+.wrapper .sidebar .profile p{
+    color: rgb(206, 240, 253);
+    font-size: 14px;
+}
+
+.wrapper .sidebar ul li a{
+    display: block;
+    padding: 13px 30px;
+    border-bottom: 1px solid white;
+    color: rgb(241, 237, 237);
+    font-size: 16px;
+    position: relative;
+}
+
+.wrapper .sidebar ul li a .icon{
+    color: #dee4ec;
+    width: 30px;
+    display: inline-block;
+}
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active{
+    color: #0c7db1;
+
+    background:white;
+    border-right: 2px solid rgb(5, 68, 104);
+}
+
+.wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon{
+    color: #0c7db1;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before{
+    display: block;
+}
+.item{
+    color: black;
+}
+</style>
+
+<div class="container-fluid"  style="padding: 0cm; padding-right: 0cm; margin-top: 12px;">
     <div class="row">
-        <div class="col-lg-9 shadow">
+
+        <div class="col-md-2">
+          
+   
+         
+
+      
+            <main style="margin-top: 58px;">
+              <div class="container pt-4"></div>
+            </main>
+       
+            <div class="wrapper">
+              
+              <div class="sidebar">
+                
+                <div class="profile">
+                   
+
+
+                <ul>
+                    <li>
+                        <a href="#" class="active" style="margin-top: 100px;">
+                        
+                            
+                            <span class="item">Home</span>
+                        </a>
+                    </li>
+            
+            
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-database"></i></span>
+                            <span class="item">Development</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-database"></i></span>
+                            <span class="item">Development</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-database"></i></span>
+                            <span class="item">Development</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-database"></i></span>
+                            <span class="item">Development</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-database"></i></span>
+                            <span class="item">Development</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-database"></i></span>
+                            <span class="item">Development</span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fas fa-cog"></i></span>
+                            <span class="item">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+              
+              </div>
+      
+          </div>
+            
+          </div>
+
+
+
+          <!-- shadow -->
+        <div class="col-lg-5">
             
             <div style="display: flex;">
            	<!-- <img src="{% static 'img/ch.jpg' %}" alt="" style="width: 50%; padding-top: 10px;"> -->
             <!-- <img src="{% static 'img/ch1.jpg' %}" alt="" 
                     style="width: 50%; padding-top: 10px;"> -->
 
-            <iframe style="margin-left: 0px;" class="profile-details-name-nn" src="{% url 'slider' %}" width="100%" height="520px" scrolling="no" height="400px" frameborder="0" style="padding-top: 10px; padding-bottom: 0px; margin-bottom: 0px;"></iframe>
+            <iframe style="margin-left: 0px;" class="profile-details-name-nn" src="{% url 'slider' %}" width="100%" height="520px" scrolling="no" height="400px" frameborder="0" style="padding-top: 10px; padding-bottom: 0px; margin-bottom: 0px; margin-left: 0px;"></iframe>
             <!-- <iframe src="{% url 'slider-main' %}" width="100%" scrolling="no" height="400px" frameborder="0" style="padding-top: 10px;"></iframe> -->
             
             </div>
 
-            <div style="padding-top: 5px; margin-top: 75px;">
+        </div>
+
+            <!-- <div style="padding-top: 5px; margin-top: 75px;">
                 <div class="row px-3">
                     <div class="px-3">
                         <hr>
@@ -87,18 +260,47 @@
 
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="py-3 px-3">
+            <!-- <div class="py-3 px-3">
                 <hr>
                 <h3 style="text-align: center;"><b>Our Model</b></h3>
                 
-                <!-- <img src="{% static 'img/diag.png' %}" width="100%" alt=""> -->
-            </div>
+            
+            </div> -->
 
-            </div>
+         
+
+       
 
         <div class="col-md-3">
+           
+            <div class="py-3">
+                <!-- <h4><b>Oncology Reimagined ?</b></h4> -->
+                <hr>
+                <p>
+                    <i>ONCIMS</i>ONCIMS is a series of next generation integrated Digital Cancer Data Management Suite for resource constrained areas.
+                </p>
+                <hr>
+            </div>
+            <div class="py-3">
+                <h4><b>Uganda Cancer Institute</b></h4>
+                <hr>
+                <div style="height:700px; overflow: auto;">
+                    <a class="twitter-timeline" href="https://twitter.com/ugandacancerins?lang=en">Tweets
+                        by
+                        Minstry Of Education & Sports Ug</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+                <hr>
+            </div>
+        
+        </div>
+
+
+        <div class="col-md-2">
+            
+            <a style="margin-bottom: 2px; margin-top: 12px;" href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make</span> Donation</a>
             <div class="container-fluid row center py-3">
                 <img src="{% static 'img/cg.gif' %}" alt="">
             </div>
@@ -121,7 +323,7 @@
                 </div>
                 <hr>
             </div>
-            <div class="py-3">
+            <!-- <div class="py-3">
                 <h4><b>Contact Us</b></h4>
                 <hr>
                 <p>
@@ -132,7 +334,7 @@
                     <hr>
                     Email:
                 </p>
-            </div>
+            </div> -->
         </div>
     </div>
 

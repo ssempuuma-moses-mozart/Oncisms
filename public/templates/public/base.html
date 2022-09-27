@@ -555,7 +555,7 @@ position: relative;
   /* font-family: "Roboto", sans-serif; */
   /* font-size: 13px; */
   /* font-weight: 600; */
-  color: #1bbd36;
+  color: white;
   white-space: nowrap;
   /* text-transform: uppercase; */
   transition: 0.3s;
@@ -752,6 +752,30 @@ position: relative;
 }
 
 
+/**
+* Appointment Button *
+*/
+.appointment-btn {
+  margin-left: 25px;
+  background: #1977cc;
+  color: #fff;
+  border-radius: 50px;
+  padding: 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  display: inline-block;
+}
+.appointment-btn:hover {
+  background: #166ab5;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .appointment-btn {
+    margin: 0 15px 0 0;
+    padding: 6px 18px;
+  }
+}
 
 
 
@@ -762,11 +786,12 @@ position: relative;
 
 <body id="body">
  
-
+  <!-- #166ab5
+  #1977cc -->
 
   <!-- #21552D; -->
     <!-- ======= Top Bar ======= -->
-    <div id="topbar" class="d-flex align-items-center fixed-top" style="background-color: #2ecc40; position: fixed; width: 100%; height: 40px; z-index: 10; border-bottom: 2px solid #49D292;">
+    <div id="topbar" class="d-flex align-items-center fixed-top" style="background: rgb(5, 68, 104); position: fixed; width: 100%; height: 40px; z-index: 10; border-bottom: 2px solid white;">
       <div class="container d-flex justify-content-between" style="margin-left: 75px;">
         <div class="probootstrap-header-top d-flex align-items-center" style=" margin-top: 8px; font-size: 12px;">
           
@@ -779,6 +804,7 @@ position: relative;
                 <span><i class="icon-phone2"></i>+256 776 173 026</span>
                 <img style="width: 18px; margin-left: 21px; margin-right: 5px;" src="{% static 'img/emailw.png' %}" alt="">
                 <span><i class="icon-mail"></i>oncims@gmail.com</span>
+
               </div>
             </div>
           </div>
@@ -805,9 +831,10 @@ position: relative;
     <!-- color: #040e8c; -->
     <!-- #ffc107; -->
 
+    <!-- rgb(5, 68, 104) -->
 
   
-    <div class="header-top-area  stricky"  style="background-color: white; width: 100%; z-index:999; position: fixed; margin-top: 20px; border-bottom: 2px solid #F4A424; margin-top: 40px;">
+    <div class="header-top-area  stricky"  style="background-color: #166ab5; width: 100%; z-index:999; position: fixed; margin-top: 20px; border-bottom: 2px solid white; margin-top: 40px;">
         <div class="">
             <div class="row main-menu-area" style="margin-left: 50px;">
                 <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
@@ -816,7 +843,7 @@ position: relative;
                     
                         <ul role="menu" class="nav navbar-nav mai-top-nav submenu">
                        
-                          <li class="nav-item"><a href="#" class="nav-link" style="margin-right: 5px; font-size: 15px;font-family: Raleway, Arial, sans-serif; padding-top: 0px; padding-bottom: 0px;"><img  src="{% static 'img/logoonsim.png' %}" width="140px;" alt="" class="px-3 cover"><span style="color:#505050; font-weight:700; font-size: x-large;"></span></a>
+                          <li class="nav-item"><a href="#" class="nav-link" style="margin-right: 5px; font-size: 15px;font-family: Raleway, Arial, sans-serif; padding-top: 0px; padding-bottom: 0px;"><img  src="{% static 'img/logoon.png' %}" width="140px;" alt="" class="px-3 cover"><span style="color:#505050; font-weight:700; font-size: x-large;"></span></a>
                             
                           </li>
 
@@ -1170,11 +1197,11 @@ position: relative;
                         <ul class="nav navbar-nav mai-top-nav header-right-menu"> 
                             <li class="nav-item">
                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle" style="color: #040e8c;">
-                                    <span class="adminpro-icon adminpro-user-rounded header-riht-inf" style="color: #040e8c;"></span>
-                                    <span class="admin-name" style="color: #040e8c;">{% if user.is_authenticated %}{{ user.first_name}}{% else %} Get Started{% endif %}</span>
-                                    <span class="author-project-icon adminpro-icon adminpro-down-arrow" style="color: #040e8c;"></span>
+                                    <span class="adminpro-icon adminpro-user-rounded header-riht-inf" style="color: white;"></span>
+                                    <span class="admin-name" style="color: white;">{% if user.is_authenticated %}{{ user.first_name}}{% else %} Get Started{% endif %}</span>
+                                    <span class="author-project-icon adminpro-icon adminpro-down-arrow" style="color: white;"></span>
                                 </a>
-                                <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX" style="color: #040e8c;" style="color: #040e8c;">
+                                <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX" style="color: white;" style="color: white;">
                                 {% if user.is_authenticated %}
                                     <li><a href="{% url 'profile' %}"><span class="adminpro-icon adminpro-home-admin author-log-ic"></span>My Account</a>
                                     </li>
